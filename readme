@@ -1,0 +1,19 @@
+Felix Pötzsch, 0580106, Programmieren 3, Prof. Lohmann
+
+Beleg 1: GL Logik
+- Erstellung eines Interfaces für die Geschäftslogik zur Verwaltung von Mediadateien
+        Funktionen im "Vertrag":
+        - create()
+        - read()
+        - readAll()
+        - update()
+        - delete()
+
+- Erstellung Verwaltung Implementation
+        Implementierte Funktionen:
+
+       - Arraylist wird einmalig bei aufruf der Klasse angelegt
+
+
+- Erstellung Tests für Interface Verwaltung
+        Getestete Funktionen:
