@@ -23,7 +23,7 @@ class VerwaltungCreateTests {
         Assertions.assertEquals(testContent1,temp);
     }
 
-    @Test //Eintrag in der db
+    @Test //Eintrag an stelle wo schon irgendetwas ist
     void badCreate1() throws DataNrOccupiedException, SameDataExistsException {
         assertThrows(DataNrOccupiedException.class,
                 ()->{
@@ -37,7 +37,7 @@ class VerwaltungCreateTests {
                 });
     }
 
-    @Test //Eintrag wird mit gleicher Data versucht zu schreiben
+    @Test //Eintrag wird mit gleicher Data versucht zu schreiben, es wird geprüft ob irgendwo diese datei schon vorhanden ist
     void badCreate2() throws SameDataExistsException, DataNrOccupiedException{
         assertThrows(SameDataExistsException.class,
                 ()->{
@@ -49,6 +49,7 @@ class VerwaltungCreateTests {
                     testVerwaltung.create(1, testContent1);
                     testVerwaltung.create(2, testContent1); //cause
                 });
+        //fail();
     }
 
 }

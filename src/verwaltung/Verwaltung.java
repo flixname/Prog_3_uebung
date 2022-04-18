@@ -1,12 +1,14 @@
 package verwaltung;
 
 import mediaDB.AudioVideo;
+import mediaDB.Uploader;
 
 import java.io.PrintStream;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Interface zur Verwaltung von Daten und Uploadern
+ * Interface zur Verwaltung von Daten und Uploadern(?)
  */
 public interface Verwaltung {
 
@@ -46,7 +48,7 @@ public interface Verwaltung {
      * @throws NullPointerException wenn nichts da ist zum speichern
      * @throws DataNrOccupiedException wenn same data schon vorhanden
      */
-    void update(Integer dataNr, AudioVideo update) throws NullPointerException, DataNrOccupiedException;
+    void update(Integer dataNr, AudioVideo update) throws NullPointerException, SameDataExistsException;
 
     /**
      * löscht eine Datei
@@ -65,8 +67,5 @@ public interface Verwaltung {
      * erstellt einen uploadereintrag
      * @throws UploaderExistsException
      */
-    void createUploader() throws UploaderExistsException;
-
-
-
+    void createUploader(Uploader name) throws UploaderExistsException;
 }

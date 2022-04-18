@@ -1,8 +1,11 @@
 package verwaltung;
 
 import mediaDB.AudioVideo;
+import mediaDB.Uploadable;
+import mediaDB.Uploader;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +13,8 @@ public class VerwaltungImpl implements Verwaltung {
 
 
     HashMap<Integer, AudioVideo> audioVideoHashMap = new HashMap<>();
+
+    ArrayList<Uploader> uploaderArrayList = new ArrayList<>();
 
     @Override
     public Map<Integer, AudioVideo> getMap() {
@@ -19,11 +24,14 @@ public class VerwaltungImpl implements Verwaltung {
     @Override
     public void create(Integer dataNr, AudioVideo data) throws SameDataExistsException, DataNrOccupiedException {
 
-        //TODO: samedata exists
-        if (this.audioVideoHashMap.get(dataNr) == null) {
-                for (int i = 0; i < this.audioVideoHashMap.values().size(); i++) {
-                    AudioVideo temp = this.audioVideoHashMap.get(i);
-                    if (this.audioVideoHashMap.get(dataNr) == temp){
+        if (this.audioVideoHashMap.get(dataNr) == null) { //testet ob null
+                //for (int i = 0; i < this.audioVideoHashMap.values().size(); i++) {
+                   // AudioVideo temp = this.audioVideoHashMap.get(i);
+            for (Map.Entry e : audioVideoHashMap.entrySet()){
+                //e.getKey();
+                //e.getValue();
+                AudioVideo temp = this.audioVideoHashMap.get(e.getKey());
+                    if (data == temp){ //testet ob selbe datei irgendwo schon einmal da
                         throw new SameDataExistsException("Exists already");
                     }
                 }
@@ -48,9 +56,10 @@ public class VerwaltungImpl implements Verwaltung {
     public String printAll(PrintStream os) throws NullPointerException{
 
         try {
-            for (int i = 0; i < this.audioVideoHashMap.values().size(); i++) { //geht die Hashmap durch
-                if(this.audioVideoHashMap.get(i) == null) throw new NullPointerException("An der Stelle" + i + "befindet sich nichts"); //testet ob an der stelle null
-                String temp = this.audioVideoHashMap.get(i).toString(); //TODO: Möglichkeit finden mehrere male hintereinander etwas zu returnen... per stream?
+            //for (int i = 0; i < this.audioVideoHashMap.values().size(); i++) { //geht die Hashmap durch
+            for (Map.Entry e : audioVideoHashMap.entrySet()){
+                if(this.audioVideoHashMap.get(e.getKey()) == null) throw new NullPointerException("An der Stelle" + this.audioVideoHashMap.get(e.getKey()) + "befindet sich nichts"); //testet ob an der stelle null
+                String temp = this.audioVideoHashMap.get(e.getKey()).toString();
                 os.println(temp);
             }
         } catch (NullPointerException e) {
@@ -58,19 +67,20 @@ public class VerwaltungImpl implements Verwaltung {
         }
     return null;
     }
+    //TODO: was soll gestream werden
 
     @Override
-    public void update(Integer dataNr, AudioVideo update) throws NullPointerException, DataNrOccupiedException {
+    public void update(Integer dataNr, AudioVideo update) throws NullPointerException, SameDataExistsException {
 
-
+        //TODO: Hier ist ein Fehler, soll eigentlich ja eine Eigenschaft updaten
         if (update != this.audioVideoHashMap.get(dataNr)) {
             try {
-                this.audioVideoHashMap.replace(1, update);
+                this.audioVideoHashMap.replace(dataNr, update);
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
         } else {
-            throw new DataNrOccupiedException("Data exists already");
+            throw new SameDataExistsException("Data exists already in this place");
         }
 
     }
@@ -86,11 +96,13 @@ public class VerwaltungImpl implements Verwaltung {
 
     @Override
     public void deleteAll() throws NullPointerException {
-
+        //TODO: abfrage Y/N
+        this.audioVideoHashMap.clear();
     }
 
     @Override
-    public void createUploader() throws UploaderExistsException {
-
+    public void createUploader(Uploader name) throws UploaderExistsException {
+        //TODO: Zweite List/map mit uploadern? aber kommt das in dieses Interface oder neues?
+        this.uploaderArrayList.add(name);
     }
 }

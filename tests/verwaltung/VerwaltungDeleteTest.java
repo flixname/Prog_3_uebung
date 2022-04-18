@@ -10,18 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class VerwaltungDeleteTest {
 
     @Test //löscht eine Data
-    void goodDelete1() {
+    void goodDelete1() throws DataNrOccupiedException, SameDataExistsException {
         Verwaltung testVerwaltung = new VerwaltungImpl();
 
         AudioVideo testContent1 = new AudioVideoImpl();
 
+        testVerwaltung.create(1,testContent1);
         testVerwaltung.delete(1); //cause
 
         AudioVideo temp = testVerwaltung.getMap().get(0);
         //AudioVideo temp = testVerwaltung.read(1);
 
         Assertions.assertEquals(null, temp);
-        fail(); //TODO null
     }
 
     @Test //versucht Data zu löschen es gibt aber keine an dem ort
