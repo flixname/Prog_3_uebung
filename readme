@@ -3,17 +3,37 @@ Felix Pötzsch, 0580106, Programmieren 3, Prof. Lohmann
 Beleg 1: GL Logik
 - Erstellung eines Interfaces für die Geschäftslogik zur Verwaltung von Mediadateien
         Funktionen im "Vertrag":
+
+        - getMap()
         - create()
         - read()
-        - readAll()
+        - printAll()
         - update()
         - delete()
+        - deleteAll()
+        - createUploader()
 
 - Erstellung Verwaltung Implementation
-        Implementierte Funktionen:
+        Implementierte Funktionen bisher (teils nicht voll funktionsfähig bzw. mit fehlern):
 
-       - Arraylist wird einmalig bei aufruf der Klasse angelegt
+       - HashMap zum speichern
+       - create
+       - read
+       - printAll
+       - delete
+       - update
+
+- Exceptions
+        - Null pointer
+        - Data occupied
+        - Same data excists
 
 
 - Erstellung Tests für Interface Verwaltung
         Getestete Funktionen:
+
+        - create
+        - delete
+        - printAll
+        - read
+        - update

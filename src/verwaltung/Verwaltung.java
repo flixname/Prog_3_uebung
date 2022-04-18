@@ -10,7 +10,11 @@ import java.util.Map;
  */
 public interface Verwaltung {
 
-    Map<Integer, AudioVideo> getIterator();
+    /**
+     * eher für das Testen gedacht
+     * @return komplette Hashmap
+     */
+    Map<Integer, AudioVideo> getMap();
 
     /**
      * Bekommt Datei, welche in die DB geladen werden soll

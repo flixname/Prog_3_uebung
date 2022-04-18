@@ -12,7 +12,7 @@ public class VerwaltungImpl implements Verwaltung {
     HashMap<Integer, AudioVideo> audioVideoHashMap = new HashMap<>();
 
     @Override
-    public Map<Integer, AudioVideo> getIterator() {
+    public Map<Integer, AudioVideo> getMap() {
         return this.audioVideoHashMap;
     }
 

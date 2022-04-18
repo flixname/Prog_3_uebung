@@ -17,7 +17,7 @@ class VerwaltungDeleteTest {
 
         testVerwaltung.delete(1); //cause
 
-        AudioVideo temp = testVerwaltung.getIterator().get(0);
+        AudioVideo temp = testVerwaltung.getMap().get(0);
         //AudioVideo temp = testVerwaltung.read(1);
 
         Assertions.assertEquals(null, temp);
