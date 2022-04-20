@@ -13,9 +13,8 @@ class VerwaltungUpdateTests {
     void goodUpdate1() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-
-        AudioVideo testContent1 = new AudioVideoImpl();
-        AudioVideo testContent4 = new AudioVideoImpl();
+        AudioVideoController testContent1 = new AudioVideoImpl();
+        AudioVideoController testContent4 = new AudioVideoImpl();
 
         testVerwaltung.create(1, testContent1);
         testVerwaltung.update(1, testContent4); //cause
@@ -26,18 +25,15 @@ class VerwaltungUpdateTests {
 
     @Test //update mit gleichem content: testContent1
     void badUpdate1() throws DataNrOccupiedException, SameDataExistsException {
-        assertThrows(DataNrOccupiedException.class,
+
+        Verwaltung testVerwaltung = new VerwaltungImpl();
+        AudioVideoController testContent1 = new AudioVideoImpl();
+
+        testVerwaltung.create(1, testContent1);
+
+        assertThrows(SameDataExistsException.class,
                 ()->{
-                    Verwaltung testVerwaltung = new VerwaltungImpl();
-
-                    AudioVideo testContent1 = new AudioVideoImpl();
-
-                    testVerwaltung.create(1, testContent1);
                     testVerwaltung.update(1, testContent1); //cause
                 });
-
     }
-
-
-
 }

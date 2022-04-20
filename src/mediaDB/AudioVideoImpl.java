@@ -1,12 +1,15 @@
 package mediaDB;
 
+import verwaltung.AudioVideoController;
+
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class AudioVideoImpl implements AudioVideo {
+public class AudioVideoImpl implements AudioVideoController {
 
+    long AccessCount;
 
     @Override
     public int getSamplingRate() {
@@ -25,7 +28,7 @@ public class AudioVideoImpl implements AudioVideo {
 
     @Override
     public long getAccessCount() {
-        return 0;
+        return this.AccessCount;
     }
 
     @Override
@@ -56,5 +59,11 @@ public class AudioVideoImpl implements AudioVideo {
     @Override
     public int getResolution() {
         return 0;
+    }
+
+    @Override
+    public long incrementAccessCounter() {
+        final long increase = 1;  //increase by 1
+        return this.AccessCount = this.AccessCount + increase;
     }
 }

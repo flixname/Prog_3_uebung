@@ -9,7 +9,8 @@ import static org.junit.Assert.fail;
 class VerwaltungCreateUploaderTest {
 
     @Test
-    void goodCreateUploade1() {
+    void goodCreateUploader1() {
+
         Verwaltung testVerwaltung = new VerwaltungImpl();
 
         Uploader testUploader1 = new UploaderImpl();

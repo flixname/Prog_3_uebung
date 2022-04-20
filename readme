@@ -4,14 +4,13 @@ Beleg 1: GL Logik
 - Erstellung eines Interfaces für die Geschäftslogik zur Verwaltung von Mediadateien
         Funktionen im "Vertrag":
 
-        - getMap()
         - create()
         - read()
         - printAll()
         - update()
         - delete()
         - deleteAll()
-        - createUploader()
+        - createUploader() (wohin zweites interface???)
 
 - Erstellung Verwaltung Implementation
         Implementierte Funktionen bisher (teils nicht voll funktionsfähig bzw. mit fehlern):
@@ -23,10 +22,10 @@ Beleg 1: GL Logik
        - delete
        - update
 
-- Exceptions
+- Exceptions (noch nicht bereinigt)
         - Null pointer
         - Data occupied
-        - Same data excists
+        - Same data exist
 
 
 - Erstellung Tests für Interface Verwaltung
@@ -35,5 +34,8 @@ Beleg 1: GL Logik
         - create
         - delete
         - printAll
-        - read
+        - read (new with accesscounterTest)
         - update
+        - deleteAll
+
+        alle ein wenig ordentlicher mit den Empfehlungen aus der Besprechung (Assertions nur um die Verursacher)

@@ -1,22 +1,14 @@
 package verwaltung;
 
-import mediaDB.AudioVideo;
 import mediaDB.Uploader;
 
 import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Interface zur Verwaltung von Daten und Uploadern(?)
  */
 public interface Verwaltung {
 
-    /**
-     * eher für das Testen gedacht
-     * @return komplette Hashmap
-     */
-    Map<Integer, AudioVideo> getMap();
 
     /**
      * Bekommt Datei, welche in die DB geladen werden soll
@@ -24,7 +16,7 @@ public interface Verwaltung {
      * @throws SameDataExistsException wenn in der db ein gleicher eintrag vorhanden ist
      * @throws DataNrOccupiedException wenn an angegebener stelle schon ein eintrag ist
      */
-    void create(Integer dataNr, AudioVideo data) throws SameDataExistsException, DataNrOccupiedException;
+    void create(Integer dataNr, AudioVideoController data) throws SameDataExistsException, DataNrOccupiedException;
 
     /**
      * bekommt Namen von datei die gelesen werden soll
@@ -32,7 +24,7 @@ public interface Verwaltung {
      * @return liefert die Datei
      * @throws NullPointerException falls nichts da ist
      */
-    AudioVideo read(Integer dataNr) throws NullPointerException;
+    mediaDB.AudioVideo read(Integer dataNr) throws NullPointerException;
 
     /**
      * liefert alle Dateien
@@ -40,7 +32,7 @@ public interface Verwaltung {
      * @throws NullPointerException falls nichts da ist
      */
     String printAll(PrintStream os) throws NullPointerException;
-    
+
     /**
      * erneuert bestehende Datei
      * @param dataNr Name der zu updatenden Datei
@@ -48,7 +40,7 @@ public interface Verwaltung {
      * @throws NullPointerException wenn nichts da ist zum speichern
      * @throws DataNrOccupiedException wenn same data schon vorhanden
      */
-    void update(Integer dataNr, AudioVideo update) throws NullPointerException, SameDataExistsException;
+    void update(Integer dataNr, AudioVideoController update) throws NullPointerException, SameDataExistsException;
 
     /**
      * löscht eine Datei
@@ -65,7 +57,8 @@ public interface Verwaltung {
 
     /**
      * erstellt einen uploadereintrag
-     * @throws UploaderExistsException
+     * TODO: Uploader existiert bereits
      */
-    void createUploader(Uploader name) throws UploaderExistsException;
+    void createUploader(Uploader name);
+
 }

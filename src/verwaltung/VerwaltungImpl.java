@@ -1,7 +1,5 @@
 package verwaltung;
 
-import mediaDB.AudioVideo;
-import mediaDB.Uploadable;
 import mediaDB.Uploader;
 
 import java.io.PrintStream;
@@ -12,26 +10,17 @@ import java.util.Map;
 public class VerwaltungImpl implements Verwaltung {
 
 
-    HashMap<Integer, AudioVideo> audioVideoHashMap = new HashMap<>();
-
+    HashMap<Integer, AudioVideoController> audioVideoHashMap = new HashMap<>();
     ArrayList<Uploader> uploaderArrayList = new ArrayList<>();
 
     @Override
-    public Map<Integer, AudioVideo> getMap() {
-        return this.audioVideoHashMap;
-    }
-
-    @Override
-    public void create(Integer dataNr, AudioVideo data) throws SameDataExistsException, DataNrOccupiedException {
+    public void create(Integer dataNr, AudioVideoController data) throws SameDataExistsException, DataNrOccupiedException {
 
         if (this.audioVideoHashMap.get(dataNr) == null) { //testet ob null
-                //for (int i = 0; i < this.audioVideoHashMap.values().size(); i++) {
-                   // AudioVideo temp = this.audioVideoHashMap.get(i);
+
             for (Map.Entry e : audioVideoHashMap.entrySet()){
-                //e.getKey();
-                //e.getValue();
-                AudioVideo temp = this.audioVideoHashMap.get(e.getKey());
-                    if (data == temp){ //testet ob selbe datei irgendwo schon einmal da
+                AudioVideoController temp = this.audioVideoHashMap.get(e.getKey()); //warum zeigt es diesen Fehler an?
+                    if (data == temp){ //testet ob selbe Datei irgendwo schon einmal da
                         throw new SameDataExistsException("Exists already");
                     }
                 }
@@ -39,13 +28,13 @@ public class VerwaltungImpl implements Verwaltung {
         } else {
             throw new DataNrOccupiedException("Is occupied");
         }
-
     }
 
     @Override
-    public AudioVideo read(Integer dataNr) {
-
+    public AudioVideoController read(Integer dataNr) {
+        //TODO: Auslesen der Eigenschaften
         if (this.audioVideoHashMap.get(dataNr) != null) {
+            this.audioVideoHashMap.get(dataNr).incrementAccessCounter();
             return this.audioVideoHashMap.get(dataNr);
         } else {
             throw new NullPointerException("No Data in this place");
@@ -67,10 +56,10 @@ public class VerwaltungImpl implements Verwaltung {
         }
     return null;
     }
-    //TODO: was soll gestream werden
+    //TODO: dinge die printed werden sollen in die Funktion
 
     @Override
-    public void update(Integer dataNr, AudioVideo update) throws NullPointerException, SameDataExistsException {
+    public void update(Integer dataNr, AudioVideoController update) throws NullPointerException, SameDataExistsException {
 
         //TODO: Hier ist ein Fehler, soll eigentlich ja eine Eigenschaft updaten
         if (update != this.audioVideoHashMap.get(dataNr)) {
@@ -101,8 +90,8 @@ public class VerwaltungImpl implements Verwaltung {
     }
 
     @Override
-    public void createUploader(Uploader name) throws UploaderExistsException {
-        //TODO: Zweite List/map mit uploadern? aber kommt das in dieses Interface oder neues?
+    public void createUploader(Uploader name) {
+        //TODO: uploader mit in create und update als parameter mitgeben oder gesondert möglicherweise auch als zweites interface und schon zu beginn direkt als uploader???
         this.uploaderArrayList.add(name);
     }
 }
