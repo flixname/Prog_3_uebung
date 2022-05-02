@@ -14,6 +14,6 @@ public class IncrementEventListenerImpl implements IncrementEventListener {
 
     @Override
     public void onIncrementEvent(IncrementEvent incrementEvent) {
-        this.model.increment();
+        this.model.getValue();
     }
 }

@@ -4,7 +4,15 @@ import java.util.EventObject;
 
 public class IncrementEvent extends EventObject {
 
-    public IncrementEvent(Object source) {
+    private int dataNr;
+
+    public IncrementEvent(Object source, int dataNr) {
+    //public IncrementEvent(Object source) {
         super(source);
+        this.dataNr = dataNr;
+    }
+
+    public int getDataNr() {
+        return dataNr;
     }
 }

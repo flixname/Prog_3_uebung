@@ -3,11 +3,12 @@ package eventSystem.util;
 public class Command {
     public enum Operator{ CREATE, CREATEAUDIO, CREATEVIDEO, DELETE, READ, UPDATE, PERSIST, ERROR, EXIT }
     public final Operator operator;
-    //public final int number;
+    public final int number;
     public Command(String text){
-        String op=text;
-        //int n=0;
-        //try { n=Integer.parseInt(text.substring(1)); } catch (NumberFormatException e){ op=""; }
+        String op = text.substring(0,1);
+        //String op = text;
+        int n=0;
+        try { n=Integer.parseInt(text.substring(1)); } catch (NumberFormatException e){ op=""; }
         switch (op){
             case "c":
                 this.operator=Operator.CREATE;
@@ -37,6 +38,6 @@ public class Command {
                 this.operator=Operator.ERROR;
                 break;
         }
-        //this.number=n;
+        this.number=n;
     }
 }

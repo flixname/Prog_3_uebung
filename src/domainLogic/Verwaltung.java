@@ -1,11 +1,12 @@
 package domainLogic;
 
+import mediaDB.Audio;
 import mediaDB.AudioVideo;
+import mediaDB.Content;
 import mediaDB.Uploader;
-import verwaltung.DataNrOccupiedException;
-import verwaltung.SameDataExistsException;
 
 import java.io.PrintStream;
+import java.util.HashMap;
 
 /**
  * Interface zur Verwaltung von Daten und Uploadern(?)
@@ -15,9 +16,10 @@ public interface Verwaltung {
 
     /**
      * Bekommt Datei, welche in die DB geladen werden soll
-     * @param data die Datei, welche erstellt werden soll im DB
+     * @param dataNr nummer der Datei, welche erstellt werden soll im DB
+     * @param data dateityp audio
      */
-    void create(Integer dataNr, AudioVideo data);
+    void create(Integer dataNr, Content data);
 
     /**
      * bekommt Namen von datei die gelesen werden soll
@@ -25,7 +27,7 @@ public interface Verwaltung {
      * @return liefert die Datei
      * @throws NullPointerException falls nichts da ist
      */
-    AudioVideo read(Integer dataNr) throws NullPointerException;
+    HashMap<Integer,? super Content> read();
 
     /**
      * liefert alle Dateien
@@ -37,18 +39,14 @@ public interface Verwaltung {
     /**
      * erneuert bestehende Datei
      * @param dataNr Name der zu updatenden Datei
-     * @param update Der neue Wert für z.B. Framerate
-     * @throws NullPointerException wenn nichts da ist zum speichern
-     * @throws DataNrOccupiedException wenn same data schon vorhanden
      */
     void update(Integer dataNr);
 
     /**
      * löscht eine Datei
      * @param dataNr Name der zu löschenden Datei
-     * @throws NullPointerException wenn an dem ort nichts da ist
      */
-    void delete(Integer dataNr) throws NullPointerException;
+    void delete(Integer dataNr);
 
     /**
      * löscht alle Dateien

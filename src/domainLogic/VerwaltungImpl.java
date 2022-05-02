@@ -1,9 +1,7 @@
 package domainLogic;
 
-import mediaDB.AudioVideo;
+import mediaDB.Content;
 import mediaDB.Uploader;
-import verwaltung.DataNrOccupiedException;
-import verwaltung.SameDataExistsException;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -13,30 +11,24 @@ import java.util.Map;
 public class VerwaltungImpl implements Verwaltung {
 
 
-    HashMap<Integer, AudioVideo> audioVideoHashMap = new HashMap<>();
+    HashMap<Integer,? super Content> audioVideoHashMap = new HashMap<>();
     ArrayList<Uploader> uploaderArrayList = new ArrayList<>();
 
 
     @Override
-    public void create(Integer dataNr, AudioVideo data) {
+    public void create(Integer dataNr, Content data) {
 
         if (this.audioVideoHashMap.get(dataNr) == null) {
                 this.audioVideoHashMap.put(dataNr, data);
-
         } else {
             return;
         }
     }
 
     @Override
-    public AudioVideo read(Integer dataNr) {
-        //TODO: Auslesen der Eigenschaften
-        if (this.audioVideoHashMap.get(dataNr) != null) {
-            //TODO
-            return this.audioVideoHashMap.get(dataNr);
-        } else {
-            throw new NullPointerException("No Data in this place");
-        }
+    public HashMap<Integer,? super Content> read() {
+        //TODO: Auslesen von was???
+            return this.audioVideoHashMap;
     }
 
     @Override //TODO: dinge die printed werden sollen in die Funktion
@@ -65,11 +57,11 @@ public class VerwaltungImpl implements Verwaltung {
     }
 
     @Override
-    public void delete(Integer dataNr) throws NullPointerException{
+    public void delete(Integer dataNr) {
         if (this.audioVideoHashMap.get(dataNr) != null) {
             this.audioVideoHashMap.remove(dataNr);
         } else {
-            throw new NullPointerException("No data to delete");
+            return;
         }
     }
 
