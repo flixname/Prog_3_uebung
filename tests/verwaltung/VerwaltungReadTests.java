@@ -1,10 +1,13 @@
 package verwaltung;
 
+import domainLogic.Verwaltung;
+import domainLogic.VerwaltungImpl;
 import mediaDB.AudioVideo;
 import mediaDB.AudioVideoImpl;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class VerwaltungReadTests {
@@ -13,15 +16,15 @@ public class VerwaltungReadTests {
     void goodRead1() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
-        AudioVideoController testContent2 = new AudioVideoImpl();
-        AudioVideoController testContent3 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
+        AudioVideo testContent2 = new AudioVideoImpl();
+        AudioVideo testContent3 = new AudioVideoImpl();
 
         testVerwaltung.create(1, testContent1);
         testVerwaltung.create(2, testContent2);
         testVerwaltung.create(3, testContent3);
 
-        AudioVideo temp = testVerwaltung.read(3); //cause
+        mediaDB.AudioVideo temp = testVerwaltung.read(3); //cause
         Assert.assertEquals(testContent3, temp);
     }
 
@@ -32,7 +35,7 @@ public class VerwaltungReadTests {
 
         assertThrows(NullPointerException.class,
                 ()->{
-                    AudioVideo temp = testVerwaltung.read(1);
+                    mediaDB.AudioVideo temp = testVerwaltung.read(1);
                 });
     }
 
@@ -40,9 +43,9 @@ public class VerwaltungReadTests {
     void badRead2() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
-        AudioVideoController testContent2 = new AudioVideoImpl();
-        AudioVideoController testContent3 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
+        AudioVideo testContent2 = new AudioVideoImpl();
+        AudioVideo testContent3 = new AudioVideoImpl();
 
         testVerwaltung.create(1, testContent1);
         testVerwaltung.create(2, testContent2);
@@ -50,7 +53,7 @@ public class VerwaltungReadTests {
 
         assertThrows(NullPointerException.class,
                 ()->{
-                    AudioVideo temp = testVerwaltung.read(0);
+                    mediaDB.AudioVideo temp = testVerwaltung.read(0);
                 });
     }
 
@@ -58,7 +61,7 @@ public class VerwaltungReadTests {
     void goodReadWithAccessCount2() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
         testVerwaltung.create(1, testContent1);
 
         testVerwaltung.read(1);
@@ -66,18 +69,21 @@ public class VerwaltungReadTests {
 
         long temp = testContent1.getAccessCount();
         Assert.assertEquals(2, temp);
+        fail();
     }
 
     @Test( )//test für AccessCount in der read funktion
     void goodReadWithAccessCount3() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
         testVerwaltung.create(1, testContent1);
 
         testVerwaltung.read(1);
 
         long temp = testContent1.getAccessCount();
         Assert.assertEquals(1, temp);
+
+        fail();
     }
 }

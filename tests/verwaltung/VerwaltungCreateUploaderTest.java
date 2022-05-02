@@ -1,5 +1,7 @@
 package verwaltung;
 
+import domainLogic.Verwaltung;
+import domainLogic.VerwaltungImpl;
 import mediaDB.Uploader;
 import mediaDB.UploaderImpl;
 import org.junit.jupiter.api.Test;

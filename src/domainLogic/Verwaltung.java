@@ -1,6 +1,9 @@
-package verwaltung;
+package domainLogic;
 
+import mediaDB.AudioVideo;
 import mediaDB.Uploader;
+import verwaltung.DataNrOccupiedException;
+import verwaltung.SameDataExistsException;
 
 import java.io.PrintStream;
 
@@ -13,10 +16,8 @@ public interface Verwaltung {
     /**
      * Bekommt Datei, welche in die DB geladen werden soll
      * @param data die Datei, welche erstellt werden soll im DB
-     * @throws SameDataExistsException wenn in der db ein gleicher eintrag vorhanden ist
-     * @throws DataNrOccupiedException wenn an angegebener stelle schon ein eintrag ist
      */
-    void create(Integer dataNr, AudioVideoController data) throws SameDataExistsException, DataNrOccupiedException;
+    void create(Integer dataNr, AudioVideo data);
 
     /**
      * bekommt Namen von datei die gelesen werden soll
@@ -24,7 +25,7 @@ public interface Verwaltung {
      * @return liefert die Datei
      * @throws NullPointerException falls nichts da ist
      */
-    mediaDB.AudioVideo read(Integer dataNr) throws NullPointerException;
+    AudioVideo read(Integer dataNr) throws NullPointerException;
 
     /**
      * liefert alle Dateien
@@ -40,7 +41,7 @@ public interface Verwaltung {
      * @throws NullPointerException wenn nichts da ist zum speichern
      * @throws DataNrOccupiedException wenn same data schon vorhanden
      */
-    void update(Integer dataNr, AudioVideoController update) throws NullPointerException, SameDataExistsException;
+    void update(Integer dataNr);
 
     /**
      * löscht eine Datei
@@ -57,7 +58,7 @@ public interface Verwaltung {
 
     /**
      * erstellt einen uploadereintrag
-     * TODO: Uploader existiert bereits
+     * TODO:
      */
     void createUploader(Uploader name);
 

@@ -1,9 +1,9 @@
 package verwaltung;
 
+import domainLogic.Verwaltung;
+import domainLogic.VerwaltungImpl;
 import mediaDB.AudioVideo;
 import mediaDB.AudioVideoImpl;
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,9 +14,9 @@ class VerwaltungDeleteAllTest {
     void goodDeleteAll1() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
-        AudioVideoController testContent2 = new AudioVideoImpl();
-        AudioVideoController testContent3 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
+        AudioVideo testContent2 = new AudioVideoImpl();
+        AudioVideo testContent3 = new AudioVideoImpl();
 
         testVerwaltung.create(1, testContent1);
         testVerwaltung.create(2, testContent2);
@@ -26,7 +26,7 @@ class VerwaltungDeleteAllTest {
 
         assertThrows(NullPointerException.class,
                 ()->{
-                    AudioVideo temp = testVerwaltung.read(1);
+                    mediaDB.AudioVideo temp = testVerwaltung.read(1);
                 });
     }
 }

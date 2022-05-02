@@ -1,5 +1,7 @@
 package verwaltung;
 
+import domainLogic.Verwaltung;
+import domainLogic.VerwaltungImpl;
 import mediaDB.AudioVideo;
 import mediaDB.AudioVideoImpl;
 import org.junit.jupiter.api.Assertions;
@@ -14,11 +16,11 @@ class VerwaltungCreateTests {
     void goodCreate1() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
 
         testVerwaltung.create(1, testContent1); //cause
 
-        AudioVideo temp = testVerwaltung.read(1);
+        mediaDB.AudioVideo temp = testVerwaltung.read(1);
         Assertions.assertEquals(testContent1,temp);
     }
 
@@ -26,8 +28,8 @@ class VerwaltungCreateTests {
     void badCreate1() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
-        AudioVideoController testContent2 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
+        AudioVideo testContent2 = new AudioVideoImpl();
 
         testVerwaltung.create(1, testContent1);
 
@@ -41,7 +43,7 @@ class VerwaltungCreateTests {
     void badCreate2() throws SameDataExistsException, DataNrOccupiedException{
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideoController testContent1 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl();
 
         testVerwaltung.create(1, testContent1);
 

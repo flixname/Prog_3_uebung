@@ -1,6 +1,9 @@
-package verwaltung;
+package domainLogic;
 
+import mediaDB.AudioVideo;
 import mediaDB.Uploader;
+import verwaltung.DataNrOccupiedException;
+import verwaltung.SameDataExistsException;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -10,38 +13,33 @@ import java.util.Map;
 public class VerwaltungImpl implements Verwaltung {
 
 
-    HashMap<Integer, AudioVideoController> audioVideoHashMap = new HashMap<>();
+    HashMap<Integer, AudioVideo> audioVideoHashMap = new HashMap<>();
     ArrayList<Uploader> uploaderArrayList = new ArrayList<>();
 
+
     @Override
-    public void create(Integer dataNr, AudioVideoController data) throws SameDataExistsException, DataNrOccupiedException {
+    public void create(Integer dataNr, AudioVideo data) {
 
-        if (this.audioVideoHashMap.get(dataNr) == null) { //testet ob null
-
-            for (Map.Entry e : audioVideoHashMap.entrySet()){
-                AudioVideoController temp = this.audioVideoHashMap.get(e.getKey()); //warum zeigt es diesen Fehler an?
-                    if (data == temp){ //testet ob selbe Datei irgendwo schon einmal da
-                        throw new SameDataExistsException("Exists already");
-                    }
-                }
+        if (this.audioVideoHashMap.get(dataNr) == null) {
                 this.audioVideoHashMap.put(dataNr, data);
+
         } else {
-            throw new DataNrOccupiedException("Is occupied");
+            return;
         }
     }
 
     @Override
-    public AudioVideoController read(Integer dataNr) {
+    public AudioVideo read(Integer dataNr) {
         //TODO: Auslesen der Eigenschaften
         if (this.audioVideoHashMap.get(dataNr) != null) {
-            this.audioVideoHashMap.get(dataNr).incrementAccessCounter();
+            //TODO
             return this.audioVideoHashMap.get(dataNr);
         } else {
             throw new NullPointerException("No Data in this place");
         }
     }
 
-    @Override
+    @Override //TODO: dinge die printed werden sollen in die Funktion
     public String printAll(PrintStream os) throws NullPointerException{
 
         try {
@@ -56,21 +54,13 @@ public class VerwaltungImpl implements Verwaltung {
         }
     return null;
     }
-    //TODO: dinge die printed werden sollen in die Funktion
 
-    @Override
-    public void update(Integer dataNr, AudioVideoController update) throws NullPointerException, SameDataExistsException {
 
-        //TODO: Hier ist ein Fehler, soll eigentlich ja eine Eigenschaft updaten
-        if (update != this.audioVideoHashMap.get(dataNr)) {
-            try {
-                this.audioVideoHashMap.replace(dataNr, update);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-        } else {
-            throw new SameDataExistsException("Data exists already in this place");
-        }
+    @Override //TODO: über event handler und listener
+    public void update(Integer dataNr) {
+
+        this.audioVideoHashMap.get(dataNr).getAccessCount();
+
 
     }
 
