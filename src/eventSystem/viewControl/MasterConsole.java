@@ -9,14 +9,14 @@ public class MasterConsole {
 
     private CreateEventHandler createEventHandler;
     private ReadEventHandler readEventHandler;
-    private IncrementEventHandler incrementEventHandler;
+    private UpdateEventHandler updateEventHandler;
     private DeleteEventHandler deleteEventHandler;
     private ExitEventHandler exitEventHandler;
 
 
     public void setCreateEventHandler(CreateEventHandler createEventHandler) { this.createEventHandler = createEventHandler; }
     public void setReadEventHandler(ReadEventHandler readEventHandler) { this.readEventHandler = readEventHandler; }
-    public void setIncrementEventHandler(IncrementEventHandler incrementEventHandler) { this.incrementEventHandler = incrementEventHandler; }
+    public void setIncrementEventHandler(UpdateEventHandler updateEventHandler) { this.updateEventHandler = updateEventHandler; }
     public void setDeleteEventHandler(DeleteEventHandler deleteEventHandler) { this.deleteEventHandler = deleteEventHandler; }
     public void setExitEventHandler(ExitEventHandler exitEventHandler) {
         this.exitEventHandler = exitEventHandler;
@@ -33,7 +33,7 @@ public class MasterConsole {
                 //DeleteConsole deleteConsole= new DeleteConsole();
                 CreateEvent createEvent= new CreateEvent(this);
                 ReadEvent readEvent= new ReadEvent(this);
-                IncrementEvent incrementEvent= new IncrementEvent(this, c.number);
+                UpdateEvent updateEvent = new UpdateEvent(this, c.number);
                 DeleteEvent deleteEvent= new DeleteEvent(this, c.number);
                 ExitEvent exitEvent= new ExitEvent(this);
                 switch (c.operator){
@@ -46,8 +46,8 @@ public class MasterConsole {
                             readEventHandler.handle(readEvent);
                         break;
                     case UPDATE:
-                        if(this.incrementEventHandler != null)
-                            incrementEventHandler.handle(incrementEvent);
+                        if(this.updateEventHandler != null)
+                            updateEventHandler.handle(updateEvent);
                         break;
                     case DELETE:
                         if(this.deleteEventHandler != null)

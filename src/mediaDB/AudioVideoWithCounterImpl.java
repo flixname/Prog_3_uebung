@@ -1,4 +1,5 @@
 package mediaDB;
+
 import domainLogic.ObservableCounter;
 
 import java.math.BigDecimal;
@@ -6,9 +7,7 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class AudioImpl implements Audio{
-
-    private ObservableCounter observableCounter;
+public class AudioVideoWithCounterImpl extends ObservableCounter implements AudioVideo  {
 
     @Override
     public int getSamplingRate() {
@@ -27,8 +26,8 @@ public class AudioImpl implements Audio{
 
     @Override
     public long getAccessCount() {
-        observableCounter.increment();
-        return observableCounter.getValue();
+        this.increment();
+        return this.getValue();
     }
 
     @Override
@@ -54,5 +53,10 @@ public class AudioImpl implements Audio{
     @Override
     public Date getUploadDate() {
         return null;
+    }
+
+    @Override
+    public int getResolution() {
+        return 0;
     }
 }

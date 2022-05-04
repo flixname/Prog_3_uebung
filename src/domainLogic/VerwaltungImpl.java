@@ -42,11 +42,10 @@ public class VerwaltungImpl implements Verwaltung {
     }
 
 
-    @Override //TODO: observer zum counter hochzählen
+    @Override //TODO:
     public long update(Integer dataNr) {
         //return this.audioVideoHashMap.get(dataNr) wtf...warum geht das nicht mit dem <? super Content> zusammen ich leite doch von Content ab
-
-    return -1;
+        return this.audioVideoHashMap.get(dataNr).
     }
 
     @Override
