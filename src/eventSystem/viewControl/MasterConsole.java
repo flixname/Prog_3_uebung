@@ -1,47 +1,57 @@
 package eventSystem.viewControl;
 
-import eventSystem.infrastructure.ExitEvent;
-import eventSystem.infrastructure.ExitEventHandler;
-import eventSystem.infrastructure.IncrementEvent;
-import eventSystem.infrastructure.IncrementEventHandler;
+import eventSystem.infrastructure.*;
 import eventSystem.util.Command;
 
 import java.util.Scanner;
 
 public class MasterConsole {
 
-    private ExitEventHandler exitEventHandler;
+    private CreateEventHandler createEventHandler;
+    private ReadEventHandler readEventHandler;
     private IncrementEventHandler incrementEventHandler;
+    private DeleteEventHandler deleteEventHandler;
+    private ExitEventHandler exitEventHandler;
 
+
+    public void setCreateEventHandler(CreateEventHandler createEventHandler) { this.createEventHandler = createEventHandler; }
+    public void setReadEventHandler(ReadEventHandler readEventHandler) { this.readEventHandler = readEventHandler; }
+    public void setIncrementEventHandler(IncrementEventHandler incrementEventHandler) { this.incrementEventHandler = incrementEventHandler; }
+    public void setDeleteEventHandler(DeleteEventHandler deleteEventHandler) { this.deleteEventHandler = deleteEventHandler; }
     public void setExitEventHandler(ExitEventHandler exitEventHandler) {
         this.exitEventHandler = exitEventHandler;
     }
-    public void setIncrementEventHandler(IncrementEventHandler incrementEventHandler) { this.incrementEventHandler = incrementEventHandler; }
 
     public void execute(){
         try(Scanner s = new Scanner(System.in)){
             do{
-                System.out.println("Master Console command with c, u, r, d, p, e:");
+                System.out.println("Master Console command with c, r, u, d, p, e:");
                 Command c = new Command(s.next());
                 //IncrementConsole incrementConsole = new IncrementConsole();
                 //CreateConsole createConsole= new CreateConsole();
                 //ReadConsole readConsole= new ReadConsole();
                 //DeleteConsole deleteConsole= new DeleteConsole();
+                CreateEvent createEvent= new CreateEvent(this);
+                ReadEvent readEvent= new ReadEvent(this);
                 IncrementEvent incrementEvent= new IncrementEvent(this, c.number);
+                DeleteEvent deleteEvent= new DeleteEvent(this, c.number);
                 ExitEvent exitEvent= new ExitEvent(this);
                 switch (c.operator){
                     case CREATE:
-                        //createConsole.execute();
+                        if(this.createEventHandler != null)
+                            createEventHandler.handle(createEvent);
                         break;
                     case READ:
-                        //readConsole.execute();
+                        if(this.readEventHandler != null)
+                            readEventHandler.handle(readEvent);
                         break;
                     case UPDATE:
                         if(this.incrementEventHandler != null)
                             incrementEventHandler.handle(incrementEvent);
                         break;
                     case DELETE:
-                        //deleteConsole.execute();
+                        if(this.deleteEventHandler != null)
+                            deleteEventHandler.handle(deleteEvent);
                         break;
                     case EXIT:
                         if(this.exitEventHandler != null)

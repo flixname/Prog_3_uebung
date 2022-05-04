@@ -1,24 +1,26 @@
 package observerPattern.observers;
 
-import eventSystem.model.CounterMemory;
+import domainLogic.ObservableCounter;
+import domainLogic.Verwaltung;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class ChangeObserver implements Observer {
 
-    private CounterMemory counterMemory;
+    private ObservableCounter observableCounter;
+    private long lastValue;
 
-    private int lastValue;
-    public ChangeObserver(CounterMemory counterMemory){
-        this.counterMemory= counterMemory;
-        this.lastValue= this.counterMemory.getValue();
+    public ChangeObserver(ObservableCounter observableCounter, long lastValue) {
+        this.observableCounter = observableCounter;
+        this.lastValue = lastValue;
     }
+
     @Override
     public void update(Observable o, Object arg) {
-        if(this.lastValue!= counterMemory.getValue()){
-            System.out.println("value changed from "+this.lastValue+" to "+this.counterMemory.getValue());
-            this.lastValue= this.counterMemory.getValue();
+        if(this.lastValue!= observableCounter.getValue()){
+            System.out.println("value changed from "+this.lastValue+" to "+this.observableCounter.getValue());
+            this.lastValue= this.observableCounter.getValue();
         }else System.out.println("no changes");
     }
 }

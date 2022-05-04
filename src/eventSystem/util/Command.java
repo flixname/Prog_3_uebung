@@ -1,7 +1,7 @@
 package eventSystem.util;
 
 public class Command {
-    public enum Operator{ CREATE, CREATEAUDIO, CREATEVIDEO, DELETE, READ, UPDATE, PERSIST, ERROR, EXIT }
+    public enum Operator{ CREATE, DELETE, READ, UPDATE, PERSIST, ERROR, EXIT }
     public final Operator operator;
     public final int number;
     public Command(String text){
@@ -12,12 +12,6 @@ public class Command {
         switch (op){
             case "c":
                 this.operator=Operator.CREATE;
-                break;
-            case "ca":
-                this.operator= Operator.CREATEAUDIO;
-                break;
-            case "cv":
-                this.operator= Operator.CREATEVIDEO;
                 break;
             case "d":
                 this.operator=Operator.DELETE;

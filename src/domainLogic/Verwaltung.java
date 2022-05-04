@@ -1,6 +1,5 @@
 package domainLogic;
 
-import mediaDB.Audio;
 import mediaDB.AudioVideo;
 import mediaDB.Content;
 import mediaDB.Uploader;
@@ -16,10 +15,9 @@ public interface Verwaltung {
 
     /**
      * Bekommt Datei, welche in die DB geladen werden soll
-     * @param dataNr nummer der Datei, welche erstellt werden soll im DB
-     * @param data dateityp audio
+     * @param data dateityp audio oder video
      */
-    void create(Integer dataNr, Content data);
+    void create(Content data);
 
     /**
      * bekommt Namen von datei die gelesen werden soll
@@ -40,7 +38,7 @@ public interface Verwaltung {
      * erneuert bestehende Datei
      * @param dataNr Name der zu updatenden Datei
      */
-    void update(Integer dataNr);
+    long update(Integer dataNr);
 
     /**
      * löscht eine Datei

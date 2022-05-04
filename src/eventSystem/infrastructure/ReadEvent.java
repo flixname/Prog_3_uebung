@@ -2,8 +2,8 @@ package eventSystem.infrastructure;
 
 import java.util.EventObject;
 
-public class ExitEvent extends EventObject {
-    public ExitEvent(Object source) {
+public class ReadEvent extends EventObject {
+    public ReadEvent(Object source) {
         super(source);
     }
 }

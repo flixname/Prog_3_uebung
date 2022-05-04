@@ -1,7 +1,6 @@
 package domainLogic;
 
-import mediaDB.Content;
-import mediaDB.Uploader;
+import mediaDB.*;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -11,18 +10,13 @@ import java.util.Map;
 public class VerwaltungImpl implements Verwaltung {
 
 
-    HashMap<Integer,? super Content> audioVideoHashMap = new HashMap<>();
+    HashMap<Integer, ? super Content> audioVideoHashMap = new HashMap<>();
     ArrayList<Uploader> uploaderArrayList = new ArrayList<>();
-
+    private int dataNr;  //für die vergabe der ZahlenID
 
     @Override
-    public void create(Integer dataNr, Content data) {
-
-        if (this.audioVideoHashMap.get(dataNr) == null) {
-                this.audioVideoHashMap.put(dataNr, data);
-        } else {
-            return;
-        }
+    public void create(Content data) {
+        this.audioVideoHashMap.put(this.dataNr++, data); //dataNr bei Hashmap erhöhen pro create (evtl besser mit hascode)
     }
 
     @Override
@@ -31,7 +25,7 @@ public class VerwaltungImpl implements Verwaltung {
             return this.audioVideoHashMap;
     }
 
-    @Override //TODO: dinge die printed werden sollen in die Funktion
+    @Override //dinge die printed werden sollen in die Funktion???
     public String printAll(PrintStream os) throws NullPointerException{
 
         try {
@@ -48,12 +42,11 @@ public class VerwaltungImpl implements Verwaltung {
     }
 
 
-    @Override //TODO: über event handler und listener
-    public void update(Integer dataNr) {
+    @Override //TODO: observer zum counter hochzählen
+    public long update(Integer dataNr) {
+        //return this.audioVideoHashMap.get(dataNr) wtf...warum geht das nicht mit dem <? super Content> zusammen ich leite doch von Content ab
 
-        this.audioVideoHashMap.get(dataNr).getAccessCount();
-
-
+    return -1;
     }
 
     @Override
@@ -65,13 +58,12 @@ public class VerwaltungImpl implements Verwaltung {
         }
     }
 
-    @Override
+    @Override //y/n in console
     public void deleteAll() throws NullPointerException {
-        //TODO: abfrage Y/N
         this.audioVideoHashMap.clear();
     }
 
-    @Override
+    @Override //muss gemacht werden
     public void createUploader(Uploader name) {
         //TODO: uploader mit in create und update als parameter mitgeben oder gesondert möglicherweise auch als zweites interface und schon zu beginn direkt als uploader???
         this.uploaderArrayList.add(name);

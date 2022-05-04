@@ -2,11 +2,11 @@ package eventSystem.infrastructure;
 
 import java.util.EventObject;
 
-public class IncrementEvent extends EventObject {
+public class DeleteEvent extends EventObject {
 
     private int dataNr;
 
-    public IncrementEvent(Object source, int dataNr) {
+    public DeleteEvent(Object source, int dataNr) {
         super(source);
         this.dataNr = dataNr;
     }

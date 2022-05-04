@@ -15,7 +15,7 @@ class VerwaltungDeleteTest {
     void goodDelete1() throws DataNrOccupiedException, SameDataExistsException {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
-        AudioVideo testContent1 = new AudioVideoImpl();
+        AudioVideo testContent1 = new AudioVideoImpl(0);
 
         testVerwaltung.create(1,testContent1);
         testVerwaltung.delete(1);

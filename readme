@@ -1,41 +1,18 @@
 Felix Pötzsch, 0580106, Programmieren 3, Prof. Lohmann
 
-Beleg 1: GL Logik
-- Erstellung eines Interfaces für die Geschäftslogik zur Verwaltung von Mediadateien
-        Funktionen im "Vertrag":
+Beleg 2:
 
-        - create()
-        - read()
-        - printAll()
-        - update()
-        - delete()
-        - deleteAll()
-        - createUploader() (wohin zweites interface???)
+CLI:
+Ich habe zwar Ihr CLI aus der Übung übernommen aber so richtig funktionieren wie ich das will tut es nicht.
 
-- Erstellung Verwaltung Implementation
-        Implementierte Funktionen bisher (teils nicht voll funktionsfähig bzw. mit fehlern):
+GL verbinden über Eventsystem und Observer:
+ich habe zwar das Eventsystem einigermaßen hinbekommen, habe es aber nicht mehr testen können, gleiches gilt für die Observer.
 
-       - HashMap zum speichern
-       - create
-       - read
-       - printAll
-       - delete
-       - update
+Ich saß insgesamt sehr lange an diesem Beleg und am Ende habe ich noch nichteinmal ein Fertiges Produkt.
+Hoffe ich fliege nicht aus dem Kurs, das würde der Arbeit die ich hineingesteckt habe nicht gerecht werden.
 
-- Exceptions (noch nicht bereinigt)
-        - Null pointer
-        - Data occupied
-        - Same data exist
+Habe es versucht und werde weiter daran arbeiten.
 
+machen Sie sich keine Mühe und geben Sie mir meinetwegen 0 Punkte aber schmeißen Sie mich nicht raus, bitte.
 
-- Erstellung Tests für Interface Verwaltung
-        Getestete Funktionen:
-
-        - create
-        - delete
-        - printAll
-        - read (new with accesscounterTest)
-        - update
-        - deleteAll
-
-        alle ein wenig ordentlicher mit den Empfehlungen aus der Besprechung (Assertions nur um die Verursacher)
+Bin ein wenig frustriert weil ich mich vollständig verzettelt habe.

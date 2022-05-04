@@ -1,19 +1,20 @@
 package eventSystem.listener;
 
+import domainLogic.Verwaltung;
 import eventSystem.infrastructure.IncrementEvent;
 import eventSystem.infrastructure.IncrementEventListener;
 import eventSystem.model.CounterMemory;
 
 public class IncrementEventListenerImpl implements IncrementEventListener {
 
-    private CounterMemory model;
+    Verwaltung model;
 
-    public IncrementEventListenerImpl(CounterMemory model) {
-        this.model=model;
+    public IncrementEventListenerImpl(Verwaltung model) {
+        this.model = model;
     }
 
     @Override
     public void onIncrementEvent(IncrementEvent incrementEvent) {
-        this.model.getValue();
+        this.model.update(incrementEvent.getDataNr());
     }
 }
