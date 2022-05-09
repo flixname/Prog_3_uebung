@@ -6,9 +6,8 @@ public class Command {
     public final int number;
     public Command(String text){
         String op = text.substring(0,1);
-        //String op = text;
         int n=0;
-        try { n=Integer.parseInt(text.substring(1)); } catch (NumberFormatException e){ op=""; }
+        try { n=Integer.parseInt(text.substring(1)); } catch (NumberFormatException e){ op=""; } //Schaue was ab 1 buchstabe für zahlen kommen, speicher diese in n, dann in number als final
         switch (op){
             case "c":
                 this.operator=Operator.CREATE;

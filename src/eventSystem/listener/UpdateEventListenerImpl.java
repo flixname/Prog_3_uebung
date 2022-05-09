@@ -14,6 +14,10 @@ public class UpdateEventListenerImpl implements UpdateEventListener {
 
     @Override
     public void onIncrementEvent(UpdateEvent updateEvent) {
-        this.model.update(updateEvent.getDataNr());
+        try {
+            this.model.update(updateEvent.getDataNr()); //gibt es bei remove keine nullpointerexeption oder so???
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

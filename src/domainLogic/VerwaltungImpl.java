@@ -3,29 +3,38 @@ package domainLogic;
 import mediaDB.*;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class VerwaltungImpl implements Verwaltung {
 
+    private int dataNr=0;  //für die Vergabe der ZahlenID in der HashMap
 
-    HashMap<Integer, ? super Content> audioVideoHashMap = new HashMap<>();
-    ArrayList<Uploader> uploaderArrayList = new ArrayList<>();
-    private int dataNr;  //für die vergabe der ZahlenID
+    HashMap<Integer, Content> audioVideoHashMap = new HashMap<>();
 
     @Override
-    public void create(Content data) {
-        this.audioVideoHashMap.put(this.dataNr++, data); //dataNr bei Hashmap erhöhen pro create (evtl besser mit hascode)
+    public void create(AudioVideo data) { //dataNr bei Hashmap erhöhen pro create (evtl besser mit hashcode)
+        //TODO: uploader muss eingeben werden (submenue?)
+        //TODO: uploader mit in create und update als parameter mitgeben oder gesondert möglicherweise auch als zweites interface und schon zu beginn direkt als uploader???
+        this.audioVideoHashMap.put(this.dataNr++, data);
     }
 
     @Override
-    public HashMap<Integer,? super Content> read() {
-        //TODO: Auslesen von was???
-            return this.audioVideoHashMap;
+    public HashMap<Integer, Content> read() { //Auslesen von was?
+        return this.audioVideoHashMap;
     }
 
-    @Override //dinge die printed werden sollen in die Funktion???
+    @Override
+    public long update(Integer dataNr) {
+            return this.audioVideoHashMap.get(dataNr).getAccessCount();
+    }  //TODO: Test ob pro data wirklich unterschiedliche counts
+
+    @Override
+    public void delete(Integer dataNr) {
+            this.audioVideoHashMap.remove(dataNr);
+    }
+
+    @Override //dinge die printed werden sollen in die Funktion??? -------> keine print streams hier machen nur werte zurück geben
     public String printAll(PrintStream os) throws NullPointerException{
 
         try {
@@ -41,30 +50,13 @@ public class VerwaltungImpl implements Verwaltung {
     return null;
     }
 
-
-    @Override //TODO:
-    public long update(Integer dataNr) {
-        //return this.audioVideoHashMap.get(dataNr) wtf...warum geht das nicht mit dem <? super Content> zusammen ich leite doch von Content ab
-        return this.audioVideoHashMap.get(dataNr).
-    }
-
-    @Override
-    public void delete(Integer dataNr) {
-        if (this.audioVideoHashMap.get(dataNr) != null) {
-            this.audioVideoHashMap.remove(dataNr);
-        } else {
-            return;
-        }
-    }
-
     @Override //y/n in console
     public void deleteAll() throws NullPointerException {
         this.audioVideoHashMap.clear();
     }
 
-    @Override //muss gemacht werden
-    public void createUploader(Uploader name) {
-        //TODO: uploader mit in create und update als parameter mitgeben oder gesondert möglicherweise auch als zweites interface und schon zu beginn direkt als uploader???
-        this.uploaderArrayList.add(name);
+    @Override //als seperate methode
+    public void createUploader(Integer dataNr, String name) {
+        this.audioVideoHashMap.get(dataNr).);
     }
 }

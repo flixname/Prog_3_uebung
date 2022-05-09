@@ -12,12 +12,11 @@ import java.util.HashMap;
  */
 public interface Verwaltung {
 
-
     /**
      * Bekommt Datei, welche in die DB geladen werden soll
      * @param data dateityp audio oder video
      */
-    void create(Content data);
+    void create(AudioVideo data);
 
     /**
      * bekommt Namen von datei die gelesen werden soll
@@ -25,14 +24,7 @@ public interface Verwaltung {
      * @return liefert die Datei
      * @throws NullPointerException falls nichts da ist
      */
-    HashMap<Integer,? super Content> read();
-
-    /**
-     * liefert alle Dateien
-     * @return liefert sämtliche Dateinamen aus der db
-     * @throws NullPointerException falls nichts da ist
-     */
-    String printAll(PrintStream os) throws NullPointerException;
+    HashMap<Integer, Content> read();
 
     /**
      * erneuert bestehende Datei
@@ -47,15 +39,23 @@ public interface Verwaltung {
     void delete(Integer dataNr);
 
     /**
+     * liefert alle Dateien
+     * @return liefert sämtliche Dateinamen aus der db
+     * @throws NullPointerException falls nichts da ist
+     */
+    String printAll(PrintStream os) throws NullPointerException;
+
+    /**
      * löscht alle Dateien
      * @throws NullPointerException wenn nichts zum löschen da ist
      */
     void deleteAll() throws NullPointerException;
 
     /**
-     * erstellt einen uploadereintrag
-     * TODO:
+     * erstellt uploader (namen)
+     * @param dataNr wo es hin soll
+     * @param name was der name ist des uploaders
      */
-    void createUploader(Uploader name);
+    void createUploader(Integer dataNr, String name);
 
 }

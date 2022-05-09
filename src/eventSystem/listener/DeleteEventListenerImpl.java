@@ -15,6 +15,10 @@ public class DeleteEventListenerImpl implements DeleteEventListener {
 
     @Override
     public void onDeleteEvent(DeleteEvent deleteEvent) {
-        this.model.delete(deleteEvent.getDataNr());
+        try {
+            this.model.delete(deleteEvent.getDataNr());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

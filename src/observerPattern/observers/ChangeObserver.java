@@ -1,7 +1,6 @@
 package observerPattern.observers;
 
 import domainLogic.ObservableCounter;
-import domainLogic.Verwaltung;
 
 import java.util.Observable;
 import java.util.Observer;

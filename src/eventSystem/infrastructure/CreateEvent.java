@@ -1,18 +1,18 @@
 package eventSystem.infrastructure;
 
-import mediaDB.Content;
+import mediaDB.AudioVideo;
 
 import java.util.EventObject;
 
 public class CreateEvent extends EventObject {
 
-    Content content;
+    AudioVideo content;
 
     public CreateEvent(Object source) {
         super(source);
     }
 
-    public Content getContent() {
+    public AudioVideo getContent() {
         return content;
     }
 }

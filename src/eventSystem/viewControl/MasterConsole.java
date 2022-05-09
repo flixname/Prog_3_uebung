@@ -16,7 +16,7 @@ public class MasterConsole {
 
     public void setCreateEventHandler(CreateEventHandler createEventHandler) { this.createEventHandler = createEventHandler; }
     public void setReadEventHandler(ReadEventHandler readEventHandler) { this.readEventHandler = readEventHandler; }
-    public void setIncrementEventHandler(UpdateEventHandler updateEventHandler) { this.updateEventHandler = updateEventHandler; }
+    public void setUpdateEventHandler(UpdateEventHandler updateEventHandler) { this.updateEventHandler = updateEventHandler; }
     public void setDeleteEventHandler(DeleteEventHandler deleteEventHandler) { this.deleteEventHandler = deleteEventHandler; }
     public void setExitEventHandler(ExitEventHandler exitEventHandler) {
         this.exitEventHandler = exitEventHandler;
@@ -27,15 +27,16 @@ public class MasterConsole {
             do{
                 System.out.println("Master Console command with c, r, u, d, p, e:");
                 Command c = new Command(s.next());
-                //IncrementConsole incrementConsole = new IncrementConsole();
-                //CreateConsole createConsole= new CreateConsole();
+                //UpdateConsole updateConsole = new UpdateConsole();
+                //CreateConsole createConsole= new CreateConsole();  --->mit while true auf false setzen zum zurück kommen
                 //ReadConsole readConsole= new ReadConsole();
-                //DeleteConsole deleteConsole= new DeleteConsole();
+                //DeleteConsole deleteConsole= new DeleteConsole(); --->mit while true auf false setzen zum zurück kommen für producer und content
                 CreateEvent createEvent= new CreateEvent(this);
                 ReadEvent readEvent= new ReadEvent(this);
                 UpdateEvent updateEvent = new UpdateEvent(this, c.number);
                 DeleteEvent deleteEvent= new DeleteEvent(this, c.number);
                 ExitEvent exitEvent= new ExitEvent(this);
+
                 switch (c.operator){
                     case CREATE:
                         if(this.createEventHandler != null)
