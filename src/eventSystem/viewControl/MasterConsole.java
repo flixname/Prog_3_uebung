@@ -32,7 +32,7 @@ public class MasterConsole {
                 //ReadConsole readConsole= new ReadConsole();
                 //DeleteConsole deleteConsole= new DeleteConsole(); --->mit while true auf false setzen zum zurück kommen für producer und content
                 CreateEvent createEvent= new CreateEvent(this);
-                ReadEvent readEvent= new ReadEvent(this);
+                ReadEvent readEvent= new ReadEvent(this, c.number);
                 UpdateEvent updateEvent = new UpdateEvent(this, c.number);
                 DeleteEvent deleteEvent= new DeleteEvent(this, c.number);
                 ExitEvent exitEvent= new ExitEvent(this);

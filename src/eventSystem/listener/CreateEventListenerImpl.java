@@ -1,14 +1,14 @@
 package eventSystem.listener;
 
-import domainLogic.Verwaltung;
+import domainLogic.GLContent;
 import eventSystem.infrastructure.CreateEvent;
 import eventSystem.infrastructure.CreateEventListener;
 
 public class CreateEventListenerImpl implements CreateEventListener {
 
-    private Verwaltung model;
+    private GLContent model;
 
-    public CreateEventListenerImpl(Verwaltung model) {
+    public CreateEventListenerImpl(GLContent model) {
         this.model = model;
     }
 

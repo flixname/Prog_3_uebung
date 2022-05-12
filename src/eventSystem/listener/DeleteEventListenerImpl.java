@@ -1,15 +1,14 @@
 package eventSystem.listener;
 
-import domainLogic.Verwaltung;
+import domainLogic.GLContent;
 import eventSystem.infrastructure.DeleteEvent;
 import eventSystem.infrastructure.DeleteEventListener;
-import mediaDB.Content;
 
 public class DeleteEventListenerImpl implements DeleteEventListener {
 
-    private Verwaltung model;
+    private GLContent model;
 
-    public DeleteEventListenerImpl(Verwaltung model) {
+    public DeleteEventListenerImpl(GLContent model) {
         this.model = model;
     }
 

@@ -1,4 +1,4 @@
-package verwaltung;
+package domainLogic.todo;
 
 import domainLogic.Verwaltung;
 import domainLogic.VerwaltungImpl;

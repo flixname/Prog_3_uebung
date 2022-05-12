@@ -7,16 +7,11 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class AudioWithCounterImpl implements Audio {
+public class VideoWithCounterImpl implements Video {
 
     private ObservableCounter observableCounter;
     private Uploader uploader = new UploaderImpl();
     private Collection<Tag> tagCollection;
-
-    @Override
-    public int getSamplingRate() {
-        return 0;
-    }
 
     @Override
     public String getAddress() {
@@ -25,7 +20,7 @@ public class AudioWithCounterImpl implements Audio {
 
     @Override
     public Collection<Tag> getTags() {
-        return this.tagCollection;
+        return null;
     }
 
     @Override
@@ -57,5 +52,10 @@ public class AudioWithCounterImpl implements Audio {
     @Override
     public Date getUploadDate() {
         return null;
+    }
+
+    @Override
+    public int getResolution() {
+        return 0;
     }
 }

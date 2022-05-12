@@ -1,19 +1,19 @@
 package eventSystem.listener;
 
-import domainLogic.Verwaltung;
+import domainLogic.GLContent;
 import eventSystem.infrastructure.ReadEvent;
 import eventSystem.infrastructure.ReadEventListener;
 
 public class ReadEventListenerImpl implements ReadEventListener {
 
-    Verwaltung model;
+    GLContent model;
 
-    public ReadEventListenerImpl(Verwaltung model) {
+    public ReadEventListenerImpl(GLContent model) {
         this.model = model;
     }
 
     @Override
     public void onReadEvent(ReadEvent readEvent) {
-        this.model.read();
+        this.model.readAll(readEvent.getTyp());
     }
 }
