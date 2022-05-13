@@ -1,60 +1,64 @@
 package domainLogic;
 
-import mediaDB.Audio;
-import mediaDB.AudioWithCounterImpl;
-import mediaDB.Content;
+import mediaDB.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class GLContentCreateTests {
 
-    @Test //Audio Eintrag in der Contentliste
+    ////////
+    //GOOD//
+    ////////
+
+    @Test //Audio Eintrag
     void goodCreate1() {
-
-        GLContent testGLContent = new GLContentImpl();
+        GLContent testGLContent1 = new GLContentImpl();
         Audio testAudio1 = new AudioWithCounterImpl();
+        Uploader testUploader1 = new UploaderImpl();
+        testGLContent1.createContent(testAudio1, testUploader1);
 
-        testGLContent.create(testAudio1);
-        Content temp = testGLContent.readAll(0).get(0);
-
-        Assertions.assertEquals(testGLContent.readAll(0).get(0), temp);
+        Content temp = testGLContent1.readByContentType(0).get(0);
+        Assertions.assertEquals(testAudio1, temp);
     }
 
-    @Test //Audio Eintrag erfassen über typ 1 (audio)
+    @Test //Video Eintrag
     void goodCreate2() {
+        GLContent testGLContent1 = new GLContentImpl();
+        Video testVideo1 = new VideoWithCounterImpl();
+        Uploader testUploader1 = new UploaderImpl();
+        testGLContent1.createContent(testVideo1, testUploader1);
 
-        GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-
-        testGLContent.create(testAudio1);
-        Content temp = testGLContent.readAll(3).get(0);
-
-        Assertions.assertEquals(testGLContent.readAll(1).get(0), temp);
+        Content temp = testGLContent1.readByContentType(0).get(0);
+        Assertions.assertEquals(testVideo1, temp);
     }
 
-    @Test
+    @Test //LicensedAudio Eintrag
     void goodCreate3() {
+        GLContent testGLContent1 = new GLContentImpl();
+        Uploader testUploader1 = new UploaderImpl();
+        LicensedAudio testLicensedAudio1 = new LicensedAudioWithCounterImpl();
+        testGLContent1.createContent(testLicensedAudio1, testUploader1);
 
-        GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-
-        testGLContent.create(testAudio1);
-        int temp = testGLContent.readAll(2).size();  //test um nicht funktionalität nachzuweisen, da in falscher (nichtr vorhandener Liste gesucht wird)
-
-        Assertions.assertEquals(0, temp);
+        Content temp = testGLContent1.readByContentType(0).get(0);
+        Assertions.assertEquals(testLicensedAudio1, temp);
     }
 
-    @Test //verusche video in liste zu finden über typ 2(Video) aber findet nichts weil list nicht mit video befüllt
+    @Test //LicensedVideo Eintrag
     void goodCreate4() {
-
         GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
+        Uploader testUploader1 = new UploaderImpl();
+        LicensedVideo testLicensedVideo1 = new LicensedVideoWithCounterImpl();
+        testGLContent.createContent(testLicensedVideo1, testUploader1);
 
-        testGLContent.create(testAudio1);
-        int temp = testGLContent.readAll(2).size();  //test um nicht funktionalität nachzuweisen, da in falscher (nichtr vorhandener Liste gesucht wird)
-
-        Assertions.assertEquals(0, temp);
+        Content temp = testGLContent.readByContentType(0).get(0);
+        Assertions.assertEquals(testLicensedVideo1, temp);
     }
+
+
+
+
+
+
 
 
 

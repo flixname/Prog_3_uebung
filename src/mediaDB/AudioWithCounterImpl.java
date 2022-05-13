@@ -1,6 +1,7 @@
 package mediaDB;
 
 import domainLogic.ObservableCounter;
+import domainLogic.ObservableTag;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -9,9 +10,9 @@ import java.util.Date;
 
 public class AudioWithCounterImpl implements Audio {
 
+    private ObservableTag observableTag;
     private ObservableCounter observableCounter;
-    private Uploader uploader = new UploaderImpl();
-    private Collection<Tag> tagCollection;
+    private Uploader uploader;
 
     @Override
     public int getSamplingRate() {
@@ -23,9 +24,9 @@ public class AudioWithCounterImpl implements Audio {
         return null;
     }
 
-    @Override
+    @Override //TODO:
     public Collection<Tag> getTags() {
-        return this.tagCollection;
+        return this.observableTag.getTagCollection();
     }
 
     @Override

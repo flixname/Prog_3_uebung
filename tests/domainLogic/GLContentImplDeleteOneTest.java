@@ -1,25 +1,21 @@
 package domainLogic;
 
-import mediaDB.Audio;
-import mediaDB.AudioWithCounterImpl;
-import mediaDB.Video;
-import mediaDB.VideoWithCounterImpl;
+import mediaDB.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class VerwaltungDeleteTest {
+class GLContentImplDeleteOneTest {
 
     @Test //löscht eine Audiofile (zugriff über GLContentImpl linked list methoden)
     void goodDelete1() {
-        GLContentImpl testGLContent1 = new GLContentImpl();
+        GLContent testGLContent1 = new GLContentImpl();
         Audio testAudio1 = new AudioWithCounterImpl();
+        Uploader testUploader1 = new UploaderImpl();
+        testGLContent1.createContent(testAudio1, testUploader1);
 
-        testGLContent1.contentLinkedList.add(testAudio1);
-        testGLContent1.delete(0);
+        testGLContent1.deleteOne(0);
 
-        int temp = testGLContent1.contentLinkedList.size();
+        int temp = testGLContent1.readByContentType(0).size();
         Assertions.assertEquals(0, temp);
     }
 
@@ -27,25 +23,28 @@ class VerwaltungDeleteTest {
     void goodDelete2() {
         GLContent testGLContent1 = new GLContentImpl();
         Audio testAudio1 = new AudioWithCounterImpl();
+        Uploader testUploader1 = new UploaderImpl();
+        testGLContent1.createContent(testAudio1, testUploader1);
 
-        testGLContent1.create(testAudio1);
-        testGLContent1.delete(0);
+        testGLContent1.deleteOne(0);
 
-        int temp = testGLContent1.readAll(1).size(); //dieser zugriff über size()?
+        int temp = testGLContent1.readByContentType(1).size(); //dieser zugriff über size()?
         Assertions.assertEquals(0, temp);
     }
 
     @Test //löscht eine Audiofile an Stelle wo keine ist
     void badDelete1() {
         GLContent testGLContent1 = new GLContentImpl();
-        testGLContent1.delete(0);
+        testGLContent1.deleteOne(0);
     }
 
     @Test //löscht außerhalb der linked Liste (indexoutofbounds) bzw falsche dataNr angabe
     void badDelete2() {
-        GLContentImpl testGLContent1 = new GLContentImpl();
+        GLContent testGLContent1 = new GLContentImpl();
         Video testVideo1 = new VideoWithCounterImpl();
-        testGLContent1.contentLinkedList.add(testVideo1);
-        testGLContent1.delete(1);
+        Uploader testUploader1 = new UploaderImpl();
+        testGLContent1.createContent(testVideo1, testUploader1);
+
+        testGLContent1.deleteOne(1);
     }
 }

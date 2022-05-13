@@ -3,6 +3,7 @@ package domainLogic;
 import mediaDB.Content;
 import mediaDB.MediaContent;
 import mediaDB.Tag;
+import mediaDB.Uploader;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,21 +14,29 @@ import java.util.LinkedList;
 public interface GLContent {
 
     /**
-     * TODO: Uploader zuerst dann Mediafile
-     * Hochladen von Mediadateien: unterstützt werden alle Typen die von MediaContent ableiten
+     * TODO: Uploader zuerst erstellen dann Mediafile
+     * Hochladen von Mediadateien verschiedenn typs
      * TODO: beim Hochladen wird eine Abrufadresse vergeben (address); zu keinem Zeitpunkt können mehrere Mediadateien innerhalb der Verwaltung die gleiche Abrufadresse haben
      * TODO: beim Hochladen wird ein Upload-Datum vergeben
      * TODO: es ist zu prüfen, dass die Gesamtkapazität nicht überschritten wird, dafür ist die Dateigröße in size definiert
      * TODO: es ist zu prüfen, dass die Media-Datei zu einem bereits existierenden Produzenten gehört
      * @param mediaContent unterstützt werden alle Typen die von MediaContent ableiten
      */
-    void create(MediaContent mediaContent);
+    void createContent(MediaContent mediaContent, Uploader uploader);
+
+    /**
+     * Weist einen Tag aus den vier gegeben zu (Animal,Tutorial,Lifestyle,News)
+     *
+     * @param tag Name (Animal,Tutorial,Lifestyle,News)
+     * @param dataNr position der Mediendatei zu der tag hinzugefügt werden soll
+     */
+    void createTag(String tag, int dataNr);
 
     /**
      * zum lesen von MediaContent (0), Audio(1), Video(2)
      * @return liefert gesamte DB LinkedList
      */
-    LinkedList<Content> readAll(int typ);
+    LinkedList<Content> readByContentType(int typ);
 
     /**
      * TODO: Abruf aller vergebenen bzw. nicht vergebenen Tags in der Verwaltung
@@ -46,5 +55,5 @@ public interface GLContent {
      * TODO: Löschen einer bestimmten Mediadatei (z.B.: Audio, Video)
      * @param dataNr Nummer der zu löschenden Datei in DB LinkedList
      */
-    void delete(int dataNr);
+    void deleteOne(int dataNr);
 }

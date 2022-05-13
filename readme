@@ -1,18 +1,16 @@
 Felix Pötzsch, 0580106, Programmieren 3, Prof. Lohmann
 
-Beleg 2:
+Beleg 3:
 
-CLI:
-Ich habe zwar Ihr CLI aus der Übung übernommen aber so richtig funktionieren wie ich das will tut es nicht.
+Habe alles nochmal überarbeitet und ordentlicher versucht vorzugehen.
 
-GL verbinden über Eventsystem und Observer:
-ich habe zwar das Eventsystem einigermaßen hinbekommen, habe es aber nicht mehr testen können, gleiches gilt für die Observer.
+- Tests sind teilweise und auch für eigene ZWecke mal mit Before Each gestaltet.
 
-Ich saß insgesamt sehr lange an diesem Beleg und am Ende habe ich noch nichteinmal ein Fertiges Produkt.
-Hoffe ich fliege nicht aus dem Kurs, das würde der Arbeit die ich hineingesteckt habe nicht gerecht werden.
+- Habe versucht alles möglichst Modular zu bauen. Das geht sicherlich besser aber eventuell für diesen Code etwas zu "over engineered".
+-- habe mich deshalb gefragt ob ich die Interfaces bei der GL überhaupt benötige
+-- habe mich gefragt ob in den tests immer über das Inteface gehen soll? Weil irgendwie erscheint mir das hinsichtlich der Zugriffs- und
+-- Prüfungsmöglichkeiten ja doch etwas eingeschränkt bzw. habe ich dann ja doch teilweise in einem Test mehrere Methoden getestet: z.B.: Create und read in einem test...
+-- Besser ist es doch mal so mal so oder? Je nach Bedarf die Klasse selbst und das Interface zu testen.
 
-Habe es versucht und werde weiter daran arbeiten.
 
-machen Sie sich keine Mühe und geben Sie mir meinetwegen 0 Punkte aber schmeißen Sie mich nicht raus, bitte.
 
-Bin ein wenig frustriert weil ich mich vollständig verzettelt habe.

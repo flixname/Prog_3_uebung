@@ -14,6 +14,6 @@ public class ReadEventListenerImpl implements ReadEventListener {
 
     @Override
     public void onReadEvent(ReadEvent readEvent) {
-        this.model.readAll(readEvent.getTyp());
+        this.model.readByContentType(readEvent.getTyp());
     }
 }

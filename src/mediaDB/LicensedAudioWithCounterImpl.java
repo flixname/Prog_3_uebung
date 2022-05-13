@@ -1,17 +1,16 @@
 package mediaDB;
 
-import domainLogic.ObservableCounter;
-
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class VideoWithCounterImpl implements Video {
+public class LicensedAudioWithCounterImpl implements LicensedAudio {
 
-    private ObservableCounter observableCounter;
-    private Uploader uploader;
-    private Collection<Tag> tagCollection;
+    @Override
+    public int getSamplingRate() {
+        return 0;
+    }
 
     @Override
     public String getAddress() {
@@ -25,8 +24,12 @@ public class VideoWithCounterImpl implements Video {
 
     @Override
     public long getAccessCount() {
-        this.observableCounter.increment();
-        return this.observableCounter.getValue();
+        return 0;
+    }
+
+    @Override
+    public String getHolder() {
+        return null;
     }
 
     @Override
@@ -46,16 +49,11 @@ public class VideoWithCounterImpl implements Video {
 
     @Override
     public Uploader getUploader() {
-        return this.uploader;
+        return null;
     }
 
     @Override
     public Date getUploadDate() {
         return null;
-    }
-
-    @Override
-    public int getResolution() {
-        return 0;
     }
 }

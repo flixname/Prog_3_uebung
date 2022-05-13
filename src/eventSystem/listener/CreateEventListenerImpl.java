@@ -1,9 +1,11 @@
 package eventSystem.listener;
 
 import domainLogic.GLContent;
+import domainLogic.GLUploader;
 import eventSystem.infrastructure.CreateEvent;
 import eventSystem.infrastructure.CreateEventListener;
 
+//TODO: evtl fehler hier
 public class CreateEventListenerImpl implements CreateEventListener {
 
     private GLContent model;
@@ -14,6 +16,6 @@ public class CreateEventListenerImpl implements CreateEventListener {
 
     @Override
     public void onCreateEvent(CreateEvent createEvent) {
-        this.model.create(createEvent.getContent());
+        this.model.createContent(createEvent.getContent(), createEvent.getContent().getUploader());
     }
 }

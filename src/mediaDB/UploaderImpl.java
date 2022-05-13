@@ -1,7 +1,7 @@
 package mediaDB;
 
 /**
- * giving uploaders Names
+ * giving Uploaders Names
  */
 public class UploaderImpl implements Uploader{
 

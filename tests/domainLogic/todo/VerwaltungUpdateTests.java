@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VerwaltungUpdateTests {
 
-    @Test //update mit anderem: testContent4
-    void goodUpdate1() throws DataNrOccupiedException, SameDataExistsException {
+    @Test
+    void goodUpdate1() {
 
         Verwaltung testVerwaltung = new VerwaltungImpl();
         AudioVideo testContent1 = new AudioVideoImpl();

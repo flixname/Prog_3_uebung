@@ -8,17 +8,18 @@ import java.util.LinkedList;
 public interface GLUploader {
 
     /**
+     * TODO: Uploader zuerst erstellen dann Mediafile
      * TODO: Anlegen von Produzenten; dabei muss sichergestellt sein, dass kein Name mehr als einmal vorkommt
-     * Anlegen von Produzenten;
-     * @param uploadable unterstützt werden alle Typen die von Uploadable ableiten
+     * creates an uploader (Anlegen von Produzenten)
+     * @param name ein name
      */
-    void create(Uploadable uploadable);
+    void createUploader(String name);
 
     /**
      * TODO: Abruf aller Produzenten mit der Anzahl der ihrer Mediadateien
      * @return liefert gesamte DB LinkedList
      */
-    LinkedList<Uploader> read();
+    LinkedList<Uploader> readUplaoder();
 
     /**
      * TODO: Löschen eines bestimmten Produzenten(Uploader)
