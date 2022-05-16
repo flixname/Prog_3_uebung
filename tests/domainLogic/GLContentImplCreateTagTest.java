@@ -8,18 +8,20 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GLContentImplTest {
+class GLContentImplCreateTagTest {
 
     @Test
     void goodCreateTag1() {
         GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Audio testAudio1 = new AudioImpl();
+        Uploader testUploader1 = new UploaderImpl("Felix_1");
         testGLContent.createContent(testAudio1, testUploader1);
 
-        testGLContent.createTag("News", 0);
+        testGLContent.createTag(0, 0);
 
-        Collection temp = testGLContent.readByTags(Tag.News);
-        Assertions.assertEquals(1, temp.size());
+        Collection temp = testAudio1.getTags();
+
+        Assertions.assertEquals(true, temp.contains(Tag.News));
+        fail();
     }
 }

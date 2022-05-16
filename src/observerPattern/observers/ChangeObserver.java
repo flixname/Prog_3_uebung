@@ -1,25 +1,25 @@
 package observerPattern.observers;
 
-import domainLogic.ObservableCounter;
+import mediaDB.AudioImpl;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class ChangeObserver implements Observer {
 
-    private ObservableCounter observableCounter;
+    private AudioImpl audio;
     private long lastValue;
 
-    public ChangeObserver(ObservableCounter observableCounter, long lastValue) {
-        this.observableCounter = observableCounter;
+    public ChangeObserver(AudioImpl audio, long lastValue) {
+        this.audio = audio;
         this.lastValue = lastValue;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if(this.lastValue!= observableCounter.getValue()){
-            System.out.println("value changed from "+this.lastValue+" to "+this.observableCounter.getValue());
-            this.lastValue= this.observableCounter.getValue();
+        if(this.lastValue != audio.getAccessCount()){
+            System.out.println("value changed from "+this.lastValue+" to "+this.audio.getAccessCount());
+            this.lastValue= this.audio.getAccessCount();
         }else System.out.println("no changes");
     }
 }

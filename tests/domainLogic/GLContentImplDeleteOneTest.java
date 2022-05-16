@@ -9,8 +9,8 @@ class GLContentImplDeleteOneTest {
     @Test //löscht eine Audiofile (zugriff über GLContentImpl linked list methoden)
     void goodDelete1() {
         GLContent testGLContent1 = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Audio testAudio1 = new AudioImpl();
+        Uploader testUploader1 = new UploaderImpl("Felix_1");
         testGLContent1.createContent(testAudio1, testUploader1);
 
         testGLContent1.deleteOne(0);
@@ -22,8 +22,8 @@ class GLContentImplDeleteOneTest {
     @Test //löscht eine Audiofile (zugriff über Interface und readAll())<- sollte das überhaupt gehen? Auch wenn es eh nur eine Kopie von der DB LInkedList aus der GL ist?
     void goodDelete2() {
         GLContent testGLContent1 = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Audio testAudio1 = new AudioImpl();
+        Uploader testUploader1 = new UploaderImpl("Felix_1");
         testGLContent1.createContent(testAudio1, testUploader1);
 
         testGLContent1.deleteOne(0);
@@ -42,7 +42,7 @@ class GLContentImplDeleteOneTest {
     void badDelete2() {
         GLContent testGLContent1 = new GLContentImpl();
         Video testVideo1 = new VideoWithCounterImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Uploader testUploader1 = new UploaderImpl("Felix_1");
         testGLContent1.createContent(testVideo1, testUploader1);
 
         testGLContent1.deleteOne(1);

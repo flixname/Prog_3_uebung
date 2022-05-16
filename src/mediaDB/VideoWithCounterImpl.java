@@ -1,6 +1,6 @@
 package mediaDB;
 
-import domainLogic.ObservableCounter;
+import eventSystem.util.ObservableCounter;
 
 import java.math.BigDecimal;
 import java.time.Duration;

@@ -4,7 +4,7 @@ import mediaDB.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class GLContentCreateTests {
+class GLContentImplCreateTests {
 
     ////////
     //GOOD//
@@ -13,8 +13,8 @@ class GLContentCreateTests {
     @Test //Audio Eintrag
     void goodCreate1() {
         GLContent testGLContent1 = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Audio testAudio1 = new AudioImpl();
+        Uploader testUploader1 = new UploaderImpl("Mark_OH");
         testGLContent1.createContent(testAudio1, testUploader1);
 
         Content temp = testGLContent1.readByContentType(0).get(0);
@@ -25,7 +25,7 @@ class GLContentCreateTests {
     void goodCreate2() {
         GLContent testGLContent1 = new GLContentImpl();
         Video testVideo1 = new VideoWithCounterImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Uploader testUploader1 = new UploaderImpl("Scatman_John");
         testGLContent1.createContent(testVideo1, testUploader1);
 
         Content temp = testGLContent1.readByContentType(0).get(0);
@@ -35,7 +35,7 @@ class GLContentCreateTests {
     @Test //LicensedAudio Eintrag
     void goodCreate3() {
         GLContent testGLContent1 = new GLContentImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Uploader testUploader1 = new UploaderImpl("Marusha");
         LicensedAudio testLicensedAudio1 = new LicensedAudioWithCounterImpl();
         testGLContent1.createContent(testLicensedAudio1, testUploader1);
 
@@ -46,7 +46,7 @@ class GLContentCreateTests {
     @Test //LicensedVideo Eintrag
     void goodCreate4() {
         GLContent testGLContent = new GLContentImpl();
-        Uploader testUploader1 = new UploaderImpl();
+        Uploader testUploader1 = new UploaderImpl("Dune");
         LicensedVideo testLicensedVideo1 = new LicensedVideoWithCounterImpl();
         testGLContent.createContent(testLicensedVideo1, testUploader1);
 

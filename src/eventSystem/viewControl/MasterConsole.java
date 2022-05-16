@@ -7,14 +7,14 @@ import java.util.Scanner;
 
 public class MasterConsole {
 
-    private CreateEventHandler createEventHandler;
+    private CreateContentEventHandler createContentEventHandler;
     private ReadEventHandler readEventHandler;
     private UpdateEventHandler updateEventHandler;
     private DeleteEventHandler deleteEventHandler;
     private ExitEventHandler exitEventHandler;
 
 
-    public void setCreateEventHandler(CreateEventHandler createEventHandler) { this.createEventHandler = createEventHandler; }
+    public void setCreateEventHandler(CreateContentEventHandler createContentEventHandler) { this.createContentEventHandler = createContentEventHandler; }
     public void setReadEventHandler(ReadEventHandler readEventHandler) { this.readEventHandler = readEventHandler; }
     public void setUpdateEventHandler(UpdateEventHandler updateEventHandler) { this.updateEventHandler = updateEventHandler; }
     public void setDeleteEventHandler(DeleteEventHandler deleteEventHandler) { this.deleteEventHandler = deleteEventHandler; }
@@ -31,7 +31,7 @@ public class MasterConsole {
                 //CreateConsole createConsole= new CreateConsole();  --->mit while true auf false setzen zum zurück kommen
                 //ReadConsole readConsole= new ReadConsole();
                 //DeleteConsole deleteConsole= new DeleteConsole(); --->mit while true auf false setzen zum zurück kommen für producer und content
-                CreateEvent createEvent= new CreateEvent(this);
+                CreateContentEvent createContentEvent = new CreateContentEvent(this);
                 ReadEvent readEvent= new ReadEvent(this, c.number);
                 UpdateEvent updateEvent = new UpdateEvent(this, c.number);
                 DeleteEvent deleteEvent= new DeleteEvent(this, c.number);
@@ -39,8 +39,8 @@ public class MasterConsole {
 
                 switch (c.operator){
                     case CREATE:
-                        if(this.createEventHandler != null)
-                            createEventHandler.handle(createEvent);
+                        if(this.createContentEventHandler != null)
+                            createContentEventHandler.handle(createContentEvent);
                         break;
                     case READ:
                         if(this.readEventHandler != null)

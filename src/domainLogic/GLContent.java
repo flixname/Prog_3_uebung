@@ -1,11 +1,13 @@
 package domainLogic;
 
+import eventSystem.util.Bitrate;
+import eventSystem.util.Laenge;
 import mediaDB.Content;
 import mediaDB.MediaContent;
 import mediaDB.Tag;
 import mediaDB.Uploader;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 
 /**
@@ -22,7 +24,7 @@ public interface GLContent {
      * TODO: es ist zu prüfen, dass die Media-Datei zu einem bereits existierenden Produzenten gehört
      * @param mediaContent unterstützt werden alle Typen die von MediaContent ableiten
      */
-    void createContent(MediaContent mediaContent, Uploader uploader);
+    void createContent(MediaContent mediaContent, Uploader uploader, Tag tag, Bitrate bitrate, Laenge laenge);
 
     /**
      * Weist einen Tag aus den vier gegeben zu (Animal,Tutorial,Lifestyle,News)
@@ -30,7 +32,7 @@ public interface GLContent {
      * @param tag Name (Animal,Tutorial,Lifestyle,News)
      * @param dataNr position der Mediendatei zu der tag hinzugefügt werden soll
      */
-    void createTag(String tag, int dataNr);
+    Collection<Tag> createTag(int tag, int dataNr);
 
     /**
      * zum lesen von MediaContent (0), Audio(1), Video(2)

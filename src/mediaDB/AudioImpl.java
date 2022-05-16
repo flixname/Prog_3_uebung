@@ -1,38 +1,38 @@
 package mediaDB;
 
-import domainLogic.ObservableCounter;
-import domainLogic.ObservableTag;
+import eventSystem.util.ObservableCounter;
+import eventSystem.util.ObservableTag;
+import eventSystem.util.Address;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 
-public class AudioWithCounterImpl implements Audio {
-
-    private ObservableTag observableTag;
-    private ObservableCounter observableCounter;
-    private Uploader uploader;
+public class AudioImpl implements Audio {
 
     @Override
     public int getSamplingRate() {
         return 0;
     }
 
-    @Override
+    @Override //TODO: siehe A-Blatt
     public String getAddress() {
-        return null;
+        return this.getAddress();
     }
 
-    @Override //TODO:
+    @Override //TODO: BIG TODO... ;(->wie create tag von aussen, liste immer null
     public Collection<Tag> getTags() {
-        return this.observableTag.getTagCollection();
+        return this.getTagCollection();
     }
 
     @Override
     public long getAccessCount() {
-        this.observableCounter.increment();
-        return this.observableCounter.getValue();
+        this.increment();
+        this.setChanged(); //TODO: Subscribe notify funtionality
+        this.notifyObservers();
+        return this.getValue();
     }
 
     @Override

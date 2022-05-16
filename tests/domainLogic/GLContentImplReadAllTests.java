@@ -27,13 +27,13 @@ public class GLContentImplReadAllTests {
         this.testGLContent1 = new GLContentImpl();
 
         //Uploader
-        this.testUploader1 = new UploaderImpl();
-        this.testUploader2 = new UploaderImpl();
+        this.testUploader1 = new UploaderImpl("Blink_182");
+        this.testUploader2 = new UploaderImpl("Weezer");
 
         //Audiomaterial
-        this.testAudio1 = new AudioWithCounterImpl();
-        this.testAudio2 = new AudioWithCounterImpl();
-        this.testAudio3 = new AudioWithCounterImpl();
+        this.testAudio1 = new AudioImpl();
+        this.testAudio2 = new AudioImpl();
+        this.testAudio3 = new AudioImpl();
 
         this.testGLContent1.createContent(testAudio1, testUploader1);
         this.testGLContent1.createContent(testAudio2, testUploader1);

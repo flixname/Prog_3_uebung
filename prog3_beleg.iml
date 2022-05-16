@@ -6,8 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/tests/domainLogic/todo" />
       <excludeFolder url="file://$MODULE_DIR$/src/net" />
+      <excludeFolder url="file://$MODULE_DIR$/tests/domainLogic/todo" />
+      <excludeFolder url="file://$MODULE_DIR$/src/threads" />
     </content>
     <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

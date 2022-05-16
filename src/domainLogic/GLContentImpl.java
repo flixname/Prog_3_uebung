@@ -1,8 +1,8 @@
 package domainLogic;
 
-import eventSystem.util.Command;
 import mediaDB.*;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
 public class GLContentImpl implements GLContent {
@@ -10,28 +10,35 @@ public class GLContentImpl implements GLContent {
     private LinkedList<Content> contentLinkedList = new LinkedList<>();
 
     @Override
-    public void createContent(MediaContent mediaContent, Uploader uploader) {
+    public void createContent(MediaContent mediaContent, Uploader uploader, Tag tag) {
         this.contentLinkedList.add(mediaContent);
     }
 
     @Override
-    public void createTag(String tag, int dataNr) {
+    public Collection<Tag> createTag(int tag, int dataNr) {
+        Collection<Tag> tempCollectionOfTags = this.contentLinkedList.get(dataNr).getTags();
         switch(tag){
-            case "News":
-                this.contentLinkedList.get(dataNr).getTags().add(Tag.News);
+            case 0: //Animal
+                if(tempCollectionOfTags.contains(Tag.Animal)){break;}
+                tempCollectionOfTags.add(Tag.Animal);
                 break;
-            case "Lifestyle":
-                this.contentLinkedList.get(dataNr).getTags().add(Tag.Lifestyle);
-                break;
-            case "Tutorial":
+            case 1: //Tutorial
+                if(tempCollectionOfTags.contains(Tag.Tutorial)){break;}
                 this.contentLinkedList.get(dataNr).getTags().add(Tag.Tutorial);
                 break;
-            case "Animal":
-                this.contentLinkedList.get(dataNr).getTags().add(Tag.Animal);
+            case 2: //Lifestyle
+                if(tempCollectionOfTags.contains(Tag.Lifestyle)){break;}
+                this.contentLinkedList.get(dataNr).getTags().add(Tag.Lifestyle);
+                break;
+            case 3: //News
+                if(tempCollectionOfTags.contains(Tag.News)){break;}
+                this.contentLinkedList.get(dataNr).getTags().add(Tag.News);
                 break;
             default:
                 break;
         }
+        // this.contentLinkedList.get(dataNr).getTags()... ok fail, wie komme ich an die liste zum adden der tags...
+        return tempCollectionOfTags;
     }
 
     @Override
@@ -40,15 +47,13 @@ public class GLContentImpl implements GLContent {
         switch(typ){
             case(0): //0 for all
                 if(this.contentLinkedList != null){
-                    tempContentLinkedList.clear();
-                    for (Content listElement : this.contentLinkedList) {
-                            tempContentLinkedList.add(listElement);
-                    }
+                    //tempContentLinkedList.clear();
+                    for (Content listElement : this.contentLinkedList) { tempContentLinkedList.add(listElement); }
                     return tempContentLinkedList;
                 } break;
             case(1): //1 for Audio
                 if(this.contentLinkedList != null){
-                    tempContentLinkedList.clear();
+                    //tempContentLinkedList.clear();
                     for (Content listElement : this.contentLinkedList) {
                         if(listElement instanceof Audio){
                             tempContentLinkedList.add(listElement);
@@ -58,7 +63,7 @@ public class GLContentImpl implements GLContent {
                 } break;
             case(2): //2 for Video
                 if(this.contentLinkedList != null){
-                    tempContentLinkedList.clear();
+                    //tempContentLinkedList.clear();
                     for (Content listElement : this.contentLinkedList) {
                         if(listElement instanceof Video){
                             tempContentLinkedList.add(listElement);
@@ -96,6 +101,5 @@ public class GLContentImpl implements GLContent {
        if(this.contentLinkedList != null && this.contentLinkedList.size() != 0 && this.contentLinkedList.size() > dataNr) {
             this.contentLinkedList.remove(dataNr);
         }
-       return;
     }
 }

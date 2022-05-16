@@ -7,16 +7,17 @@ public class UploaderImpl implements Uploader{
 
     private String uploaderName;
 
-    public void setUploaderName(String uploaderName) {
+    public UploaderImpl(String uploaderName) {
         this.uploaderName = uploaderName;
     }
 
     @Override
     public String getName() {
         if (this.uploaderName != null) {
-            return this.uploaderName;
-        } else {
-            throw new NullPointerException("No name here!");
+            System.out.println("No name here!");
         }
+        return this.uploaderName;
+
+
     }
 }
