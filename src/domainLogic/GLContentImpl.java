@@ -9,35 +9,61 @@ public class GLContentImpl implements GLContent {
 
     private LinkedList<Content> contentLinkedList = new LinkedList<>();
 
+
+
+    private ObservableCounter observableCounter;
+    private Bitrate bitrate;
+    private Laenge laenge;
+
+    private Integer addressCount;
+
     @Override
-    public void createContent(MediaContent mediaContent, Uploader uploader, Tag tag) {
-        this.contentLinkedList.add(mediaContent);
+    public void createContent(String dataType, String uploaderName, String tag, Bitrate bitrate, Laenge laenge) { //dataType 1 Audio oder 2 Video TODO: mehrfach tag
+
+        switch(dataType){
+            case "Audio":
+                Uploader uploader = new UploaderImpl(uploaderName);
+                this.addressCount = this.addressCount++; //adresscounter zählt hoch bei jeder datei und wird zu string geformt in der Addressclass
+                Address address = new Address(this.addressCount);
+                ObservableTag observableTag = new ObservableTag();
+                Audio audio = new AudioImpl(address, observableTag );
+                this.contentLinkedList.add(audio);
+                this.contentLinkedList.
+                        break;
+            case "Video":
+                Video video = new VideoImpl();
+                this.contentLinkedList.add(video);
+                break;
+            //case "LicensedAudio": break;
+            //case "LicensedVideo": break;
+            default:
+                break;
+        }
     }
 
     @Override
-    public Collection<Tag> createTag(int tag, int dataNr) {
+    public Collection<Tag> createTag(String tag, int dataNr) {
         Collection<Tag> tempCollectionOfTags = this.contentLinkedList.get(dataNr).getTags();
         switch(tag){
-            case 0: //Animal
+            case "Animal": //Animal
                 if(tempCollectionOfTags.contains(Tag.Animal)){break;}
                 tempCollectionOfTags.add(Tag.Animal);
                 break;
-            case 1: //Tutorial
+            case "Tutorial": //Tutorial
                 if(tempCollectionOfTags.contains(Tag.Tutorial)){break;}
-                this.contentLinkedList.get(dataNr).getTags().add(Tag.Tutorial);
+                tempCollectionOfTags.add(Tag.Tutorial);
                 break;
-            case 2: //Lifestyle
+            case "Lifestyle": //Lifestyle
                 if(tempCollectionOfTags.contains(Tag.Lifestyle)){break;}
-                this.contentLinkedList.get(dataNr).getTags().add(Tag.Lifestyle);
+                tempCollectionOfTags.add(Tag.Lifestyle);
                 break;
-            case 3: //News
+            case "News": //News
                 if(tempCollectionOfTags.contains(Tag.News)){break;}
-                this.contentLinkedList.get(dataNr).getTags().add(Tag.News);
+                tempCollectionOfTags.add(Tag.News);
                 break;
             default:
                 break;
         }
-        // this.contentLinkedList.get(dataNr).getTags()... ok fail, wie komme ich an die liste zum adden der tags...
         return tempCollectionOfTags;
     }
 

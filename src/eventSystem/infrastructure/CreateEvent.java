@@ -5,11 +5,11 @@ import mediaDB.Content;
 
 import java.util.EventObject;
 
-public class CreateContentEvent extends EventObject {
+public class CreateEvent extends EventObject {
 
     Content content;
 
-    public CreateContentEvent(Object source) {
+    public CreateEvent(Object source) {
         super(source);
     }
 

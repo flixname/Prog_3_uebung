@@ -11,6 +11,6 @@ public class CreateContentEventHandler {
 
     public void remove(CreateContentEventListener listener) { this.listenerList.remove(listener); }
 
-    public void handle(CreateContentEvent event){ for (CreateContentEventListener listener : listenerList) listener.onCreateEvent(event); }
+    public void handle(CreateEvent event){ for (CreateContentEventListener listener : listenerList) listener.onCreateEvent(event); }
 
 }

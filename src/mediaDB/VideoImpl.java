@@ -1,13 +1,13 @@
 package mediaDB;
 
-import eventSystem.util.ObservableCounter;
+import domainLogic.ObservableCounter;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class VideoWithCounterImpl implements Video {
+public class VideoImpl implements Video {
 
     private ObservableCounter observableCounter;
     private Uploader uploader;

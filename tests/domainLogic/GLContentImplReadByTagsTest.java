@@ -1,4 +1,4 @@
-package domainLogic.todo;
+package domainLogic;
 
 import domainLogic.GLContent;
 import domainLogic.GLContentImpl;
@@ -13,8 +13,8 @@ class GLContentImplReadByTagsTest {
     @Test
     void readByTags1() {
         GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-        Audio testAudio2 = new AudioWithCounterImpl();
+        Audio testAudio1 = new AudioImpl();
+        Audio testAudio2 = new AudioImpl();
         Uploader testUploader1 = new UploaderImpl();
         testGLContent.createContent(testAudio1, testUploader1);
         testGLContent.createContent(testAudio2, testUploader1);

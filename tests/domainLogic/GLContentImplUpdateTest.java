@@ -9,6 +9,13 @@ import org.junit.jupiter.api.Test;
 
 class GLContentImplUpdateTest {
 
+    private Address address;
+    private ObservableTag observableTag;
+    private ObservableCounter observableCounter;
+    private Bitrate bitrate;
+    private Laenge laenge;
+    private Uploader uploader;
+
     @Test //Counter an einer Datei hochzählen
     void goodUpdate1() {
         GLContent testGLContent = new GLContentImpl();
@@ -25,8 +32,8 @@ class GLContentImplUpdateTest {
     @Test
     void goodMultipleUpdate1() {
         GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioImpl();
-        Audio testAudio2= new AudioImpl();
+        Audio testAudio1 = new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
+        Audio testAudio2= new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
         Uploader testUploader1 = new UploaderImpl("Sepultura");
         testGLContent.createContent(testAudio1, testUploader1);
         testGLContent.createContent(testAudio2, testUploader1);

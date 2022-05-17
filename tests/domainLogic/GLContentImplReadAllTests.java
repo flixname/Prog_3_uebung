@@ -19,6 +19,12 @@ public class GLContentImplReadAllTests {
     private Video testVideo3;
     private Uploader testUploader1;
     private Uploader testUploader2;
+    private Address address;
+    private ObservableTag observableTag;
+    private ObservableCounter observableCounter;
+    private Bitrate bitrate;
+    private Laenge laenge;
+    private Uploader uploader;
 
     @BeforeEach
     void setUp(){
@@ -31,18 +37,18 @@ public class GLContentImplReadAllTests {
         this.testUploader2 = new UploaderImpl("Weezer");
 
         //Audiomaterial
-        this.testAudio1 = new AudioImpl();
-        this.testAudio2 = new AudioImpl();
-        this.testAudio3 = new AudioImpl();
+        this.testAudio1 = new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
+        this.testAudio2 = new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
+        this.testAudio3 = new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
 
         this.testGLContent1.createContent(testAudio1, testUploader1);
         this.testGLContent1.createContent(testAudio2, testUploader1);
         this.testGLContent1.createContent(testAudio3, testUploader1);
 
         //Videomaterial
-        this.testVideo1 = new VideoWithCounterImpl();
-        this.testVideo2 = new VideoWithCounterImpl();
-        this.testVideo3 = new VideoWithCounterImpl();
+        this.testVideo1 = new VideoImpl();
+        this.testVideo2 = new VideoImpl();
+        this.testVideo3 = new VideoImpl();
 
         this.testGLContent1.createContent(testVideo1, testUploader2);
         this.testGLContent1.createContent(testVideo2, testUploader2);

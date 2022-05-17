@@ -2,19 +2,32 @@ package domainLogic;
 
 import mediaDB.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class GLContentImplCreateTests {
+
+    private Address address;
+    private ObservableTag observableTag;
+    private Uploader uploader;
+    private Bitrate bitrate;
+    private Laenge laenge;
+    private ObservableCounter observableCounter;
+
+    @BeforeEach
+
 
     ////////
     //GOOD//
     ////////
 
+
     @Test //Audio Eintrag
     void goodCreate1() {
         GLContent testGLContent1 = new GLContentImpl();
-        Audio testAudio1 = new AudioImpl();
+        Audio testAudio1 = new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
         Uploader testUploader1 = new UploaderImpl("Mark_OH");
+
         testGLContent1.createContent(testAudio1, testUploader1);
 
         Content temp = testGLContent1.readByContentType(0).get(0);
@@ -24,7 +37,7 @@ class GLContentImplCreateTests {
     @Test //Video Eintrag
     void goodCreate2() {
         GLContent testGLContent1 = new GLContentImpl();
-        Video testVideo1 = new VideoWithCounterImpl();
+        Video testVideo1 = new VideoImpl();
         Uploader testUploader1 = new UploaderImpl("Scatman_John");
         testGLContent1.createContent(testVideo1, testUploader1);
 

@@ -1,7 +1,7 @@
 package eventSystem.viewControl;
 
 import eventSystem.infrastructure.*;
-import eventSystem.util.Command;
+import domainLogic.Command;
 
 import java.util.Scanner;
 
@@ -31,7 +31,7 @@ public class MasterConsole {
                 //CreateConsole createConsole= new CreateConsole();  --->mit while true auf false setzen zum zurück kommen
                 //ReadConsole readConsole= new ReadConsole();
                 //DeleteConsole deleteConsole= new DeleteConsole(); --->mit while true auf false setzen zum zurück kommen für producer und content
-                CreateContentEvent createContentEvent = new CreateContentEvent(this);
+                CreateEvent createEvent = new CreateEvent(this);
                 ReadEvent readEvent= new ReadEvent(this, c.number);
                 UpdateEvent updateEvent = new UpdateEvent(this, c.number);
                 DeleteEvent deleteEvent= new DeleteEvent(this, c.number);
@@ -40,7 +40,7 @@ public class MasterConsole {
                 switch (c.operator){
                     case CREATE:
                         if(this.createContentEventHandler != null)
-                            createContentEventHandler.handle(createContentEvent);
+                            createContentEventHandler.handle(createEvent);
                         break;
                     case READ:
                         if(this.readEventHandler != null)

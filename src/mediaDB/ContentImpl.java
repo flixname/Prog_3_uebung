@@ -1,25 +1,18 @@
 package mediaDB;
 
-import eventSystem.util.Address;
-import eventSystem.util.ObservableCounter;
-import eventSystem.util.ObservableTag;
-
 import java.util.Collection;
-import java.util.LinkedList;
 
-public class ContentImpl implements Content {
+public class ContentImpl implements Content{
 
-    private ObservableCounter observableCounter;
-    private ObservableTag observableTag;
-    private Address address;
+    String address;
 
-    public void setObservableTag(LinkedList<Tag> tagLinkedList){
-        this.observableTag.setTagCollection(tagLinkedList);
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String getAddress() {
-        return null;
+        return this.address;
     }
 
     @Override
@@ -29,6 +22,6 @@ public class ContentImpl implements Content {
 
     @Override
     public long getAccessCount() {
-        return this.observableCounter.getValue();
+        return 0;
     }
 }
