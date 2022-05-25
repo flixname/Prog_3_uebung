@@ -4,13 +4,6 @@ Beleg 3:
 
 Habe alles nochmal überarbeitet und ordentlicher versucht vorzugehen.
 
-- Tests sind teilweise und auch für eigene ZWecke mal mit Before Each gestaltet.
-
-- Habe versucht alles möglichst Modular zu bauen. Das geht sicherlich besser aber eventuell für diesen Code etwas zu "over engineered".
--- habe mich deshalb gefragt ob ich die Interfaces bei der GL überhaupt benötige
--- habe mich gefragt ob in den tests immer über das Inteface gehen soll? Weil irgendwie erscheint mir das hinsichtlich der Zugriffs- und
--- Prüfungsmöglichkeiten ja doch etwas eingeschränkt bzw. habe ich dann ja doch teilweise in einem Test mehrere Methoden getestet: z.B.: Create und read in einem test...
--- Besser ist es doch mal so mal so oder? Je nach Bedarf die Klasse selbst und das Interface zu testen.
-
-
+Tests funktionieren alle nicht
+Habe mich wieder mal sehr damit beschäftigt, aber zu lange an den implementationen der GL fähigkeiten
 

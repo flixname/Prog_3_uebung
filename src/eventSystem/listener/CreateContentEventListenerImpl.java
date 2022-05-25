@@ -1,20 +1,20 @@
 package eventSystem.listener;
 
-import domainLogic.GLContent;
-import eventSystem.infrastructure.CreateEvent;
+import domainLogic.GLContentImpl;
+import eventSystem.infrastructure.CreateContentEvent;
 import eventSystem.infrastructure.CreateContentEventListener;
 
 //TODO: fehler
 public class CreateContentEventListenerImpl implements CreateContentEventListener {
 
-    private GLContent glContent;
+    private GLContentImpl glContentImpl;
 
-    public CreateContentEventListenerImpl(GLContent glContent) {
-        this.glContent = glContent;
+    public CreateContentEventListenerImpl(GLContentImpl glContentImpl) {
+        this.glContentImpl = glContentImpl;
     }
 
     @Override
-    public void onCreateEvent(CreateEvent createEvent) {
-        this.glContent.createContent(createEvent.getContent());
+    public void onCreateEvent(CreateContentEvent createContentEvent) {
+        this.glContentImpl.createContent(createContentEvent.getDataType(), createContentEvent.getUploaderName(), createContentEvent.getTagCollection(), createContentEvent.getBitrate(), createContentEvent.getLaenge());
     }
 }

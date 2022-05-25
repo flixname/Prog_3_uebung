@@ -28,5 +28,6 @@ class VerwaltungDeleteAllTest {
                 ()->{
                     mediaDB.AudioVideo temp = testVerwaltung.read(1);
                 });
+        fail();
     }
 }

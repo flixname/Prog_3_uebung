@@ -6,11 +6,19 @@ import mediaDB.UploaderImpl;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class GLUploaderImpl implements GLUploader{
+/**
+ * Verwaltung für Uploader
+ */
+public class GLUploaderImpl {
 
     HashMap<String, Uploader> uploaderHashMap = new HashMap<>();
 
-    @Override
+    /**
+     * TODO: Uploader zuerst erstellen dann Mediafile
+     * TODO: Anlegen von Produzenten; dabei muss sichergestellt sein, dass kein Name mehr als einmal vorkommt
+     * creates an uploader (Anlegen von Produzenten)
+     * @param name ein name
+     */
     public void createUploader(String name) {
         Uploader uploader = new UploaderImpl(name);
         if(this.uploaderHashMap.containsKey(name)){
@@ -19,12 +27,18 @@ public class GLUploaderImpl implements GLUploader{
         this.uploaderHashMap.put(name, uploader);
     }
 
-    @Override
+    /**
+     * TODO: Abruf aller Produzenten mit der Anzahl der ihrer Mediadateien
+     * @return liefert gesamte DB LinkedList
+     */
     public LinkedList<Uploader> readUplaoder() {
         return null;
     }
 
-    @Override
+    /**
+     * TODO: Löschen eines bestimmten Produzenten(Uploader)
+     * @param dataNr Nummer der zu löschenden Datei in DB ArrayList
+     */
     public void delete(Integer dataNr) {
 
     }

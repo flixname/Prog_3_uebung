@@ -1,34 +1,33 @@
 package domainLogic;
 
-import mediaDB.*;
+import domainLogic.util.ObservableTag;
+import mediaDB.Content;
+import mediaDB.Tag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GLContentImplCreateTagTest {
-
-    private ObservableTag observableTag;
-    private Address address;
-    private ObservableCounter observableCounter;
-    private Bitrate bitrate;
-    private Laenge laenge;
-    private Uploader uploader;
-
+/*
     @Test
     void goodCreateTag1() {
-        GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
-        Uploader testUploader1 = new UploaderImpl("Felix_1");
-        testGLContent.createContent(testAudio1, testUploader1);
 
-        testGLContent.createTag(0, 0);
+        GLContentImpl testGLContent1 = new GLContentImpl();
+        ObservableTag observableTag = new ObservableTag(Tag.Animal);
+        testGLContent1.createContent("Audio", "Felix", observableTag.getTagCollection(), BigDecimal.valueOf(200.0), Duration.of(200, ChronoUnit.MILLIS));
 
-        Collection temp = testAudio1.getTags();
+        testGLContent1.createTag("News", 0);
+
+        LinkedList<Content> temp = testGLContent1.readByTags(Tag.News);
 
         Assertions.assertEquals(true, temp.contains(Tag.News));
-        fail();
     }
+
+ */
 }

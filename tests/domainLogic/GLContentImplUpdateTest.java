@@ -1,51 +1,66 @@
 package domainLogic;
 
-import mediaDB.Audio;
-import mediaDB.AudioImpl;
-import mediaDB.Uploader;
-import mediaDB.UploaderImpl;
+import domainLogic.util.ObservableTag;
+import mediaDB.*;
+import observerPattern.observers.AddressObserver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+
+import static org.junit.Assert.fail;
+
 class GLContentImplUpdateTest {
 
-    private Address address;
-    private ObservableTag observableTag;
-    private ObservableCounter observableCounter;
-    private Bitrate bitrate;
-    private Laenge laenge;
-    private Uploader uploader;
+    private ObservableTag observableTag = new ObservableTag(Tag.Animal, Tag.News, Tag.Tutorial);
 
     @Test //Counter an einer Datei hochzählen
     void goodUpdate1() {
-        GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioImpl();
-        Uploader testUploader1 = new UploaderImpl("Metallica");
-        testGLContent.createContent(testAudio1, testUploader1);
+        GLContentImpl testGLContent = new GLContentImpl();
+        testGLContent.createContent("Audio", "Felix", observableTag.getTagCollection(), BigDecimal.valueOf(2), Duration.of(2, ChronoUnit.MILLIS));
+
+        long temp = testGLContent.update(0);
+
+        Assertions.assertEquals(1, temp);
+    }
+
+    @Test //Counter an einer Datei hochzählen
+    void goodUpdate2() {
+        GLContentImpl testGLContent = new GLContentImpl();
+        testGLContent.createContent("Audio", "Felix",observableTag.getTagCollection() , BigDecimal.valueOf(2), Duration.of(2, ChronoUnit.MILLIS));
 
         testGLContent.update(0);
+        testGLContent.update(0);
         long temp = testGLContent.update(0);
+
+        Assertions.assertEquals(3, temp);
+    }
+
+    @Test //Counter an einer Datei hochzählen, dann an einer anderen mit Observerbenachrichtigung
+    void goodUpdateWithCounterObserver1() {
+        GLContentImpl testGLContent = new GLContentImpl();
+
+        Content content1 = testGLContent.createContent("Audio", "Heinz", observableTag.getTagCollection() , BigDecimal.valueOf(3), Duration.of(4, ChronoUnit.MILLIS));
+        Content content2 = testGLContent.createContent("Audio", "Heinz", observableTag.getTagCollection() , BigDecimal.valueOf(4), Duration.of(5, ChronoUnit.MILLIS));
+
+        AddressObserver addressObserver1 = new AddressObserver(content1);
+        
+
+
+        testGLContent.update(0);
+        testGLContent.update(1);
+        testGLContent.update(0);
+
+        long temp = testGLContent.update(1);
+
+
 
         Assertions.assertEquals(2, temp);
     }
 
-    @Test
-    void goodMultipleUpdate1() {
-        GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
-        Audio testAudio2= new AudioImpl(address, observableTag, observableCounter, bitrate, laenge, uploader);
-        Uploader testUploader1 = new UploaderImpl("Sepultura");
-        testGLContent.createContent(testAudio1, testUploader1);
-        testGLContent.createContent(testAudio2, testUploader1);
 
-        testGLContent.update(1);
-        long temp2 = testGLContent.update(1);
-
-        long temp1 = testGLContent.update(0);
-
-        Assertions.assertEquals(1, temp1);
-        Assertions.assertEquals(2, temp2);
-    }
 /*
     @Test
     void goodObserverTest1(){

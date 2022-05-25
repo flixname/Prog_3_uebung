@@ -1,8 +1,9 @@
 package mediaDB;
 
 
-
-import domainLogic.*;
+import domainLogic.util.*;
+import observerPattern.observables.ObservableAddress;
+import observerPattern.observables.ObservableCounter;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -11,21 +12,23 @@ import java.util.Date;
 
 public class AudioImpl implements Audio {
 
-    private ObservableCounter observableCounter;
-    private ObservableTag observableTag;
+
 
     private Uploader uploader;
-    private Address address;
+    private ObservableTag observableTag;
     private Bitrate bitrate;
     private Laenge laenge;
 
+    private ObservableAddress observableAddress; //unique address ID
+    private ObservableCounter observableCounter = new ObservableCounter(); //AccessCounter
 
-    public AudioImpl(Address address, String uploader, Collection<Tag> tagCollection, BigDecimal bitrate, Duration laenge) {
-        this.address = address;
-        this.observableTag = new ObservableTag(tagCollection);
-        this.bitrate.setBitrate(bitrate);
-        this.laenge.setLaenge(laenge);
+
+    public AudioImpl(Integer address, String uploader, Collection<Tag> tagCollection, BigDecimal bitrate, Duration laenge) {
+        this.observableAddress = new ObservableAddress(address);
         this.uploader = new UploaderImpl(uploader);
+        this.observableTag = new ObservableTag(tagCollection);
+        this.bitrate = new Bitrate(bitrate);
+        this.laenge = new Laenge(laenge);
     }
 
 
@@ -36,7 +39,7 @@ public class AudioImpl implements Audio {
 
     @Override //TODO: siehe A-Blatt
     public String getAddress() {
-        return this.address.getAddress();
+        return this.observableAddress.getAddress();
     }
 
     @Override //TODO: BIG TODO... ;(->wie create tag von aussen, liste immer null
@@ -47,13 +50,7 @@ public class AudioImpl implements Audio {
     @Override
     public long getAccessCount() {
         this.observableCounter.increment();
-        return this.observableCounter.getValue();
-        /*
-        this.increment();
-        this.setChanged(); //TODO: Subscribe notify funtionality
-        this.notifyObservers();
-        return this.getValue();
-        */
+        return this.observableCounter.getAccessCount();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package mediaDB;
 
-import domainLogic.ObservableCounter;
+import domainLogic.util.Counter;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class VideoImpl implements Video {
 
-    private ObservableCounter observableCounter;
+    private Counter counter;
     private Uploader uploader;
     private Collection<Tag> tagCollection;
 
@@ -25,8 +25,8 @@ public class VideoImpl implements Video {
 
     @Override
     public long getAccessCount() {
-        this.observableCounter.increment();
-        return this.observableCounter.getValue();
+        this.counter.increment();
+        return this.counter.getAccessCount();
     }
 
     @Override

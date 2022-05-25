@@ -6,6 +6,8 @@ import mediaDB.AudioVideo;
 import mediaDB.AudioVideoImpl;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.fail;
+
 class VerwaltungPrintAllTests {
 
 
@@ -22,5 +24,6 @@ class VerwaltungPrintAllTests {
         testVerwaltung.create(2, testContent3);
 
         testVerwaltung.printAll(System.out); //TODO: was er im speziellen dann überhaupt ausdruckt
+        fail();
     }
 }
