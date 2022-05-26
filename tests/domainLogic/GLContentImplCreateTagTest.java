@@ -1,18 +1,5 @@
 package domainLogic;
 
-import domainLogic.util.ObservableTag;
-import mediaDB.Content;
-import mediaDB.Tag;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-import java.util.LinkedList;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class GLContentImplCreateTagTest {
 /*
     @Test

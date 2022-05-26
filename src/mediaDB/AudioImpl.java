@@ -4,6 +4,7 @@ package mediaDB;
 import domainLogic.util.*;
 import observerPattern.observables.ObservableAddress;
 import observerPattern.observables.ObservableCounter;
+import observerPattern.observables.ObservableTag;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -19,11 +20,11 @@ public class AudioImpl implements Audio {
     private Bitrate bitrate;
     private Laenge laenge;
 
-    private ObservableAddress observableAddress; //unique address ID
+    private final ObservableAddress observableAddress; //unique address ID
     private ObservableCounter observableCounter = new ObservableCounter(); //AccessCounter
 
 
-    public AudioImpl(Integer address, String uploader, Collection<Tag> tagCollection, BigDecimal bitrate, Duration laenge) {
+    public AudioImpl(Integer address, String uploader, String tagCollection, int bitrate, long laenge) {
         this.observableAddress = new ObservableAddress(address);
         this.uploader = new UploaderImpl(uploader);
         this.observableTag = new ObservableTag(tagCollection);

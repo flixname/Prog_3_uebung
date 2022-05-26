@@ -11,9 +11,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CreateThread extends Thread {
 
-    LinkedList<Tag> tagLinkedList = new LinkedList<>();
     GLContentImpl glContent;
-    int randomNumber;
+    int randomNumber1;
+    int randomNumber2;
 
     public CreateThread(GLContentImpl glContent) {
         this.glContent = glContent;
@@ -22,12 +22,11 @@ public class CreateThread extends Thread {
 
     public void run() {
 
-        tagLinkedList.add(Tag.News);
-
         do {
             try {
-            this.randomNumber = ThreadLocalRandom.current().nextInt(1, 4);
-            glContent.createContent("Audio", "Felix", tagLinkedList, BigDecimal.valueOf(randomNumber), Duration.of(randomNumber, ChronoUnit.MILLIS));
+            this.randomNumber1 = ThreadLocalRandom.current().nextInt(1, 4);
+            this.randomNumber2 = ThreadLocalRandom.current().nextInt(4, 8);
+            glContent.createContent("Audio", "Felix", "Animal,Tutorial", randomNumber1, randomNumber2);
             } catch (IndexOutOfBoundsException e) {
                 throw new IndexOutOfBoundsException("LinkedList voll");
             }

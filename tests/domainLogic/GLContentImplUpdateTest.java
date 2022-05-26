@@ -1,6 +1,6 @@
 package domainLogic;
 
-import domainLogic.util.ObservableTag;
+import observerPattern.observables.ObservableTag;
 import mediaDB.*;
 import observerPattern.observers.AddressObserver;
 import org.junit.jupiter.api.Assertions;

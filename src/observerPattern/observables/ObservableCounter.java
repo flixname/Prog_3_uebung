@@ -1,7 +1,8 @@
 package observerPattern.observables;
 
 import domainLogic.util.Counter;
-import observerPattern.observers.Observer;
+import observerPattern.Observable;
+import observerPattern.Observer;
 
 import java.util.LinkedList;
 import java.util.List;

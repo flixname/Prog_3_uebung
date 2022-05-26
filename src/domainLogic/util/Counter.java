@@ -2,6 +2,7 @@ package domainLogic.util;
 
 /**
  * Access Count for files
+ * counts 1++ if update() in GLContent is called
  */
 public abstract class Counter {
 

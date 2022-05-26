@@ -11,11 +11,11 @@ public class CreateContentEvent extends EventObject {
 
     String dataType;
     String uploaderName;
-    Collection<Tag> tagCollection;
-    BigDecimal bitrate;
-    Duration laenge;
+    String tagCollection;
+    Integer bitrate;
+    Integer laenge;
 
-    public CreateContentEvent(Object source, String dataType, String uploaderName, Collection<Tag> tagCollection, BigDecimal bitrate, Duration laenge) {
+    public CreateContentEvent(Object source, String dataType, String uploaderName, String tagCollection, Integer bitrate, Integer laenge) {
         super(source);
         this.dataType = dataType;
         this.uploaderName = uploaderName;
@@ -32,15 +32,15 @@ public class CreateContentEvent extends EventObject {
         return uploaderName;
     }
 
-    public Collection<Tag> getTagCollection() {
+    public String getTagCollection() {
         return tagCollection;
     }
 
-    public BigDecimal getBitrate() {
+    public Integer getBitrate() {
         return bitrate;
     }
 
-    public Duration getLaenge() {
+    public Integer getLaenge() {
         return laenge;
     }
 }

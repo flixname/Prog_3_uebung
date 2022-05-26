@@ -32,16 +32,17 @@ public class GLContentImpl {
      * @param bitrate
      * @param laenge
      */
-    public Content createContent(String dataType, String uploaderName, Collection<Tag> tagCollection, BigDecimal bitrate, Duration laenge) { //TODO: mehrfach tag
+    public Content/*TEST*/ createContent(String dataType, String uploaderName, String tagCollection, int bitrate, long laenge) { //TODO: mehrfach tag
 
         switch(dataType){
             case "Audio":
                 Audio audio = new AudioImpl(this.addressCount++, uploaderName, tagCollection, bitrate, laenge);
                 this.contentLinkedList.add(audio);
-                return audio;
+                return audio; /*TEST*/
             case "Video":
                 Video video = new VideoImpl();
                 this.contentLinkedList.add(video);
+                return video; /*TEST*/
                 break;
             //case "LicensedAudio": break;
             //case "LicensedVideo": break;
@@ -57,33 +58,9 @@ public class GLContentImpl {
      * @param tag Name (Animal,Tutorial,Lifestyle,News)
      * @param dataNr position der Mediendatei zu der tag hinzugefügt werden soll
      */
-    public Collection<Tag> createTag(String tag, int dataNr) {
-        Collection<Tag> tempCollectionOfTags = this.contentLinkedList.get(dataNr).getTags();
-        //oder komplett als interface....oder abstract class
-
-        //Collection<Tag> tempCollectionOfTags = null;
-        switch(tag){
-            case "Animal": //Animal
-                if(tempCollectionOfTags.contains(Tag.Animal)){break;}
-                tempCollectionOfTags.add(Tag.Animal);
-                break;
-            case "Tutorial": //Tutorial
-                if(tempCollectionOfTags.contains(Tag.Tutorial)){break;}
-                tempCollectionOfTags.add(Tag.Tutorial);
-                break;
-            case "Lifestyle": //Lifestyle
-                if(tempCollectionOfTags.contains(Tag.Lifestyle)){break;}
-                tempCollectionOfTags.add(Tag.Lifestyle);
-                break;
-            case "News": //News
-                if(tempCollectionOfTags.contains(Tag.News)){break;}
-                tempCollectionOfTags.add(Tag.News);
-                break;
-            default:
-                break;
-        }
-
-        return tempCollectionOfTags; //TODO: ok wie weiter? LIst muss ja im Mngmt überschrieben werden
+    public String createTag(String tag, int dataNr) {
+//TODO
+        return null;
     }
 
     /**

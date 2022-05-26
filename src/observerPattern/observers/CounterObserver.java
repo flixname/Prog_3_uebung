@@ -1,5 +1,6 @@
 package observerPattern.observers;
 
+import observerPattern.Observer;
 import observerPattern.observables.ObservableCounter;
 
 public class CounterObserver implements Observer {

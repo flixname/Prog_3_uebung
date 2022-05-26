@@ -1,24 +1,19 @@
-package eventSystem.viewControl;
+package ui.cli;
 
 import eventSystem.infrastructure.*;
-import eventSystem.viewControl.util.Command;
-import mediaDB.Tag;
+import ui.cli.util.Command;
 
-import java.time.Duration;
-import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class MasterConsole {
+public class Controler_CLI {
 
     private CreateContentEventHandler createContentEventHandler;
     private ReadDiverseContentEventHandler readDiverseContentEventHandler;
     private UpdateSingleAccessCountEventHandler updateSingleAccessCountEventHandler;
     private DeleteSingleEventHandler deleteSingleEventHandler;
     private ExitEventHandler exitEventHandler;
-
-    private LinkedList<Tag> tagCollection = new LinkedList<>(); //TEST
-
-
 
     public void setCreateEventHandler(CreateContentEventHandler createContentEventHandler) { this.createContentEventHandler = createContentEventHandler; }
     public void setReadEventHandler(ReadDiverseContentEventHandler readDiverseContentEventHandler) { this.readDiverseContentEventHandler = readDiverseContentEventHandler; }
@@ -34,17 +29,17 @@ public class MasterConsole {
             do{
                 System.out.println("Master Console command with c, r, u, d, p, e:");
                 Command c = new Command(s.next()); //get following characters
-                //UpdateConsole updateConsole = new UpdateConsole();
-                //CreateConsole createConsole= new CreateConsole();  --->mit while true auf false setzen zum zurück kommen
-                //ReadConsole readConsole= new ReadConsole();
-                //DeleteConsole deleteConsole= new DeleteConsole(); --->mit while true auf false setzen zum zurück kommen für producer und content
-                this.tagCollection.add(Tag.Animal); //TEST
-                CreateContentEvent createContentEvent = new CreateContentEvent(this, s.next(), ); //TODO: Regex Pattern
+
+                String re = "[crudpe],.*,.*,.*,.*,.*";
+                Pattern pattern = Pattern.compile(re);
+
+
+                CreateContentEvent createContentEvent = new CreateContentEvent(this, s.next()); //TODO: Regex Pattern
                 ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, s.next()); //TODO: Regex Pattern
                 UpdateSingleAccessCountEvent updateSingleAccessCountEvent = new UpdateSingleAccessCountEvent(this, c.number);
                 DeleteSingleContentEvent deleteSingleContentEvent = new DeleteSingleContentEvent(this, c.number);
                 ExitEvent exitEvent= new ExitEvent(this);
-
+                Matcher matcher = pattern.matcher(text);
                 switch (c.operator){
                     case CREATE:
                         if(this.createContentEventHandler != null)
