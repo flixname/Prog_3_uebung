@@ -32,18 +32,17 @@ public class GLContentImpl {
      * @param bitrate
      * @param laenge
      */
-    public Content/*TEST*/ createContent(String dataType, String uploaderName, String tagCollection, int bitrate, long laenge) { //TODO: mehrfach tag
+    public Content/*TEST*/ createContent(String dataType, String uploaderName, int bitrate, long laenge, Collection<String> tagCollection) { //TODO: mehrfach tag
 
         switch(dataType){
             case "Audio":
-                Audio audio = new AudioImpl(this.addressCount++, uploaderName, tagCollection, bitrate, laenge);
+                Audio audio = new AudioImpl(this.addressCount++, uploaderName, bitrate, laenge, tagCollection);
                 this.contentLinkedList.add(audio);
                 return audio; /*TEST*/
             case "Video":
                 Video video = new VideoImpl();
                 this.contentLinkedList.add(video);
                 return video; /*TEST*/
-                break;
             //case "LicensedAudio": break;
             //case "LicensedVideo": break;
             default:

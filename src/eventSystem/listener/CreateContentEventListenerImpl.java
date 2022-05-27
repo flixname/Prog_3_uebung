@@ -15,6 +15,6 @@ public class CreateContentEventListenerImpl implements CreateContentEventListene
 
     @Override
     public void onCreateEvent(CreateContentEvent createContentEvent) {
-        this.glContentImpl.createContent(createContentEvent.getDataType(), createContentEvent.getUploaderName(), createContentEvent.getTagCollection(), createContentEvent.getBitrate(), createContentEvent.getLaenge());
+        this.glContentImpl.createContent(createContentEvent.getDataType(), createContentEvent.getUploaderName(), createContentEvent.getBitrate(), createContentEvent.getLaenge(), createContentEvent.getTagCollection());
     }
 }

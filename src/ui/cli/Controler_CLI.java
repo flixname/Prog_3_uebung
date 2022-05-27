@@ -1,11 +1,8 @@
 package ui.cli;
 
 import eventSystem.infrastructure.*;
-import ui.cli.util.Command;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Controler_CLI {
 
@@ -27,42 +24,43 @@ public class Controler_CLI {
 
         try(Scanner s = new Scanner(System.in)){
             do{
-                System.out.println("Master Console command with c, r, u, d, p, e:");
-                Command c = new Command(s.next()); //get following characters
+                System.out.println("Master Console command operation by Operator: c, r, u, d, p, e, ");
+                System.out.println("followed by: Content,Uploader,1-4 Tags,Bitrate,Duration");
+                Command c = new Command(s.next());
 
-                String re = "[crudpe],.*,.*,.*,.*,.*";
-                Pattern pattern = Pattern.compile(re);
-
-
-                CreateContentEvent createContentEvent = new CreateContentEvent(this, s.next()); //TODO: Regex Pattern
-                ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, s.next()); //TODO: Regex Pattern
+                CreateContentEvent createContentEvent = new CreateContentEvent(this, c.content, c.uploader, c.bitrate, c.duration, c.tags); //TODO: Regex Pattern
+                ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, c.content); //TODO: Regex Pattern
                 UpdateSingleAccessCountEvent updateSingleAccessCountEvent = new UpdateSingleAccessCountEvent(this, c.number);
                 DeleteSingleContentEvent deleteSingleContentEvent = new DeleteSingleContentEvent(this, c.number);
                 ExitEvent exitEvent= new ExitEvent(this);
-                Matcher matcher = pattern.matcher(text);
+
                 switch (c.operator){
-                    case CREATE:
+                    case "c":
                         if(this.createContentEventHandler != null)
                             createContentEventHandler.handle(createContentEvent);
                         break;
-                    case READ:
+                    case "r":
                         if(this.readDiverseContentEventHandler != null)
                             readDiverseContentEventHandler.handle(readDiverseContentEvent);
                         break;
-                    case UPDATE:
+                    case "u":
                         if(this.updateSingleAccessCountEventHandler != null)
                             updateSingleAccessCountEventHandler.handle(updateSingleAccessCountEvent);
                         break;
-                    case DELETE:
+                    case "d":
                         if(this.deleteSingleEventHandler != null)
                             deleteSingleEventHandler.handle(deleteSingleContentEvent);
                         break;
-                    case EXIT:
+                    /*case "p": //TODO: Persistenz implementieren
+                        if(this.persistEventHandler != null)
+                            persistEventHandler.handle(persistEvent);
+                        break;*/
+                    case "e":
                         if(this.exitEventHandler != null)
                             exitEventHandler.handle(exitEvent);
                         break;
-                    case ERROR:
-                        System.out.println("error");
+                    default:
+                        System.out.println("error, no operator choosen (c, r, u, d, p, e, ");
                         break;
                 }
             }while(true);

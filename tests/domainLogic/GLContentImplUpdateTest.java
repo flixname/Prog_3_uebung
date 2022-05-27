@@ -1,25 +1,22 @@
 package domainLogic;
-
-import observerPattern.observables.ObservableTag;
 import mediaDB.*;
 import observerPattern.observers.AddressObserver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-
-import static org.junit.Assert.fail;
+import java.util.LinkedList;
+import java.util.List;
 
 class GLContentImplUpdateTest {
 
-    private ObservableTag observableTag = new ObservableTag(Tag.Animal, Tag.News, Tag.Tutorial);
+    private List<String> testTagList = new LinkedList<>();
 
     @Test //Counter an einer Datei hochzählen
     void goodUpdate1() {
+        this.testTagList.add("Animal");
+        this.testTagList.add("News");
         GLContentImpl testGLContent = new GLContentImpl();
-        testGLContent.createContent("Audio", "Felix", observableTag.getTagCollection(), BigDecimal.valueOf(2), Duration.of(2, ChronoUnit.MILLIS));
+        testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
 
         long temp = testGLContent.update(0);
 
@@ -28,8 +25,10 @@ class GLContentImplUpdateTest {
 
     @Test //Counter an einer Datei hochzählen
     void goodUpdate2() {
+        this.testTagList.add("Animal");
+        this.testTagList.add("News");
         GLContentImpl testGLContent = new GLContentImpl();
-        testGLContent.createContent("Audio", "Felix",observableTag.getTagCollection() , BigDecimal.valueOf(2), Duration.of(2, ChronoUnit.MILLIS));
+        testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
 
         testGLContent.update(0);
         testGLContent.update(0);
@@ -40,10 +39,12 @@ class GLContentImplUpdateTest {
 
     @Test //Counter an einer Datei hochzählen, dann an einer anderen mit Observerbenachrichtigung
     void goodUpdateWithCounterObserver1() {
+        this.testTagList.add("Animal");
+        this.testTagList.add("News");
         GLContentImpl testGLContent = new GLContentImpl();
 
-        Content content1 = testGLContent.createContent("Audio", "Heinz", observableTag.getTagCollection() , BigDecimal.valueOf(3), Duration.of(4, ChronoUnit.MILLIS));
-        Content content2 = testGLContent.createContent("Audio", "Heinz", observableTag.getTagCollection() , BigDecimal.valueOf(4), Duration.of(5, ChronoUnit.MILLIS));
+        Content content1 = testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
+        Content content2 = testGLContent.createContent("Audio", "Max", 500, 3000, testTagList);
 
         AddressObserver addressObserver1 = new AddressObserver(content1);
         

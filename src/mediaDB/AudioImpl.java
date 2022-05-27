@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class AudioImpl implements Audio {
 
@@ -24,12 +25,12 @@ public class AudioImpl implements Audio {
     private ObservableCounter observableCounter = new ObservableCounter(); //AccessCounter
 
 
-    public AudioImpl(Integer address, String uploader, String tagCollection, int bitrate, long laenge) {
+    public AudioImpl(Integer address, String uploader, int bitrate, long laenge, Collection<String> tagCollection) {
         this.observableAddress = new ObservableAddress(address);
         this.uploader = new UploaderImpl(uploader);
-        this.observableTag = new ObservableTag(tagCollection);
         this.bitrate = new Bitrate(bitrate);
         this.laenge = new Laenge(laenge);
+        this.observableTag = new ObservableTag(tagCollection);
     }
 
 
