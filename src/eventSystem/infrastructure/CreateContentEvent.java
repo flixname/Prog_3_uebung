@@ -9,11 +9,11 @@ import java.util.EventObject;
 
 public class CreateContentEvent extends EventObject {
 
-    String dataType;
-    String uploaderName;
-    int bitrate;
-    long laenge;
-    Collection<String> tagCollection;
+    private String dataType;
+    private String uploaderName;
+    private int bitrate;
+    private long laenge;
+    private Collection<String> tagCollection;
 
     public CreateContentEvent(Object source, String dataType, String uploaderName, int bitrate, long laenge, Collection<String> tagCollection) {
         super(source);

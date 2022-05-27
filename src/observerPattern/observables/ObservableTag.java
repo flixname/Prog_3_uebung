@@ -9,7 +9,6 @@ public class ObservableTag {
 
     private Collection<Tag> tagCollection = new LinkedList<>();
 
-
     public ObservableTag(Collection<String> tagCollection) {
         for (String listElement : tagCollection) { this.tagCollection.add(stringToTagConverter(listElement)); }
         /*
@@ -18,11 +17,9 @@ public class ObservableTag {
         */
     }
 
-
     public ObservableTag() {
         System.out.println("No Tag given.");
     }
-
 
     public Tag stringToTagConverter(String tag){
 

@@ -1,20 +1,38 @@
 package domainLogic;
 
+import mediaDB.Content;
+import mediaDB.Tag;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.LinkedList;
+import java.util.List;
+
 class GLContentImplCreateTagTest {
-/*
-    @Test
+
+    @Test //erstelle Content, schaue ob der tag korrekt gesetzt wurde über createContent()
     void goodCreateTag1() {
 
+        List<String> testTagCollection = new LinkedList<>();
+        testTagCollection.add("Animal");
         GLContentImpl testGLContent1 = new GLContentImpl();
-        ObservableTag observableTag = new ObservableTag(Tag.Animal);
-        testGLContent1.createContent("Audio", "Felix", observableTag.getTagCollection(), BigDecimal.valueOf(200.0), Duration.of(200, ChronoUnit.MILLIS));
 
-        testGLContent1.createTag("News", 0);
-
-        LinkedList<Content> temp = testGLContent1.readByTags(Tag.News);
-
-        Assertions.assertEquals(true, temp.contains(Tag.News));
+        LinkedList<Content> testList1 = testGLContent1.createContent("Audio", "Felix", 9000, 20042, testTagCollection);
+        Assertions.assertEquals(true, testList1.get(0).getTags().contains(Tag.Animal));
+        Assertions.assertEquals(1, testList1.get(0).getTags().size());
     }
 
- */
+    @Test //erstelle tag über createTag(), schaue ob der tag korrekt gesetzt wurde
+    void goodCreateTag2() {
+
+        List<String> testTagCollection = new LinkedList<>();
+        testTagCollection.add("Animal");
+        GLContentImpl testGLContent1 = new GLContentImpl();
+
+        testGLContent1.createContent("Audio", "Felix", 9000, 20042, testTagCollection);
+
+        LinkedList<Content> testList1 = testGLContent1.createTag("Lifestyle", 0);
+        Assertions.assertEquals(true, testList1.get(0).getTags().contains(Tag.Lifestyle));
+        Assertions.assertEquals(2, testList1.get(0).getTags().size());
+    }
 }

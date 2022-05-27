@@ -1,14 +1,9 @@
 package domainLogic;
 
-import domainLogic.util.Address;
 import mediaDB.*;
-import observerPattern.observers.AddressObserver;
 
-import java.math.BigDecimal;
-import java.time.Duration;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Observable;
 
 /**
  * Verwaltung von Content
@@ -32,23 +27,21 @@ public class GLContentImpl {
      * @param bitrate
      * @param laenge
      */
-    public Content/*TEST*/ createContent(String dataType, String uploaderName, int bitrate, long laenge, Collection<String> tagCollection) { //TODO: mehrfach tag
+    public LinkedList<Content>/*TEST*/ createContent(String dataType, String uploaderName, int bitrate, long laenge, Collection<String> tagCollection) { //TODO: mehrfach tag
 
         switch(dataType){
             case "Audio":
                 Audio audio = new AudioImpl(this.addressCount++, uploaderName, bitrate, laenge, tagCollection);
                 this.contentLinkedList.add(audio);
-                return audio; /*TEST*/
             case "Video":
                 Video video = new VideoImpl();
                 this.contentLinkedList.add(video);
-                return video; /*TEST*/
             //case "LicensedAudio": break;
             //case "LicensedVideo": break;
             default:
                 break;
         }
-        return null;
+        return this.contentLinkedList; /*TEST*/
     }
 
     /**
@@ -57,9 +50,11 @@ public class GLContentImpl {
      * @param tag Name (Animal,Tutorial,Lifestyle,News)
      * @param dataNr position der Mediendatei zu der tag hinzugefügt werden soll
      */
-    public String createTag(String tag, int dataNr) {
+    public Collection<Tag>/*TEST*/ createTag(String tag, int dataNr) {
 //TODO
-        return null;
+
+
+        return this.contentLinkedList.get(dataNr).getTags();
     }
 
     /**

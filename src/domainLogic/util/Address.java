@@ -2,7 +2,7 @@ package domainLogic.util;
 
 import java.util.Observable;
 
-public abstract class Address extends Observable {
+public abstract class Address {
 
     private final String address;
 

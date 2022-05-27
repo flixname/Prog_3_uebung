@@ -1,6 +1,5 @@
 package domainLogic;
 import mediaDB.*;
-import observerPattern.observers.AddressObserver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -43,10 +42,9 @@ class GLContentImplUpdateTest {
         this.testTagList.add("News");
         GLContentImpl testGLContent = new GLContentImpl();
 
-        Content content1 = testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
-        Content content2 = testGLContent.createContent("Audio", "Max", 500, 3000, testTagList);
+        testGLContent.createContent("Audio", "Max", 500, 3000, testTagList);
+        LinkedList<Content> testList1 = testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
 
-        AddressObserver addressObserver1 = new AddressObserver(content1);
         
 
 
