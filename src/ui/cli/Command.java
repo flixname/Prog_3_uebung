@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Command { //evtl über interface ...?
 
-    Integer number;
+    int number;
     String operator;
     String content;
     String uploader;
@@ -15,25 +15,28 @@ public class Command { //evtl über interface ...?
     long duration;
     List<String> tags = new LinkedList<>();
 
-    private String[] splitTextContent; //length für duration, - 1 für bitrate
+    private String[] splitTextContent;
 
 
-    public Command(String text){
+    public Command(String text) {
 
         String regexPattern =
                 "[crudpe]," +   //String operatorChar
-                "\\d*," +       //int number(dataNr zb.)
-                ".*," +         //String content
-                ".*," +         //String uploader
-                "\\d*," +       //int bitrate
-                "\\d*," +       //long duration
-                "[.*,]{0,4}";   //String tags (1-4)
+                        "\\d*," +       //int number(dataNr zb.)
+                        ".*," +         //String content
+                        ".*," +         //String uploader
+                        "\\d*," +       //int bitrate
+                        "\\d*," +       //long duration
+                        "[.*,]{0,4}";   //String tags (1-4)
         Pattern pattern = Pattern.compile(regexPattern);
 
         Matcher matcher = pattern.matcher(text);
-        if(matcher.matches()){
+
+        boolean match = matcher.matches();
+
+
             this.splitTextContent = text.split("\\,");
-        } try {
+
             this.operator = this.splitTextContent[0]; //Operator
 
             try {
@@ -45,7 +48,7 @@ public class Command { //evtl über interface ...?
 
             this.content = this.splitTextContent[2]; //Content
 
-            this.uploader = this.splitTextContent[3]; //Uploader //TODO: was wenn kein uploader da, uploader zu uploader (keine doppelten)
+            this.uploader = this.splitTextContent[3]; //Uploader //TODO: Uploader immer mit erstellen
 
             try {
                 this.bitrate = Integer.parseInt(this.splitTextContent[4]); //Bitrate
@@ -63,14 +66,7 @@ public class Command { //evtl über interface ...?
 
             for (int i = 6; i < this.splitTextContent.length; i++) { //Tags
                 this.tags.add(this.splitTextContent[i]);
-            };
-        } catch (IllegalArgumentException e) {
-            System.out.println("noe, that ain´t workin´ mane!");
-        } catch (NullPointerException e) {
-            System.out.println("no daymn content in this homie!");
-        } finally {
-            return;
-        }
+            }
 
-    }
+        }
 }

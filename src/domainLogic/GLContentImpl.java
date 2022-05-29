@@ -50,11 +50,11 @@ public class GLContentImpl {
      * @param tag Name (Animal,Tutorial,Lifestyle,News)
      * @param dataNr position der Mediendatei zu der tag hinzugefügt werden soll
      */
-    public Collection<Tag>/*TEST*/ createTag(String tag, int dataNr) {
+    public LinkedList<Content>/*TEST*/ createTag(String tag, int dataNr) {
 //TODO
 
 
-        return this.contentLinkedList.get(dataNr).getTags();
+        return this.contentLinkedList;
     }
 
     /**

@@ -25,11 +25,11 @@ public class Controler_CLI {
         try(Scanner s = new Scanner(System.in)){
             do{
                 System.out.println("Master Console command operation by Operator: c, r, u, d, p, e, ");
-                System.out.println("followed by: Content,Uploader,1-4 Tags,Bitrate,Duration");
+                System.out.println("followed by: (dataNr(if needed)),Content,Uploader,Bitrate,Duration,1-4 Tags");
                 Command c = new Command(s.next());
 
-                CreateContentEvent createContentEvent = new CreateContentEvent(this, c.content, c.uploader, c.bitrate, c.duration, c.tags); //TODO: Regex Pattern
-                ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, c.content); //TODO: Regex Pattern
+                CreateContentEvent createContentEvent = new CreateContentEvent(this, c.content, c.uploader, c.bitrate, c.duration, c.tags);
+                ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, c.content);
                 UpdateSingleAccessCountEvent updateSingleAccessCountEvent = new UpdateSingleAccessCountEvent(this, c.number);
                 DeleteSingleContentEvent deleteSingleContentEvent = new DeleteSingleContentEvent(this, c.number);
                 ExitEvent exitEvent= new ExitEvent(this);

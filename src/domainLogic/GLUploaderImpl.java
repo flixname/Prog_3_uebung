@@ -1,5 +1,6 @@
 package domainLogic;
 
+import domainLogic.util.Counter;
 import mediaDB.Uploader;
 import mediaDB.UploaderImpl;
 
@@ -11,7 +12,7 @@ import java.util.LinkedList;
  */
 public class GLUploaderImpl {
 
-    HashMap<String, Uploader> uploaderHashMap = new HashMap<>();
+    LinkedList<Uploader> uploaderLinkedList = new LinkedList<>();
 
     /**
      * TODO: Uploader zuerst erstellen dann Mediafile
@@ -21,10 +22,15 @@ public class GLUploaderImpl {
      */
     public void createUploader(String name) {
         Uploader uploader = new UploaderImpl(name);
-        if(this.uploaderHashMap.containsKey(name)){
-            System.out.println("Uploader vergeben");
+        for (Uploader uploaderElement : this.uploaderLinkedList ) {
+            if(uploaderElement.getName() == name){
+                System.out.println("Uploader " + name + " vergeben");
+            } else {
+                this.uploaderLinkedList.add(uploader);
+                System.out.println("Uploader " + name + " created");
+                return;
+            }
         }
-        this.uploaderHashMap.put(name, uploader);
     }
 
     /**
@@ -32,14 +38,19 @@ public class GLUploaderImpl {
      * @return liefert gesamte DB LinkedList
      */
     public LinkedList<Uploader> readUplaoder() {
-        return null;
+        return this.uploaderLinkedList;
     }
 
     /**
      * TODO: Löschen eines bestimmten Produzenten(Uploader)
      * @param dataNr Nummer der zu löschenden Datei in DB ArrayList
      */
-    public void delete(Integer dataNr) {
-
+    public void delete(String name) {
+        for (Uploader uploaderElement : this.uploaderLinkedList ) {
+            if (uploaderElement.getName() == name) {
+                this.uploaderLinkedList.remove(uploaderElement);
+                System.out.println("uploader " + name + " deleted");
+            }
+        }
     }
 }

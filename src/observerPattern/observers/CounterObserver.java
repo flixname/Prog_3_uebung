@@ -10,12 +10,12 @@ public class CounterObserver implements Observer {
     public CounterObserver(ObservableCounter observableCounter) {
         this.observableCounter = observableCounter;
         this.observableCounter.addObserver(this);
-        this.oldAccessCount = this.observableCounter.getAccessCount();
+        this.oldAccessCount = this.observableCounter.getCounter();
     }
 
     @Override
     public void update() {
-        long newAccessCount = observableCounter.getAccessCount();
+        long newAccessCount = observableCounter.getCounter();
         if(newAccessCount != this.oldAccessCount){
             System.out.println("new AccessCount: " + newAccessCount);
             this.oldAccessCount = newAccessCount;

@@ -7,14 +7,19 @@ public class UploaderImpl implements Uploader{
 
     private String uploaderName;
 
-    public UploaderImpl(String uploaderName) {
-        this.uploaderName = uploaderName;
+
+    public UploaderImpl(String name) {
+        this.uploaderName = name;
     }
-    public UploaderImpl(){ this.uploaderName = "default"; }
+
+    public UploaderImpl(){
+
+        this.uploaderName = "default_name";
+    }
 
     @Override
     public String getName() {
-        if (this.uploaderName != null) { //aufpassen evtl. immer null?
+        if (this.uploaderName != null) {
             System.out.println("No name here!");
         }
         return this.uploaderName;

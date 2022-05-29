@@ -26,7 +26,7 @@ public class VideoImpl implements Video {
     @Override
     public long getAccessCount() {
         this.counter.increment();
-        return this.counter.getAccessCount();
+        return this.counter.getCounter();
     }
 
     @Override

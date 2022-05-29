@@ -51,7 +51,7 @@ public class AudioImpl implements Audio {
     @Override
     public long getAccessCount() {
         this.observableCounter.increment();
-        return this.observableCounter.getAccessCount();
+        return this.observableCounter.getCounter();
     }
 
     @Override

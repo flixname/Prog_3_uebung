@@ -5,6 +5,7 @@ import mediaDB.Tag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 

@@ -4,7 +4,6 @@ import domainLogic.GLContentImpl;
 import eventSystem.infrastructure.CreateContentEvent;
 import eventSystem.infrastructure.CreateContentEventListener;
 
-//TODO: fehler
 public class CreateContentEventListenerImpl implements CreateContentEventListener {
 
     private GLContentImpl glContentImpl;
@@ -13,8 +12,15 @@ public class CreateContentEventListenerImpl implements CreateContentEventListene
         this.glContentImpl = glContentImpl;
     }
 
+
     @Override
-    public void onCreateEvent(CreateContentEvent createContentEvent) {
-        this.glContentImpl.createContent(createContentEvent.getDataType(), createContentEvent.getUploaderName(), createContentEvent.getBitrate(), createContentEvent.getLaenge(), createContentEvent.getTagCollection());
+    public void onCreateContentEvent(CreateContentEvent createContentEvent) {
+        this.glContentImpl.createContent(
+                createContentEvent.getDataType(),
+                createContentEvent.getUploaderName(),
+                createContentEvent.getBitrate(),
+                createContentEvent.getLaenge(),
+                createContentEvent.getTagCollection()
+        );
     }
 }
