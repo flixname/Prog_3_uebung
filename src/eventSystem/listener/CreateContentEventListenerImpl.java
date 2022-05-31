@@ -12,15 +12,14 @@ public class CreateContentEventListenerImpl implements CreateContentEventListene
         this.glContentImpl = glContentImpl;
     }
 
-
     @Override
     public void onCreateContentEvent(CreateContentEvent createContentEvent) {
         this.glContentImpl.createContent(
                 createContentEvent.getDataType(),
                 createContentEvent.getUploaderName(),
+                createContentEvent.getTagCollection(),
                 createContentEvent.getBitrate(),
-                createContentEvent.getLaenge(),
-                createContentEvent.getTagCollection()
+                createContentEvent.getLaenge()
         );
     }
 }

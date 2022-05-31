@@ -14,6 +14,6 @@ public class UpdateSingleAccessCountEventListenerImpl implements UpdateSingleAcc
 
     @Override
     public void onIncrementEvent(UpdateSingleAccessCountEvent updateSingleAccessCountEvent) {
-            this.glContentImpl.update(updateSingleAccessCountEvent.getDataNr());
+            this.glContentImpl.update(updateSingleAccessCountEvent.getAddress());
     }
 }

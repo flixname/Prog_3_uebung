@@ -1,21 +1,17 @@
 package eventSystem.infrastructure;
 
-import mediaDB.Tag;
-
-import java.math.BigDecimal;
-import java.time.Duration;
-import java.util.Collection;
 import java.util.EventObject;
 
 public class CreateContentEvent extends EventObject {
 
     private String dataType;
     private String uploaderName;
+    private String tagCollection;
     private int bitrate;
     private long laenge;
-    private Collection<String> tagCollection;
 
-    public CreateContentEvent(Object source, String dataType, String uploaderName, int bitrate, long laenge, Collection<String> tagCollection) {
+
+    public CreateContentEvent(Object source, String dataType, String uploaderName, String tagCollection, int bitrate, long laenge) {
         super(source);
         this.dataType = dataType;
         this.uploaderName = uploaderName;
@@ -32,6 +28,10 @@ public class CreateContentEvent extends EventObject {
         return uploaderName;
     }
 
+    public String getTagCollection() {
+        return tagCollection;
+    }
+
     public int getBitrate() {
         return bitrate;
     }
@@ -40,7 +40,5 @@ public class CreateContentEvent extends EventObject {
         return laenge;
     }
 
-    public Collection<String> getTagCollection() {
-        return tagCollection;
-    }
+
 }

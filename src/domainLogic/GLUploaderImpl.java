@@ -1,6 +1,7 @@
 package domainLogic;
 
 import domainLogic.util.Counter;
+import mediaDB.Content;
 import mediaDB.Uploader;
 import mediaDB.UploaderImpl;
 
@@ -8,49 +9,53 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Verwaltung für Uploader
+ * Verwaltung für Uploader //evl eine main gl die diese beiden als interface implementiert?
  */
 public class GLUploaderImpl {
 
-    LinkedList<Uploader> uploaderLinkedList = new LinkedList<>();
+    private static GLContentImpl glContent;
+
+    private static HashMap<Uploader, LinkedList<Content>> uploaderLinkedList = new HashMap<>();
 
     /**
      * TODO: Uploader zuerst erstellen dann Mediafile
-     * TODO: Anlegen von Produzenten; dabei muss sichergestellt sein, dass kein Name mehr als einmal vorkommt
-     * creates an uploader (Anlegen von Produzenten)
+     * creates an uploader (Anlegen von Produzenten), schaut auch ob produzent schon vergeben und legt einen uplaoer mit leerer content liste an
      * @param name ein name
      */
-    public void createUploader(String name) {
+    public boolean createUploader(String name) {
         Uploader uploader = new UploaderImpl(name);
-        for (Uploader uploaderElement : this.uploaderLinkedList ) {
-            if(uploaderElement.getName() == name){
-                System.out.println("Uploader " + name + " vergeben");
-            } else {
-                this.uploaderLinkedList.add(uploader);
-                System.out.println("Uploader " + name + " created");
-                return;
-            }
+        if(this.uploaderLinkedList.containsKey(uploader.getName())) {
+            return false;
+        }else{
+        this.uploaderLinkedList.put(uploader, new LinkedList<Content>());//TODO: bernehmen in GL und bei de verbinden
+            return true;
         }
     }
 
     /**
-     * TODO: Abruf aller Produzenten mit der Anzahl der ihrer Mediadateien
-     * @return liefert gesamte DB LinkedList
+     *
+     * @return liefert alle produzenten mit der Anzahl ihrer Contents
      */
-    public LinkedList<Uploader> readUplaoder() {
-        return this.uploaderLinkedList;
+    public HashMap<Uploader, Integer> readUploader() {
+        HashMap<Uploader, Integer> uploaderIntegerHashMap = new HashMap<>();
+
+        for (HashMap.Entry<Uploader, LinkedList<Content>> set :
+                this.uploaderLinkedList.entrySet()) {
+            uploaderIntegerHashMap.put(set.getKey(), set.getValue().size());
+        }
+        return uploaderIntegerHashMap;
     }
 
     /**
-     * TODO: Löschen eines bestimmten Produzenten(Uploader)
-     * @param dataNr Nummer der zu löschenden Datei in DB ArrayList
+     * löscht einen uplaoder ...TODO: und dann??? was passiert mit den files?
+     * @param name just the uploadername to be deleted
      */
-    public void delete(String name) {
-        for (Uploader uploaderElement : this.uploaderLinkedList ) {
-            if (uploaderElement.getName() == name) {
-                this.uploaderLinkedList.remove(uploaderElement);
-                System.out.println("uploader " + name + " deleted");
-            }
+    public boolean delete(String name) {
+        Uploader uploader = new UploaderImpl(name);
+        if (this.uploaderLinkedList.containsKey(uploader.getName())) {
+            this.uploaderLinkedList.remove(uploader.getName());
+            return true;
         }
+       return false;
     }
 }

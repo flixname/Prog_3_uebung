@@ -4,14 +4,14 @@ import java.util.EventObject;
 
 public class UpdateSingleAccessCountEvent extends EventObject {
 
-    private int dataNr;
+    private String address;
 
-    public UpdateSingleAccessCountEvent(Object source, int dataNr) {
+    public UpdateSingleAccessCountEvent(Object source, String address) {
         super(source);
-        this.dataNr = dataNr;
+        this.address = address;
     }
 
-    public int getDataNr() {
-        return dataNr;
+    public String getAddress() {
+        return address;
     }
 }

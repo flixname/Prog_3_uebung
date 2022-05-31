@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ObservableTagTest {
 
     @Test //kommt mit no tags given weil quasi ohne richtigen parameter
@@ -23,11 +21,9 @@ class ObservableTagTest {
 
     @Test
     void goodStringToTagConverter2() {
-        List<String> testTagCollection = new LinkedList<>();
-        testTagCollection.add("Animal");
 
-        ObservableTag testTag = new ObservableTag(testTagCollection);
+        ObservableTag testTag = new ObservableTag("Animal, News, Lifestyle, Tutorial");
 
-        Assertions.assertEquals(true, testTag.getTagCollection().contains(Tag.Animal));
+        Assertions.assertEquals(true, testTag.getTagList().contains(Tag.Animal));
     }
 }

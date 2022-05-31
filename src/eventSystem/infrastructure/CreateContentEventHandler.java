@@ -4,12 +4,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CreateContentEventHandler {
-    private List<CreateContentEventListener> listenerList = new LinkedList<>();
+    private List<CreateContentEventListener> createContentEventListenerLinkedList = new LinkedList<>();
 
-    public void add(CreateContentEventListener listener) { this.listenerList.add(listener); }
+    public void add(CreateContentEventListener createContentEventListener) {
+        this.createContentEventListenerLinkedList.add(createContentEventListener);
+    }
 
-    public void remove(CreateContentEventListener listener) { this.listenerList.remove(listener); }
+    public void remove(CreateContentEventListener createContentEventListener) {
+        this.createContentEventListenerLinkedList.remove(createContentEventListener);
+    }
 
-    public void handle(CreateContentEvent event){ for (CreateContentEventListener listener : listenerList) listener.onCreateContentEvent(event); }
+    public void handle(CreateContentEvent createContentEvent){
+        for (CreateContentEventListener createUploaderEventListener : createContentEventListenerLinkedList)
+        createUploaderEventListener.onCreateContentEvent(createContentEvent); }
 
 }

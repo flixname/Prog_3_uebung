@@ -4,14 +4,14 @@ import java.util.EventObject;
 
 public class DeleteSingleContentEvent extends EventObject {
 
-    private int dataNr;
+    private String address;
 
-    public DeleteSingleContentEvent(Object source, int dataNr) {
+    public DeleteSingleContentEvent(Object source, String address) {
         super(source);
-        this.dataNr = dataNr;
+        this.address = address;
     }
 
-    public int getDataNr() {
-        return dataNr;
+    public String getAddress() {
+        return address;
     }
 }

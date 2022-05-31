@@ -2,15 +2,18 @@ package observerPattern.observables;
 
 import mediaDB.Tag;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
 public class ObservableTag {
 
-    private Collection<Tag> tagCollection = new LinkedList<>();
+    private LinkedList<Tag> tagLinkedList = new LinkedList<>();
 
-    public ObservableTag(Collection<String> tagCollection) {
-        for (String listElement : tagCollection) { this.tagCollection.add(stringToTagConverter(listElement)); }
+    public ObservableTag(String tags) {
+        String[] splitTextContent = tags.split(", ");
+        for (int i = 0; i < splitTextContent.length; i++) {
+            if(this.tagLinkedList.contains(splitTextContent[i]) == false)
+                this.tagLinkedList.add(stringToTagConverter(splitTextContent[i]));
+        }
         /*
         this.setChanged(); //TODO: Subscribe notify funtionality
         this.notifyObservers();
@@ -37,7 +40,12 @@ public class ObservableTag {
         }
     }
 
-    public Collection<Tag> getTagCollection() {
-        return tagCollection;
+    public void deleteTags(String tag){
+        this.tagLinkedList.remove(stringToTagConverter(tag));
+        System.out.println("deleted " + tag + "from tag collection");
+    }
+
+    public LinkedList<Tag> getTagList() {
+        return tagLinkedList;
     }
 }

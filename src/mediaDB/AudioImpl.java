@@ -24,12 +24,12 @@ public class AudioImpl implements Audio {
     private ObservableCounter observableCounter = new ObservableCounter(); //AccessCounter
 
 
-    public AudioImpl(Integer address, String uploader, int bitrate, long laenge, Collection<String> tagCollection) {
+    public AudioImpl(Integer address, String uploader, int bitrate, long laenge, String tags) {
         this.observableAddress = new ObservableAddress(address);
         this.uploader = new UploaderImpl(uploader);
         this.bitrate = new Bitrate(bitrate);
         this.laenge = new Laenge(laenge);
-        this.observableTag = new ObservableTag(tagCollection);
+        this.observableTag = new ObservableTag(tags);
     }
 
 
@@ -45,7 +45,7 @@ public class AudioImpl implements Audio {
 
     @Override //TODO: BIG TODO... ;(->wie create tag von aussen, liste immer null
     public Collection<Tag> getTags() {
-        return this.observableTag.getTagCollection();
+        return this.observableTag.getTagList();
     }
 
     @Override

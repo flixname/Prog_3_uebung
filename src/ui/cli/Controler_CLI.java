@@ -1,21 +1,39 @@
 package ui.cli;
 
+import eventSystem.infrastructure.CreateUploaderEvent;
 import eventSystem.infrastructure.*;
 
 import java.util.Scanner;
 
 public class Controler_CLI {
 
+    OperatorCommand operatorCommand;
+    UploaderCommand uploaderCommand;
+    ContentCommand contentCommand;
+    AddressCommand addressCommand;
+
+    private CreateUploaderEventHandler createUploaderEventHandler;
     private CreateContentEventHandler createContentEventHandler;
     private ReadDiverseContentEventHandler readDiverseContentEventHandler;
     private UpdateSingleAccessCountEventHandler updateSingleAccessCountEventHandler;
     private DeleteSingleEventHandler deleteSingleEventHandler;
     private ExitEventHandler exitEventHandler;
 
-    public void setCreateEventHandler(CreateContentEventHandler createContentEventHandler) { this.createContentEventHandler = createContentEventHandler; }
-    public void setReadEventHandler(ReadDiverseContentEventHandler readDiverseContentEventHandler) { this.readDiverseContentEventHandler = readDiverseContentEventHandler; }
-    public void setUpdateEventHandler(UpdateSingleAccessCountEventHandler updateSingleAccessCountEventHandler) { this.updateSingleAccessCountEventHandler = updateSingleAccessCountEventHandler; }
-    public void setDeleteEventHandler(DeleteSingleEventHandler deleteSingleEventHandler) { this.deleteSingleEventHandler = deleteSingleEventHandler; }
+    public void setCreateUploaderEventHandler(CreateUploaderEventHandler createUploaderEventHandler) {
+        this.createUploaderEventHandler = createUploaderEventHandler;
+    }
+    public void setCreateContentEventHandler(CreateContentEventHandler createContentEventHandler) {
+        this.createContentEventHandler = createContentEventHandler;
+    }
+    public void setReadDiverseContentEventHandler(ReadDiverseContentEventHandler readDiverseContentEventHandler) {
+        this.readDiverseContentEventHandler = readDiverseContentEventHandler;
+    }
+    public void setUpdateSingleAccessCountEventHandler(UpdateSingleAccessCountEventHandler updateSingleAccessCountEventHandler) {
+        this.updateSingleAccessCountEventHandler = updateSingleAccessCountEventHandler;
+    }
+    public void setDeleteSingleEventHandler(DeleteSingleEventHandler deleteSingleEventHandler) {
+        this.deleteSingleEventHandler = deleteSingleEventHandler;
+    }
     public void setExitEventHandler(ExitEventHandler exitEventHandler) {
         this.exitEventHandler = exitEventHandler;
     }
@@ -24,30 +42,33 @@ public class Controler_CLI {
 
         try(Scanner s = new Scanner(System.in)){
             do{
-                System.out.println("Master Console command operation by Operator: c, r, u, d, p, e, ");
-                System.out.println("followed by: (dataNr(if needed)),Content,Uploader,Bitrate,Duration,1-4 Tags");
-                Command c = new Command(s.next());
 
-                CreateContentEvent createContentEvent = new CreateContentEvent(this, c.content, c.uploader, c.bitrate, c.duration, c.tags);
-                ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, c.content);
-                UpdateSingleAccessCountEvent updateSingleAccessCountEvent = new UpdateSingleAccessCountEvent(this, c.number);
-                DeleteSingleContentEvent deleteSingleContentEvent = new DeleteSingleContentEvent(this, c.number);
+                CreateUploaderEvent createUploaderEvent = new CreateUploaderEvent(this, uploaderCommand.getUploader());
+                CreateContentEvent createContentEvent = new CreateContentEvent(this, contentCommand.getContent(), contentCommand.getUploader(), contentCommand.getTags(), contentCommand.getBitrate(), contentCommand.getDuration());
+                //ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, ); //TODO Eventhandlersystem
+                UpdateSingleAccessCountEvent updateSingleAccessCountEvent = new UpdateSingleAccessCountEvent(this, addressCommand.getAddress());
+                DeleteSingleContentEvent deleteSingleContentEvent = new DeleteSingleContentEvent(this, addressCommand.getAddress());
                 ExitEvent exitEvent= new ExitEvent(this);
 
-                switch (c.operator){
-                    case "c":
-                        if(this.createContentEventHandler != null)
+                System.out.println("Console operator: c, r, u, d, p, e");
+                operatorCommand = new OperatorCommand(s.next());
+
+                switch (operatorCommand.getOperator()){
+                    case ":c":
+                        System.out.println("Create Produzent(Name) oder Content[Media-Typ][Produzentenname][komaseparierte Tags, einzelnes Komma fue keine][Bitrate][Laenge][[Optionale Parameter]]");
+                        if(s.next() == "\\[.*\\]")
+                            createUploaderEventHandler.handle(createUploaderEvent);
                             createContentEventHandler.handle(createContentEvent);
                         break;
-                    case "r":
+                    case ":r": //TODO
                         if(this.readDiverseContentEventHandler != null)
-                            readDiverseContentEventHandler.handle(readDiverseContentEvent);
+                           // readDiverseContentEventHandler.handle(readDiverseContentEvent);
                         break;
-                    case "u":
+                    case ":u":
                         if(this.updateSingleAccessCountEventHandler != null)
                             updateSingleAccessCountEventHandler.handle(updateSingleAccessCountEvent);
                         break;
-                    case "d":
+                    case ":d":
                         if(this.deleteSingleEventHandler != null)
                             deleteSingleEventHandler.handle(deleteSingleContentEvent);
                         break;
@@ -60,7 +81,7 @@ public class Controler_CLI {
                             exitEventHandler.handle(exitEvent);
                         break;
                     default:
-                        System.out.println("error, no operator choosen (c, r, u, d, p, e, ");
+                        System.out.println("error, no operator chosen (c, r, u, d, p, e, ");
                         break;
                 }
             }while(true);

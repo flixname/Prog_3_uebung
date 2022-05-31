@@ -16,23 +16,19 @@ public class CreateThread extends Thread {
     int randomNumber1;
     int randomNumber2;
 
-    List<String> testTagCollection = new LinkedList<>();
-
-
     public CreateThread(GLContentImpl glContent) {
         this.glContent = glContent;
     }
 
 
     public void run() {
-
+/*
         do {
             try {
             this.randomNumber1 = ThreadLocalRandom.current().nextInt(1, 4);
             this.randomNumber2 = ThreadLocalRandom.current().nextInt(4, 8);
-            testTagCollection.add("News");
-            testTagCollection.add("Lifestyle");
-            glContent.createContent("Audio", "Felix", randomNumber2, randomNumber1, testTagCollection);
+
+            glContent.createContent("Audio", "Felix", randomNumber2, randomNumber1, "News, Lifestyle");
             } catch (IndexOutOfBoundsException e) {
                 throw new IndexOutOfBoundsException("LinkedList voll");
             }
@@ -43,6 +39,7 @@ public class CreateThread extends Thread {
     @Override
     public String toString() {
         return "CreateThread";
-    }
 
+ */
+    }
 }

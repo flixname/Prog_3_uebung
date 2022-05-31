@@ -11,13 +11,13 @@ public class DeleteThread extends Thread{
     public DeleteThread(GLContentImpl glContent) {
         this.glContent = glContent;
     }
-
+/*
     public void run() {
 
         do {
             try {
                 this.randomNumber = ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE);
-                glContent.deleteOne(randomNumber);
+                glContent.deleteOne(address);//TODO fehler weg int String
                 System.out.println("Thread" + this.getName() + "deleted Media");
             } catch (IndexOutOfBoundsException e) {
                 throw new IndexOutOfBoundsException("Out of Bounds");
@@ -29,4 +29,6 @@ public class DeleteThread extends Thread{
     public String toString() {
         return "CreateThread";
     }
+
+ */
 }

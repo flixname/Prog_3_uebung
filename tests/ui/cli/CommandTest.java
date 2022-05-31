@@ -15,10 +15,10 @@ class CommandTest {
 
     @Test //Ctest um die funktionalität von command zu prüfen
     void goodCommand1() {
-        String testString = "c,0,Audio,Felix,200,300,News";
+        String testString = "[Audio][Felix][News][200][300]";
         Command command = new Command(testString);
 
-        Assertions.assertEquals("c",command.operator);
+        Assertions.assertEquals("c",command);
         Assertions.assertEquals(0,command.number);
         Assertions.assertEquals("Audio",command.content);
         Assertions.assertEquals("Felix",command.uploader);

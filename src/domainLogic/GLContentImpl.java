@@ -2,7 +2,6 @@ package domainLogic;
 
 import mediaDB.*;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
 /**
@@ -10,7 +9,7 @@ import java.util.LinkedList;
  */
 public class GLContentImpl {
 
-    private LinkedList<Content> contentLinkedList = new LinkedList<>();
+    private LinkedList<Content> contentLinkedList = new LinkedList<>(); //evtl doch lieber HashMap wg adresse??
 
     private Integer addressCount = 0; //vergabe der adressen
 
@@ -21,23 +20,23 @@ public class GLContentImpl {
      * TODO: beim Hochladen wird ein Upload-Datum vergeben
      * TODO: es ist zu prüfen, dass die Gesamtkapazität nicht überschritten wird, dafür ist die Dateigröße in size definiert
      * TODO: es ist zu prüfen, dass die Media-Datei zu einem bereits existierenden Produzenten gehört
-     * @param dataType
+     * @param contentType
      * @param uploaderName
      * @param tagCollection nur übergangsweise, evtl auch regex string
      * @param bitrate
      * @param laenge
      */
-    public LinkedList<Content>/*TEST*/ createContent(String dataType, String uploaderName, int bitrate, long laenge, Collection<String> tagCollection) { //TODO: mehrfach tag
+    public LinkedList<Content>/*TEST*/ createContent(String contentType, String uploaderName, String tagCollection, int bitrate, long laenge) {
 
-        switch(dataType){
+        switch(contentType){
             case "Audio":
                 Audio audio = new AudioImpl(this.addressCount++, uploaderName, bitrate, laenge, tagCollection);
                 this.contentLinkedList.add(audio);
             case "Video":
-                Video video = new VideoImpl();
+                Video video = new VideoImpl(); //TODO
                 this.contentLinkedList.add(video);
-            //case "LicensedAudio": break;
-            //case "LicensedVideo": break;
+            //case "LicensedAudio": break;//TODO
+            //case "LicensedVideo": break;//TODO
             default:
                 break;
         }
@@ -50,7 +49,7 @@ public class GLContentImpl {
      * @param tag Name (Animal,Tutorial,Lifestyle,News)
      * @param dataNr position der Mediendatei zu der tag hinzugefügt werden soll
      */
-    public LinkedList<Content>/*TEST*/ createTag(String tag, int dataNr) {
+    public LinkedList<Content>/*TEST*/ createTag(String tag, String address) {
 //TODO
 
 
@@ -117,19 +116,28 @@ public class GLContentImpl {
 
     /**
      * zählt einen AccessCounter um ++ hoch
-     * @param dataNr Nummer der Datei in der DB LinkedList
+     * @param address Nummer der Datei in der DB LinkedList
      */
-    public long update(int dataNr) {
-        return this.contentLinkedList.get(dataNr).getAccessCount();
+    public long update(String address) {
+        for (Content listElement : this.contentLinkedList) {
+            if (listElement.getAddress() == address) {
+                return listElement.getAccessCount();
+            } //irgendwie unschön evtl doch lieber mit hashmap^^?
+        }
+        return -1;
     }
 
     /**
      * TODO: Löschen einer bestimmten Mediadatei (z.B.: Audio, Video)
-     * @param dataNr Nummer der zu löschenden Datei in DB LinkedList
+     * @param address Nummer der zu löschenden Datei in DB LinkedList
      */
-    public void deleteOne(int dataNr) {
-       if(this.contentLinkedList != null && this.contentLinkedList.size() != 0 && this.contentLinkedList.size() > dataNr) {
-            this.contentLinkedList.remove(dataNr);
+    public void deleteOne(String address) {
+       if(this.contentLinkedList != null && this.contentLinkedList.size() > Integer.parseInt(address)) {
+           for (Content listElement : this.contentLinkedList) {
+               if (listElement.getAddress() == address) {
+                   this.contentLinkedList.remove(listElement);
+               } //evtl auch mit Hashmap einfacher...
+           }
         }
     }
 }

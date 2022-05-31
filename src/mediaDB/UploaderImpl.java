@@ -13,15 +13,11 @@ public class UploaderImpl implements Uploader{
     }
 
     public UploaderImpl(){
-
         this.uploaderName = "default_name";
     }
 
     @Override
     public String getName() {
-        if (this.uploaderName != null) {
-            System.out.println("No name here!");
-        }
         return this.uploaderName;
     }
 }
