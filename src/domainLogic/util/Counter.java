@@ -6,17 +6,17 @@ package domainLogic.util;
  */
 public abstract class Counter {
 
-    private long Counter;
+    private long counter;
 
     public Counter() {}
 
-    public long getCounter() { return this.Counter; }
+    public long getCounter() { return this.counter; }
 
     public void increment(){
-        if(Long.MAX_VALUE == Counter){
+        if(this.counter == Long.MAX_VALUE){
             System.out.println("AccessCount full, start from 0 now");
-            this.Counter = 0;
+            this.counter = 0;
         }
-        this.Counter++;
+        this.counter++;
     }
 }

@@ -4,6 +4,7 @@ package domainLogic;
 import mediaDB.AudioVideo;
 
 import mediaDB.Content;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -13,25 +14,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GLContentDeleteAllTest {
 
+    GLContentImpl testGLContent1 = new GLContentImpl();
+
     @Test
     void goodDeleteAll1() {
 
-        List<String> testTagCollection = new LinkedList<>();
-        testTagCollection.add("Animal");
-        GLContentImpl testGLContent1 = new GLContentImpl();
+        testGLContent1.createContent("Audio", "Felix", "News", 20042, 9000);
+        testGLContent1.createContent("Audio", "Hansi", "News", 365, 666);
 
-        LinkedList<Content> testList1 = testGLContent1.createContent("Audio", "Felix", 9000, 20042, "News");
+        testGLContent1.deleteOne("1"); //cause
 
-        testVerwaltung.create(1, testContent1);
-        testVerwaltung.create(2, testContent2);
-        testVerwaltung.create(3, testContent3);
-
-        testVerwaltung.deleteAll(); //cause
-
-        assertThrows(NullPointerException.class,
-                ()->{
-                    mediaDB.AudioVideo temp = testVerwaltung.read(1);
-                });
-        fail();
+        Assertions.assertEquals(1, testGLContent1.getContentLinkedList().size());
     }
 }

@@ -11,6 +11,10 @@ public class GLContentImpl {
 
     private LinkedList<Content> contentLinkedList = new LinkedList<>(); //evtl doch lieber HashMap wg adresse??
 
+    public LinkedList<Content> getContentLinkedList() { /*testing*/
+        return contentLinkedList;
+    }
+
     private Integer addressCount = 0; //vergabe der adressen
 
     /**
@@ -32,9 +36,11 @@ public class GLContentImpl {
             case "Audio":
                 Audio audio = new AudioImpl(this.addressCount++, uploaderName, bitrate, laenge, tagCollection);
                 this.contentLinkedList.add(audio);
+                break;
             case "Video":
                 Video video = new VideoImpl(); //TODO
                 this.contentLinkedList.add(video);
+                break;
             //case "LicensedAudio": break;//TODO
             //case "LicensedVideo": break;//TODO
             default:
@@ -47,11 +53,10 @@ public class GLContentImpl {
      * Weist einen Tag aus den vier gegeben zu (Animal,Tutorial,Lifestyle,News)
      *
      * @param tag Name (Animal,Tutorial,Lifestyle,News)
-     * @param dataNr position der Mediendatei zu der tag hinzugefügt werden soll
+     * @param address position der Mediendatei zu der tag hinzugefügt werden soll
      */
     public LinkedList<Content>/*TEST*/ createTag(String tag, String address) {
 //TODO
-
 
         return this.contentLinkedList;
     }
@@ -101,7 +106,7 @@ public class GLContentImpl {
      * TODO: Abruf aller vergebenen bzw. nicht vergebenen Tags in der Verwaltung
      * @return Linkedlist of Tags
      */
-    public LinkedList<Content> readByTags(Tag tag) { //TODO: hier ist was falsch generell im verständnis der methode
+    public LinkedList<Content> readByTags(Tag tag) { //TODO: hier ist was falsch generell im Verständnis der methode
         if(this.contentLinkedList != null && this.contentLinkedList.size() != 0){
             LinkedList<Content> tempContentLinkedList = new LinkedList<>();
             for (Content listElement : this.contentLinkedList) {
@@ -115,14 +120,15 @@ public class GLContentImpl {
     }
 
     /**
-     * zählt einen AccessCounter um ++ hoch
+     * zählt einen AccessCounter um ++ hoch beim access
      * @param address Nummer der Datei in der DB LinkedList
      */
     public long update(String address) {
         for (Content listElement : this.contentLinkedList) {
             if (listElement.getAddress() == address) {
-                return listElement.getAccessCount();
-            } //irgendwie unschön evtl doch lieber mit hashmap^^?
+                long tmp = listElement.getAccessCount();
+                return tmp;
+            }
         }
         return -1;
     }
@@ -136,7 +142,7 @@ public class GLContentImpl {
            for (Content listElement : this.contentLinkedList) {
                if (listElement.getAddress() == address) {
                    this.contentLinkedList.remove(listElement);
-               } //evtl auch mit Hashmap einfacher...
+               }
            }
         }
     }

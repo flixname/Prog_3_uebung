@@ -1,6 +1,7 @@
 package domainLogic;
 import mediaDB.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -8,67 +9,32 @@ import java.util.List;
 
 class GLContentImplUpdateTest {
 
-    private List<String> testTagList = new LinkedList<>();
+    GLContentImpl testGLContent1 = new GLContentImpl();
+
+    @BeforeEach
+    void setTestGLContent(){
+        testGLContent1.createContent("Audio", "Felix", "Animal", 22, 222);
+    }
 
     @Test //Counter an einer Datei hochzählen
     void goodUpdate1() {
-        this.testTagList.add("Animal");
-        this.testTagList.add("News");
-        GLContentImpl testGLContent = new GLContentImpl();
-        testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
+        testGLContent1.update("1");
 
-        long temp = testGLContent.update(0);
-
-        Assertions.assertEquals(1, temp);
+        Assertions.assertEquals(1, testGLContent1.getContentLinkedList().get(0).getAccessCount());
     }
 
-    @Test //Counter an einer Datei hochzählen
+    @Test //Counter an vorhandener Datei hochzählen vorher 1 jetzt 4
     void goodUpdate2() {
-        this.testTagList.add("Animal");
-        this.testTagList.add("News");
-        GLContentImpl testGLContent = new GLContentImpl();
-        testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
 
-        testGLContent.update(0);
-        testGLContent.update(0);
-        long temp = testGLContent.update(0);
+        long tmp = testGLContent1.update("1");
+        tmp = testGLContent1.update("1");
+        tmp = testGLContent1.update("1");
 
-        Assertions.assertEquals(3, temp);
+        Assertions.assertEquals("5", testGLContent1.getContentLinkedList().get(0).getAccessCount());
     }
 
-    @Test //Counter an einer Datei hochzählen, dann an einer anderen mit Observerbenachrichtigung
-    void goodUpdateWithCounterObserver1() {
-        this.testTagList.add("Animal");
-        this.testTagList.add("News");
-        GLContentImpl testGLContent = new GLContentImpl();
-
-        testGLContent.createContent("Audio", "Max", 500, 3000, testTagList);
-        LinkedList<Content> testList1 = testGLContent.createContent("Audio", "Felix", 2, 2, testTagList);
-
-        
-
-
-        testGLContent.update(0);
-        testGLContent.update(1);
-        testGLContent.update(0);
-
-        long temp = testGLContent.update(1);
-
-
-
-        Assertions.assertEquals(2, temp);
-    }
-
-
-/*
     @Test
-    void goodObserverTest1(){
-        GLContent testGLContent = new GLContentImpl();
-        Audio testAudio1 = new AudioWithCounterImpl();
-        Uploader testUploader1 = new UploaderImpl();
-        testGLContent.createContent(testAudio1, testUploader1);
-
-        ChangeObserver o1 = new ChangeObserver(testAudio1);
+    void goodUpdateWithCounterObserver1() {
+        //TODO: Counter an einer Datei hochzählen mit Observer Benachrichtigung
     }
-    */
 }

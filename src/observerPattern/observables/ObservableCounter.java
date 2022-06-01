@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class ObservableCounter extends Counter implements Observable {
+public class ObservableCounter extends Counter implements Observable { //TODO hier stimmt was mit den observen nicht,
     private List<Observer> observerList = new LinkedList<>();
 
     public ObservableCounter() {

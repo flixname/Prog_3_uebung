@@ -20,12 +20,12 @@ public class AudioImpl implements Audio {
     private Bitrate bitrate;
     private Laenge laenge;
 
-    private final ObservableAddress observableAddress; //unique address ID
+    private ObservableAddress observableAddress; //unique address ID
     private ObservableCounter observableCounter = new ObservableCounter(); //AccessCounter
 
 
-    public AudioImpl(Integer address, String uploader, int bitrate, long laenge, String tags) {
-        this.observableAddress = new ObservableAddress(address);
+    public AudioImpl(Integer addressCount, String uploader, int bitrate, long laenge, String tags) {
+        this.observableAddress = new ObservableAddress(addressCount);
         this.uploader = new UploaderImpl(uploader);
         this.bitrate = new Bitrate(bitrate);
         this.laenge = new Laenge(laenge);
@@ -38,7 +38,7 @@ public class AudioImpl implements Audio {
         return 0;
     }
 
-    @Override //TODO: siehe A-Blatt
+    @Override
     public String getAddress() {
         return this.observableAddress.getAddress();
     }
