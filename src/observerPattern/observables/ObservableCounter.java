@@ -1,39 +1,21 @@
 package observerPattern.observables;
 
+import domainLogic.GLContentImpl;
 import domainLogic.util.Counter;
-import observerPattern.Observable;
-import observerPattern.Observer;
-
-import java.util.LinkedList;
-import java.util.List;
+import eventSystem.infrastructure.UpdateCounterEvent;
+import eventSystem.infrastructure.UpdateCounterEventListener;
 
 
-public class ObservableCounter extends Counter implements Observable { //TODO hier stimmt was mit den observen nicht,
-    private List<Observer> observerList = new LinkedList<>();
+public class ObservableCounter extends Counter implements UpdateCounterEventListener {
 
     public ObservableCounter() {
         super();
-    }
-
-    @Override
-    public void addObserver(Observer observer) {
-        this.observerList.add(observer);
-    }
-
-    @Override
-    public void deleteObserver(Observer observer) {
-        this.observerList.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for(Observer observer : observerList){
-            observer.update();
-        }
-    }
-
-    public void increment() {
-        super.increment();
+        this.setChanged();
         this.notifyObservers();
+    }
+
+    @Override
+    public void onUpdateCounterEvent(UpdateCounterEvent updateCounterEvent) {
+        this.increment();
     }
 }

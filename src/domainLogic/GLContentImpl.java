@@ -1,5 +1,7 @@
 package domainLogic;
 
+import eventSystem.infrastructure.UpdateCounterEvent;
+import eventSystem.infrastructure.UpdateCounterEventHandler;
 import mediaDB.*;
 
 import java.util.LinkedList;
@@ -9,44 +11,54 @@ import java.util.LinkedList;
  */
 public class GLContentImpl {
 
+    //UPDATE HANDLER//
+    private UpdateCounterEventHandler updateCounterEventHandler;
+    public void setUpdateSingleAccessCountEventHandler(UpdateCounterEventHandler updateCounterEventHandler){
+        this.updateCounterEventHandler = updateCounterEventHandler;
+    }
+
+    //CONTENT LIST//
     private LinkedList<Content> contentLinkedList = new LinkedList<>(); //evtl doch lieber HashMap wg adresse??
 
     public LinkedList<Content> getContentLinkedList() { /*testing*/
         return contentLinkedList;
     }
 
-    private Integer addressCount = 0; //vergabe der adressen
+    public void setContentLinkedList(LinkedList<Content> contentLinkedList) {
+        this.contentLinkedList = contentLinkedList;
+    }
+
+    private Integer generalAddressAssignment = -1; //vergabe der adressen
 
     /**
-     * TODO: Uploader zuerst erstellen dann Mediafile
      * Hochladen von Mediadateien verschiedenn typs
-     * TODO: beim Hochladen wird eine Abrufadresse vergeben (address); zu keinem Zeitpunkt können mehrere Mediadateien innerhalb der Verwaltung die gleiche Abrufadresse haben
+     * TODO: zu keinem Zeitpunkt können mehrere Mediadateien innerhalb der Verwaltung die gleiche Abrufadresse haben: evtl noch namen odso dazu
      * TODO: beim Hochladen wird ein Upload-Datum vergeben
      * TODO: es ist zu prüfen, dass die Gesamtkapazität nicht überschritten wird, dafür ist die Dateigröße in size definiert
      * TODO: es ist zu prüfen, dass die Media-Datei zu einem bereits existierenden Produzenten gehört
      * @param contentType
      * @param uploaderName
-     * @param tagCollection nur übergangsweise, evtl auch regex string
+     * @param tags nur übergangsweise, evtl auch regex string
      * @param bitrate
      * @param laenge
      */
-    public LinkedList<Content>/*TEST*/ createContent(String contentType, String uploaderName, String tagCollection, int bitrate, long laenge) {
+    public boolean createContent(String contentType, String uploaderName, String tags, int bitrate, long laenge) {
 
         switch(contentType){
             case "Audio":
-                Audio audio = new AudioImpl(this.addressCount++, uploaderName, bitrate, laenge, tagCollection);
+                Audio audio = new AudioImpl(this.generalAddressAssignment+=1, uploaderName, tags, bitrate, laenge);
                 this.contentLinkedList.add(audio);
                 break;
-            case "Video":
-                Video video = new VideoImpl(); //TODO
+            case "Video": //TODO
+                Video video = new VideoImpl();
                 this.contentLinkedList.add(video);
                 break;
             //case "LicensedAudio": break;//TODO
             //case "LicensedVideo": break;//TODO
             default:
-                break;
+                return false;
         }
-        return this.contentLinkedList; /*TEST*/
+        return false;
     }
 
     /**
@@ -55,10 +67,10 @@ public class GLContentImpl {
      * @param tag Name (Animal,Tutorial,Lifestyle,News)
      * @param address position der Mediendatei zu der tag hinzugefügt werden soll
      */
-    public LinkedList<Content>/*TEST*/ createTag(String tag, String address) {
+    public boolean/*TEST*/ createTag(String tag, String address) {
 //TODO
 
-        return this.contentLinkedList;
+        return false;
     }
 
     /**
@@ -123,14 +135,17 @@ public class GLContentImpl {
      * zählt einen AccessCounter um ++ hoch beim access
      * @param address Nummer der Datei in der DB LinkedList
      */
-    public long update(String address) {
-        for (Content listElement : this.contentLinkedList) {
-            if (listElement.getAddress() == address) {
-                long tmp = listElement.getAccessCount();
-                return tmp;
+    public boolean update(String address) { //TODO: komplette contentlinkedlist in extra class Memory, diese hält nur die liste und reagiert auf Events, diese suche kommt dann in observable counter
+        UpdateCounterEvent updateCounterEvent = new UpdateCounterEvent(this, address);
+        for (int i = 0; i < this.contentLinkedList.size(); i++) {
+            if (this.contentLinkedList.get(i).getAddress() == address) {
+                if(this.updateCounterEventHandler != null){
+                    updateCounterEventHandler.handle(updateCounterEvent);
+                }
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
     /**

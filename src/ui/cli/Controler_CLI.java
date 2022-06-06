@@ -15,7 +15,7 @@ public class Controler_CLI {
     private CreateUploaderEventHandler createUploaderEventHandler;
     private CreateContentEventHandler createContentEventHandler;
     private ReadDiverseContentEventHandler readDiverseContentEventHandler;
-    private UpdateSingleAccessCountEventHandler updateSingleAccessCountEventHandler;
+    private UpdateCounterEventHandler updateCounterEventHandler;
     private DeleteSingleEventHandler deleteSingleEventHandler;
     private ExitEventHandler exitEventHandler;
 
@@ -28,8 +28,8 @@ public class Controler_CLI {
     public void setReadDiverseContentEventHandler(ReadDiverseContentEventHandler readDiverseContentEventHandler) {
         this.readDiverseContentEventHandler = readDiverseContentEventHandler;
     }
-    public void setUpdateSingleAccessCountEventHandler(UpdateSingleAccessCountEventHandler updateSingleAccessCountEventHandler) {
-        this.updateSingleAccessCountEventHandler = updateSingleAccessCountEventHandler;
+    public void setUpdateSingleAccessCountEventHandler(UpdateCounterEventHandler updateCounterEventHandler) {
+        this.updateCounterEventHandler = updateCounterEventHandler;
     }
     public void setDeleteSingleEventHandler(DeleteSingleEventHandler deleteSingleEventHandler) {
         this.deleteSingleEventHandler = deleteSingleEventHandler;
@@ -46,7 +46,7 @@ public class Controler_CLI {
                 CreateUploaderEvent createUploaderEvent = new CreateUploaderEvent(this, uploaderCommand.getUploader());
                 CreateContentEvent createContentEvent = new CreateContentEvent(this, contentCommand.getContent(), contentCommand.getUploader(), contentCommand.getTags(), contentCommand.getBitrate(), contentCommand.getDuration());
                 //ReadDiverseContentEvent readDiverseContentEvent = new ReadDiverseContentEvent(this, ); //TODO Eventhandlersystem
-                UpdateSingleAccessCountEvent updateSingleAccessCountEvent = new UpdateSingleAccessCountEvent(this, addressCommand.getAddress());
+                UpdateCounterEvent updateCounterEvent = new UpdateCounterEvent(this, addressCommand.getAddress());
                 DeleteSingleContentEvent deleteSingleContentEvent = new DeleteSingleContentEvent(this, addressCommand.getAddress());
                 ExitEvent exitEvent= new ExitEvent(this);
 
@@ -65,8 +65,8 @@ public class Controler_CLI {
                            // readDiverseContentEventHandler.handle(readDiverseContentEvent);
                         break;
                     case ":u":
-                        if(this.updateSingleAccessCountEventHandler != null)
-                            updateSingleAccessCountEventHandler.handle(updateSingleAccessCountEvent);
+                        if(this.updateCounterEventHandler != null)
+                            updateCounterEventHandler.handle(updateCounterEvent);
                         break;
                     case ":d":
                         if(this.deleteSingleEventHandler != null)
