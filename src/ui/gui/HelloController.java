@@ -54,7 +54,7 @@ public class HelloController  {
 
     private void deleteBtnClicked() {
         AddressCommand addressCommand = new AddressCommand(contentInput.getText());
-        glContent.deleteOne(addressCommand.getAddress());
+        glContent.deleteSingleContent(addressCommand.getAddress());
         //TODO Update
     }
 
@@ -75,7 +75,7 @@ public class HelloController  {
     }
 
     private void readBtnClicked() {
-        glContent.readByContentType(contentInput.getText());
+        glContent.readContentByType(contentInput.getText());
         //TODO Update
     } //TODO: Command erstellen
 

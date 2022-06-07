@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CounterTest {
 
     GLContentImpl testGLContent1 = new GLContentImpl();
-    ObservableCounter observableCounter = new ObservableCounter();
+    ObservableCounter observableCounter;
 
     @Test
     void getCounter() {

@@ -1,5 +1,7 @@
 package domainLogic.util;
 
+import mediaDB.Content;
+
 import java.util.Observable;
 
 /**
@@ -9,7 +11,7 @@ import java.util.Observable;
  */
 public abstract class Counter extends Observable {
 
-    private long counter = 0;
+    private long counter = -1;
 
     public long getCounter() {
         return this.counter;

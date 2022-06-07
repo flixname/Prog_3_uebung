@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AudioImplTest {
+class DataImplTest {
 
     GLContentImpl glContent = new GLContentImpl();
 

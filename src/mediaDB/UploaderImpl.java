@@ -1,17 +1,16 @@
 package mediaDB;
 
-import domainLogic.util.Counter;
 import observerPattern.observables.ObservableCounter;
 
 import java.util.Date;
 
 /**
- * giving Uploaders Names
+ * choose name or get a default name if not assigned
  */
 public class UploaderImpl implements Uploader{
 
     private String uploaderName;
-    private ObservableCounter counter; //TODO: Counter als Interface
+    private ObservableCounter counter = new ObservableCounter();
 
     public UploaderImpl(String name) {
         this.uploaderName = name;

@@ -14,6 +14,6 @@ public class ReadDiverseContentEventListenerImpl implements ReadDiverseContentEv
 
     @Override
     public void onReadEvent(ReadDiverseContentEvent readDiverseContentEvent) {
-        this.glContentImpl.readByContentType(readDiverseContentEvent.getType());
+        this.glContentImpl.readContentByType(readDiverseContentEvent.getType());
     }
 }

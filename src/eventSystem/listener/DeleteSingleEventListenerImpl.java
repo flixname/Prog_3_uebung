@@ -15,7 +15,7 @@ public class DeleteSingleEventListenerImpl implements DeleteSingleEventListener 
     @Override
     public void onDeleteEvent(DeleteSingleContentEvent deleteSingleContentEvent) {
         try {
-            this.glContentImpl.deleteOne(deleteSingleContentEvent.getAddress());
+            this.glContentImpl.deleteSingleContent(deleteSingleContentEvent.getAddress());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
