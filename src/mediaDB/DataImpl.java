@@ -2,8 +2,7 @@ package mediaDB;
 
 
 import domainLogic.util.*;
-import observerPattern.observables.ObservableAddress;
-import observerPattern.observables.ObservableCounter;
+import observerPattern.observables.ObservableAccessCounter;
 import observerPattern.observables.ObservableTag;
 
 import java.math.BigDecimal;
@@ -20,20 +19,20 @@ public class DataImpl<C extends Content,U extends Uploadable> implements Data{
     private ObservableTag observableTag;
     private Bitrate bitrate;
     private Laenge laenge;
+    private Date uploadDate;
 
-    private ObservableAddress observableAddress; //unique address ID
-    private ObservableCounter observableCounter; //AccessCounter
+    private ObservableAccessCounter observableAccessCounter;
 
-    public DataImpl(C content, Integer generalAddressAssignment, String uploader, String tags, int bitrate, long laenge) {
+    public DataImpl(C content, Date uploadDate, String uploader, String tags, int bitrate, long laenge) {
         this.content = content;
-        this.observableAddress = new ObservableAddress(generalAddressAssignment);
+        this.uploadDate = uploadDate;
         this.uploader = new UploaderImpl(uploader);
         this.bitrate = new Bitrate(bitrate);
         this.laenge = new Laenge(laenge);
         this.observableTag = new ObservableTag(tags);
-        this.observableCounter = new ObservableCounter();
+        this.observableAccessCounter = new ObservableAccessCounter();
     }
-/*
+
     @Override //TODO
     public int getSamplingRate() {
         return 0;
@@ -41,8 +40,7 @@ public class DataImpl<C extends Content,U extends Uploadable> implements Data{
 
     @Override
     public String getAddress() {
-        this.observableCounter.increment();
-        return this.observableAddress.getAddress();
+        return
     }
 
     @Override //TODO: BIG TODO... ;(->wie create tag von aussen, liste immer null
@@ -52,7 +50,7 @@ public class DataImpl<C extends Content,U extends Uploadable> implements Data{
 
     @Override
     public long getAccessCount() {
-        return this.observableCounter.getCounter();
+        return this.observableAccessCounter.getCounter();
     }
 
     @Override
@@ -79,5 +77,9 @@ public class DataImpl<C extends Content,U extends Uploadable> implements Data{
     public Date getUploadDate() {
         return null;
     }
-    */
+
+    @Override
+    public int getResolution() {
+        return 0;
+    }
 }

@@ -1,7 +1,5 @@
 package mediaDB;
 
-import domainLogic.util.Counter;
-
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
@@ -9,9 +7,6 @@ import java.util.Date;
 
 public class VideoImpl implements Video {
 
-    private Counter counter;
-    private Uploader uploader;
-    private Collection<Tag> tagCollection;
 
     @Override
     public String getAddress() {
@@ -25,8 +20,7 @@ public class VideoImpl implements Video {
 
     @Override
     public long getAccessCount() {
-        this.counter.increment();
-        return this.counter.getCounter();
+        return 0;
     }
 
     @Override
@@ -46,7 +40,7 @@ public class VideoImpl implements Video {
 
     @Override
     public Uploader getUploader() {
-        return this.uploader;
+        return null;
     }
 
     @Override

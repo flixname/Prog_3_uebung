@@ -1,78 +1,52 @@
 package mediaDB;
 
-
-import domainLogic.util.*;
-import observerPattern.observables.ObservableAddress;
-import observerPattern.observables.ObservableCounter;
-import observerPattern.observables.ObservableTag;
-
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
 public class AudioImpl implements Audio {
-
-
-
-    private Uploader uploader;
-    private ObservableTag observableTag;
-    private Bitrate bitrate;
-    private Laenge laenge;
-
-    private ObservableAddress observableAddress; //unique address ID
-    private ObservableCounter observableCounter = new ObservableCounter(); //AccessCounter
-
-    public AudioImpl(Integer generalAddressAssignment, String uploader, String tags, int bitrate, long laenge) {
-        this.observableAddress = new ObservableAddress(generalAddressAssignment);
-        this.uploader = new UploaderImpl(uploader);
-        this.bitrate = new Bitrate(bitrate);
-        this.laenge = new Laenge(laenge);
-        this.observableTag = new ObservableTag(tags);
-    }
-
-
-    @Override //TODO
+    @Override
     public int getSamplingRate() {
         return 0;
     }
 
     @Override
     public String getAddress() {
-        return this.observableAddress.getAddress();
+        return null;
     }
 
-    @Override //TODO: BIG TODO... ;(->wie create tag von aussen, liste immer null
+    @Override
     public Collection<Tag> getTags() {
-        return this.observableTag.getTagList();
+        return null;
     }
 
     @Override
     public long getAccessCount() {
-        return this.observableCounter.getCounter();
+        return 0;
     }
 
     @Override
     public BigDecimal getBitrate() {
-        return this.bitrate.getBitrate();
+        return null;
     }
 
     @Override
     public Duration getLength() {
-        return this.laenge.getLaenge();
+        return null;
     }
 
-    @Override //TODO
+    @Override
     public BigDecimal getSize() {
         return null;
     }
 
     @Override
     public Uploader getUploader() {
-        return this.uploader;
+        return null;
     }
 
-    @Override //TODO
+    @Override
     public Date getUploadDate() {
         return null;
     }

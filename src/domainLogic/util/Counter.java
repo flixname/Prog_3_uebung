@@ -11,20 +11,22 @@ import java.util.Observable;
  */
 public abstract class Counter extends Observable {
 
-    private long counter = -1;
+    private long startCounter = -1;
+    private Long counter = startCounter;
 
     public long getCounter() {
         return this.counter;
     }
 
-    public boolean increment(){
+    public Long increment(){
         if(this.counter == Long.MAX_VALUE){
             System.out.println("Counter full, start from 0 now");
-            this.counter = 0;
-            return false;
+            long newCounter = 0;
+            this.counter = newCounter;
         }else{
-            this.counter += 1;
-            return true;
+            long newCounter = +1;
+            this.counter = newCounter;
         }
+        return this.counter;
     }
 }

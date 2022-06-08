@@ -4,7 +4,7 @@ public abstract class Address {
 
     private final String ADDRESS;
 
-    public Address(Integer generalAddressAssignment){ this.ADDRESS = generalAddressAssignment.toString(); }
+    public Address(Long generalAddressAssignment){ this.ADDRESS = generalAddressAssignment.toString(); }
 
     public String getAddress() {
         return ADDRESS;
