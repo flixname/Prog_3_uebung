@@ -1,33 +1,41 @@
 package domainLogic;
 
+import domainLogic.util.Counter;
 import mediaDB.*;
+import model.ObservableContentMemory;
+import observerPattern.observables.ObservableAccessCounter;
 import observerPattern.observables.ObservableAddress;
 import observerPattern.observables.ObservableCounter;
-import observerPattern.observables.ObservableTag;
+import observerPattern.observers.ContentMemoryObserver;
+import observerPattern.observers.CounterObserver;
 
-import java.io.*;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
  * Verwaltung von verschiedenem Content(Audio, Video, etc.)
  */
-public class GLContentImpl implements GLContent {
+public class GLContentImpl {
 
-    private ObservableCounter observableCounter = new ObservableCounter(); //Adressenvergabe
+    private Counter counter = new Counter(); //Adressenvergabe
+
+    private ObservableContentMemory observableContentMemory = new ObservableContentMemory();
+    private ContentMemoryObserver contentMemoryObserver = new ContentMemoryObserver(observableContentMemory);
+
+    private ObservableAccessCounter observableAccessCounter = new ObservableAccessCounter();
+    private CounterObserver counterObserver = new CounterObserver(observableAccessCounter);
 
 
     public boolean createContent(String contentType, String uploaderName, String tags, int bitrate, long laenge) {
-
+        observableContentMemory.addObserver(contentMemoryObserver);
+        this.counter.increment();
+        ObservableAddress observableAddress = new ObservableAddress(this.counter.getCounter());
         Date uploadDate = new Date();
-        ObservableAddress observableAddress = new ObservableAddress(this.observableCounter.increment());
 
         switch (contentType) {
             case "Audio":
-                //Audio audio = new AudioImpl();
                 Data<Audio> audioData = new DataImpl<AudioImpl>(observableAddress, uploadDate, uploaderName, tags, bitrate, laenge);
-                this.observableAddressDataHashMap.put(observableAddress, audioData);
+                observableContentMemory.addData(observableAddress, audioData);
                 break;
             case "Video":
                 //Video video = new VideoImpl();
@@ -41,8 +49,9 @@ public class GLContentImpl implements GLContent {
         }
         return false;
     }
+    /*
+    public boolean createTag(String tag, String address) {
 
-    public boolean/*TEST*/ createTag(String tag, String address) {
         //TODO
         if (this.observableAddressDataHashMap != null) {
             if (this.observableAddressDataHashMap.containsKey(address)) {
@@ -107,10 +116,12 @@ public class GLContentImpl implements GLContent {
             }
             return null;
         }
+*/
+        public long update (String address) {
+            observableAccessCounter.addObserver(counterObserver);
+            this.observableContentMemory.
 
-        public long update (String address)
-        { //TODO: komplette contentlinkedlist in extra class Memory, um dann observervable memory zu machen?
-
+            /*
             for (int i = 0; i < this.observableAddressDataHashMap.size(); i++) {
                 if (this.observableAddressDataHashMap.get(i).getAddress() == address) {
                     //TODO hier einen Beobachter einhängen um dann am counter hoch zuzählen
@@ -118,9 +129,11 @@ public class GLContentImpl implements GLContent {
                 }
             }
             return -2;
+
+             */
         }
 
-
+/*
         public boolean deleteSingleContent (String address){
             if (this.observableAddressDataHashMap != null && this.observableAddressDataHashMap.size() > Integer.parseInt(address)) {
                 for (Data listElement : this.observableAddressDataHashMap) {
@@ -133,4 +146,6 @@ public class GLContentImpl implements GLContent {
             return false;
         }
     }
+
+ */
 }

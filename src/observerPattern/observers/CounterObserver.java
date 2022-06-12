@@ -7,19 +7,20 @@ import java.util.Observer;
 
 public class CounterObserver implements Observer {
     private ObservableCounter observableCounter;
-    private long oldAccessCount;
+    private long oldState;
 
-    public CounterObserver(ObservableCounter observableCounter) {
+    public CounterObserver(ObservableCounter observableCounter){
         this.observableCounter = observableCounter;
-        this.oldAccessCount = this.observableCounter.getCounter();
+        this.oldState = this.observableCounter.getCounter().getCounter();
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if(this.oldAccessCount!= observableCounter.getCounter()){
-            System.out.println("value changed from "+this.oldAccessCount+" to "+this.observableCounter.getCounter());
-            this.oldAccessCount=this.observableCounter.getCounter();
-        }else {
+        if(this.oldState != this.observableCounter.getCounter().getCounter()){
+            System.out.println("value changed from "+this.oldState+" to "+this.observableCounter.getCounter().getCounter());
+            this.oldState = this.observableCounter.getCounter().getCounter();
+        }
+        else {
             System.out.println("no changes");
         }
     }

@@ -1,9 +1,9 @@
-import domainLogic.GLContentImpl;
+import model.ObservableContentMemory;
 
 public class JOS {
 
     public static void main(String[] args) {
-        GLContentImpl glContent = new GLContentImpl();
+        ObservableContentMemory observableContentMemory = new ObservableContentMemory();
 
 
 

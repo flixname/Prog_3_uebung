@@ -1,15 +1,29 @@
 package model;
 
+import mediaDB.Data;
 import mediaDB.MediaContent;
 import observerPattern.observables.ObservableAddress;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class ContentMemory implements Serializable {
+public class ObservableContentMemory extends Observable implements Serializable {
 
     static final long serialVersionUID=1L;
-    private HashMap<ObservableAddress, MediaContent> observableAddressDataHashMap = new HashMap<>();
+    private HashMap<ObservableAddress, MediaContent> addressMediaContentHashMap = new HashMap<>();
+
+    public HashMap<ObservableAddress, MediaContent> getAddressMediaContentHashMap() {
+        return addressMediaContentHashMap;
+    }
+
+    public void addData(ObservableAddress observableAddress, Data data){
+        this.addressMediaContentHashMap.put(observableAddress, data);
+    }
+
+    public void updateCounter(String address){
+        this.addressMediaContentHashMap.get(address).//TODO FUCK u
+    }
 
     public boolean saveToFile(){
 
@@ -26,7 +40,7 @@ public class ContentMemory implements Serializable {
 
         return false;
     }
-
+/*
     public boolean loadFromFile(){
         try {
             FileInputStream fileInputStream = new FileInputStream("File.txt");
@@ -39,5 +53,5 @@ public class ContentMemory implements Serializable {
         }
         return false;
     }
-
+*/
 }
