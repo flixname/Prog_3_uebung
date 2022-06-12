@@ -2,50 +2,66 @@ package observerPattern.observables;
 
 import mediaDB.Tag;
 
-import java.util.LinkedList;
+import java.util.HashMap;
 
 public class ObservableTag {
 
-    private LinkedList<Tag> tagLinkedList = new LinkedList<>();
+    private HashMap<Integer, Tag> tagHashMap = new HashMap<>();
+
+    public ObservableTag() {
+    }
 
     public ObservableTag(String tags) {
         String[] splitTextContent = tags.split(", ");
-        for (int i = 0; i < splitTextContent.length; i++) {
-            if(this.tagLinkedList.contains(splitTextContent[i]) == false)
-                this.tagLinkedList.add(stringToTagConverter(splitTextContent[i]));
+        if(splitTextContent != null){
+            for (int i = 0; i < splitTextContent.length; i++) {
+                addTag(splitTextContent[i]);
+            }
         }
-        /*
-        this.setChanged(); //TODO: Subscribe notify funtionality
-        this.notifyObservers();
-        */
     }
 
-    public ObservableTag() {
-        System.out.println("No Tag given.");
-    }
-
-    public Tag stringToTagConverter(String tag){
-
+    public void addTag(String tag){
         switch(tag){
             case "Animal": //Animal
-                return Tag.Animal;
+                this.tagHashMap.put(0, Tag.Animal);
+                break;
             case "Tutorial": //Tutorial
-                return Tag.Tutorial;
+                this.tagHashMap.put(1, Tag.Tutorial);
+                break;
             case "Lifestyle": //Lifestyle
-                return Tag.Lifestyle;
+                this.tagHashMap.put(2, Tag.Lifestyle);
+                break;
             case "News": //News
-                return Tag.News;
+                this.tagHashMap.put(3, Tag.News);
+                break;
             default:
-                return null;
+                System.out.println("No Tag given.");
+                break;
         }
     }
 
-    public void deleteTags(String tag){
-        this.tagLinkedList.remove(stringToTagConverter(tag));
-        System.out.println("deleted " + tag + "from tag collection");
+    public void deleteTag(String tag){
+        switch(tag){
+            case "Animal": //Animal
+                this.tagHashMap.replace(0, null);
+                break;
+            case "Tutorial": //Tutorial
+                this.tagHashMap.replace(1, null);
+                break;
+            case "Lifestyle": //Lifestyle
+                this.tagHashMap.replace(2, null);
+                break;
+            case "News": //News
+                this.tagHashMap.replace(3, null);
+                break;
+            default:
+                System.out.println("No Tag to delete.");
+                break;
+        }
+        System.out.println("deleted " + tag + " from tag collection");
     }
 
-    public LinkedList<Tag> getTagList() {
-        return tagLinkedList;
+    public HashMap<Integer, Tag> getTagHashMap() {
+        return tagHashMap;
     }
 }

@@ -9,7 +9,7 @@ import java.util.Observable;
  * counts +1 if called and returns true
  * starts to count from 0 again if Long.Max_Value is reached (gives message, returns false)
  */
-public abstract class Counter extends Observable {
+public abstract class Counter {
 
     private long startCounter = -1;
     private Long counter = startCounter;

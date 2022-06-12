@@ -4,7 +4,13 @@ public abstract class Address {
 
     private final String ADDRESS;
 
-    public Address(Long generalAddressAssignment){ this.ADDRESS = generalAddressAssignment.toString(); }
+    public Address(Long address){
+        this.ADDRESS = address.toString();
+    }
+
+    public Address(String address){
+        this.ADDRESS = address;
+    }
 
     public String getAddress() {
         return ADDRESS;

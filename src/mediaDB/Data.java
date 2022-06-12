@@ -1,4 +1,4 @@
 package mediaDB;
 
-public interface Data<C extends Content,U extends Uploadable> extends AudioVideo {
+public interface Data<M extends MediaContent> extends Uploader, Uploadable, MediaContent {
 }

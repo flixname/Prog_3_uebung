@@ -52,7 +52,5 @@ class GLContentImplUpdateTest {
         testGLContent1.createContent("Audio", "Jade", "Animal", 22, 222);
 
         //TODO: observertest fertig schreiben ->>nochmal auf den weg zu dem den accesscount reinschauen, es ist nicht der accesscount selber
-
-
     }
 }
