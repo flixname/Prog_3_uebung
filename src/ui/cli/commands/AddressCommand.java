@@ -1,4 +1,4 @@
-package ui.cli;
+package ui.cli.commands;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

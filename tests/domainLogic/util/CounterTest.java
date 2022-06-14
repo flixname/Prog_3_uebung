@@ -1,15 +1,13 @@
 package domainLogic.util;
 
-import domainLogic.GLContentImpl;
+import domainLogic.ContentLogic;
 import observerPattern.observables.ObservableCounter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CounterTest {
 
-    GLContentImpl testGLContent1 = new GLContentImpl();
+    ContentLogic testGLContent1 = new ContentLogic();
     ObservableCounter observableCounter;
 
     @Test

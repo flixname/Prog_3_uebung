@@ -2,6 +2,10 @@ package ui.cli;
 
 import eventSystem.infrastructure.CreateUploaderEvent;
 import eventSystem.infrastructure.*;
+import ui.cli.commands.AddressCommand;
+import ui.cli.commands.ContentCommand;
+import ui.cli.commands.OperatorCommand;
+import ui.cli.commands.UploaderCommand;
 
 import java.util.Scanner;
 

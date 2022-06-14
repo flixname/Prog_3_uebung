@@ -1,19 +1,19 @@
 package eventSystem.listener;
 
-import domainLogic.GLContentImpl;
+import domainLogic.ContentLogic;
 import eventSystem.infrastructure.ReadDiverseContentEvent;
 import eventSystem.infrastructure.ReadDiverseContentEventListener;
 
 public class ReadDiverseContentEventListenerImpl implements ReadDiverseContentEventListener {
 
-    GLContentImpl glContentImpl;
+    ContentLogic contentLogic;
 
-    public ReadDiverseContentEventListenerImpl(GLContentImpl glContentImpl) {
-        this.glContentImpl = glContentImpl;
+    public ReadDiverseContentEventListenerImpl(ContentLogic contentLogic) {
+        this.contentLogic = contentLogic;
     }
 
     @Override
     public void onReadEvent(ReadDiverseContentEvent readDiverseContentEvent) {
-        this.glContentImpl.readContentByType(readDiverseContentEvent.getType());
+        //this.glContentImpl.readContentByType(readDiverseContentEvent.getType());
     }
 }

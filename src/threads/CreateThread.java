@@ -1,22 +1,14 @@
 package threads;
 
-import domainLogic.GLContentImpl;
-import mediaDB.*;
-
-import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import domainLogic.ContentLogic;
 
 public class CreateThread extends Thread {
 
-    GLContentImpl glContent;
+    ContentLogic glContent;
     int randomNumber1;
     int randomNumber2;
 
-    public CreateThread(GLContentImpl glContent) {
+    public CreateThread(ContentLogic glContent) {
         this.glContent = glContent;
     }
 

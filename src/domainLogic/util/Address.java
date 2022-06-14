@@ -1,6 +1,6 @@
 package domainLogic.util;
 
-public abstract class Address {
+public class Address {
 
     private final String ADDRESS;
 
@@ -15,4 +15,5 @@ public abstract class Address {
     public String getAddress() {
         return ADDRESS;
     }
+
 }

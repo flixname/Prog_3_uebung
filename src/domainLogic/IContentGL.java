@@ -4,7 +4,7 @@ import mediaDB.Content;
 
 import java.util.LinkedList;
 
-public interface GLContent {
+public interface IContentGL {
 
     /**
      * Hochladen von Mediendateien verschieden Typs, zusammen mit einer Adresse und einem Uploader und anderen Daten(Bitrate etc.)

@@ -7,12 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UploaderImplTest {
 
-    @Test
-    void setUploaderWithDefaultName() {
-        Uploader uploader1 = new UploaderImpl();
-        Uploader uploader2 = new UploaderImpl();
-
-        System.out.println(uploader1.getName());
-        System.out.println(uploader2.getName());
+    @Test //simple Uploader class test
+    void setUploader() {
+        Uploader uploader1 = new UploaderImpl("Hansi");
+        Uploader uploader2 = new UploaderImpl("Gerhard");
+        Assertions.assertEquals("Hansi", uploader1.getName());
+        Assertions.assertEquals("Gerhard", uploader2.getName());
     }
 }

@@ -1,14 +1,12 @@
 package threads;
 
-import domainLogic.GLContentImpl;
-
-import java.util.concurrent.ThreadLocalRandom;
+import domainLogic.ContentLogic;
 
 public class DeleteThread extends Thread{
-    GLContentImpl glContent;
+    ContentLogic glContent;
     int randomNumber;
 
-    public DeleteThread(GLContentImpl glContent) {
+    public DeleteThread(ContentLogic glContent) {
         this.glContent = glContent;
     }
 /*

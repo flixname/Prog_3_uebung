@@ -2,6 +2,7 @@ package domainLogic.util;
 
 import mediaDB.Content;
 
+import java.io.Serializable;
 import java.util.Observable;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Observable;
  * counts +1 if called and returns true
  * starts to count from 0 again if Long.Max_Value is reached (gives message, returns false)
  */
-public class Counter {
+public class Counter implements Serializable {
 
     private long startCounter = -1;
     private Long counter = startCounter;

@@ -1,14 +1,14 @@
 package eventSystem.listener;
 
-import domainLogic.GLUploaderImpl;
+import domainLogic.UploaderLogic;
 import eventSystem.infrastructure.CreateUploaderEvent;
 import eventSystem.infrastructure.CreateUploaderEventListener;
 
 public class CreateUploaderEventListenerImpl implements CreateUploaderEventListener {
 
-    private GLUploaderImpl glUploader;
+    private UploaderLogic glUploader;
 
-    public CreateUploaderEventListenerImpl(GLUploaderImpl glUploader) {
+    public CreateUploaderEventListenerImpl(UploaderLogic glUploader) {
         this.glUploader = glUploader;
     }
 

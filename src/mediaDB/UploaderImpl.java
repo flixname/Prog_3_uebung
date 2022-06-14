@@ -9,20 +9,14 @@ import java.util.Date;
  */
 public class UploaderImpl implements Uploader{
 
-    private String uploaderName;
-    private ObservableCounter counter = new ObservableCounter();
+    private final String UPLOADERNAME;
 
     public UploaderImpl(String name) {
-        this.uploaderName = name;
-    }
-
-    public UploaderImpl(){
-        this.counter.increment();
-        this.uploaderName = "default_name-" + this.counter.getCounter();
+        this.UPLOADERNAME = name;
     }
 
     @Override
     public String getName() {
-        return this.uploaderName;
+        return this.UPLOADERNAME;
     }
 }

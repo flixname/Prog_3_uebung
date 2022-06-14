@@ -1,21 +1,21 @@
 package ui.gui;
 
-import domainLogic.GLContentImpl;
-import domainLogic.GLUploaderImpl;
+import domainLogic.ContentLogic;
+import domainLogic.UploaderLogic;
 import javafx.fxml.FXML;
-import ui.cli.AddressCommand;
-import ui.cli.ContentCommand;
+import ui.cli.commands.AddressCommand;
+import ui.cli.commands.ContentCommand;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import ui.cli.UploaderCommand;
+import ui.cli.commands.UploaderCommand;
 
 
 public class HelloController  {
 
-    GLContentImpl glContent = new GLContentImpl();
-    GLUploaderImpl glUploader = new GLUploaderImpl();
+    ContentLogic glContent = new ContentLogic();
+    UploaderLogic glUploader = new UploaderLogic();
 
     @FXML
     private TextField contentInput;
@@ -54,7 +54,7 @@ public class HelloController  {
 
     private void deleteBtnClicked() {
         AddressCommand addressCommand = new AddressCommand(contentInput.getText());
-        glContent.deleteSingleContent(addressCommand.getAddress());
+        //glContent.deleteSingleContent(addressCommand.getAddress());
         //TODO Update
     }
 
@@ -75,7 +75,7 @@ public class HelloController  {
     }
 
     private void readBtnClicked() {
-        glContent.readContentByType(contentInput.getText());
+        //glContent.readContentByType(contentInput.getText());
         //TODO Update
     } //TODO: Command erstellen
 

@@ -1,20 +1,19 @@
 package eventSystem.listener;
 
-import domainLogic.GLContent;
+import domainLogic.IContentGL;
 import eventSystem.infrastructure.UpdateCounterEvent;
 import eventSystem.infrastructure.UpdateCounterEventListener;
-import observerPattern.observables.ObservableCounter;
 
 public class UpdateCounterEventListenerImpl implements UpdateCounterEventListener {
 
-    private GLContent glContent;
+    private IContentGL iContentGL;
 
-    public UpdateCounterEventListenerImpl(GLContent glContent) {
-       this.glContent = glContent;
+    public UpdateCounterEventListenerImpl(IContentGL iContentGL) {
+       this.iContentGL = iContentGL;
     }
 
     @Override
     public void onUpdateCounterEvent(UpdateCounterEvent updateCounterEvent) {
-        this.glContent.update(updateCounterEvent.getAddress());
+        this.iContentGL.update(updateCounterEvent.getAddress());
     }
 }
