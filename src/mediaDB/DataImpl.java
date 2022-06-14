@@ -5,32 +5,33 @@ import domainLogic.util.*;
 import observerPattern.observables.ObservableAccessCounter;
 import observerPattern.observables.ObservableTag;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, AudioVideo{
+public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, AudioVideo, Serializable {
 
     private M mediaContent;
 
-    private SamplingRate samplingRate;
+    private Address address;
     private Uploader uploader;
     private ObservableTag observableTag;
     private Bitrate bitrate;
     private Laenge laenge;
+    private SamplingRate samplingRate;
     private Date uploadDate;
-    private Address address;
     private ObservableAccessCounter observableAccessCounter;
 
-    public DataImpl(Address address, Date uploadDate, String uploader, String tags, int bitrate, long laenge) {
-        this.samplingRate = new SamplingRate();
+    public DataImpl(Address address, String uploader, String tags, int bitrate, long laenge) {
+        this.address = new Address(address.getAddress());
         this.uploader = new UploaderImpl(uploader);
         this.observableTag = new ObservableTag(tags);
         this.bitrate = new Bitrate(bitrate);
         this.laenge = new Laenge(laenge);
+        this.samplingRate = new SamplingRate(); //TODO
         this.uploadDate = new Date();
-        this.address = new Address(address.getAddress());
         this.observableAccessCounter = new ObservableAccessCounter();
     }
 
@@ -50,7 +51,8 @@ public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, A
 
     @Override
     public Collection<Tag> getTags() {
-        return null;
+        /*return this.observableTag.getTagHashMap();*/
+        return null; //TODO: Collection
     }
 
     @Override
@@ -65,12 +67,12 @@ public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, A
 
     @Override
     public BigDecimal getBitrate() {
-        return null;
+        return this.bitrate.getBitrate();
     }
 
     @Override
     public Duration getLength() {
-        return null;
+        return this.laenge.getLaenge();
     }
 
     @Override
@@ -80,12 +82,12 @@ public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, A
 
     @Override
     public Uploader getUploader() {
-        return null;
+        return this.uploader;
     }
 
     @Override
     public Date getUploadDate() {
-        return null;
+        return this.uploadDate;
     }
 
     @Override

@@ -1,7 +1,5 @@
 import domainLogic.MainLogic;
 
-import java.util.concurrent.TimeUnit;
-
 public class JOS {
     public static void main(String[] args) {
         MainLogic mainLogic = new MainLogic();

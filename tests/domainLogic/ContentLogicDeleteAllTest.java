@@ -3,6 +3,8 @@ package domainLogic;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 class ContentLogicDeleteAllTest {
 
     ContentLogic testGLContent1 = new ContentLogic();
@@ -16,5 +18,6 @@ class ContentLogicDeleteAllTest {
         //testGLContent1.deleteSingleContent("1");
 
         //Assertions.assertEquals(1, testGLContent1.getContentLinkedList().size());
+        fail();
     }
 }

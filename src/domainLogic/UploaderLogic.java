@@ -69,7 +69,19 @@ public class UploaderLogic implements Serializable {
         return false;
     }
 
+    public ContentLogic getContentLogic() {
+        return contentLogic;
+    }
+
+    public void setContentLogic(ContentLogic contentLogic) {
+        this.contentLogic = contentLogic;
+    }
+
     public LinkedList<Uploader> getUploaderLinkedList() {
         return uploaderLinkedList;
+    }
+
+    public void setUploaderLinkedList(LinkedList<Uploader> uploaderLinkedList) {
+        this.uploaderLinkedList = uploaderLinkedList;
     }
 }

@@ -1,6 +1,8 @@
 package domainLogic.util;
 
-public class SamplingRate {
+import java.io.Serializable;
+
+public class SamplingRate implements Serializable {
     int samplingRate;
 
     public SamplingRate() {

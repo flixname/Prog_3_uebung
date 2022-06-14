@@ -1,8 +1,9 @@
 package domainLogic.util;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Bitrate {
+public class Bitrate implements Serializable {
 
     private BigDecimal bitrate;
 

@@ -1,6 +1,8 @@
 package domainLogic.util;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private final String ADDRESS;
 

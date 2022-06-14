@@ -13,30 +13,29 @@ import java.util.Map;
  * Verwaltung von verschiedenem Content(Audio, Video, etc.)
  */
 public class ContentLogic implements Serializable {
-    private ObservableCounter observableCounter = new ObservableCounter(); //Fuer Adressvergabe
-
+    private ObservableCounter observableCounter = new ObservableCounter(); //Adressvergabe initialisierung mit -1
     private Map<String, DataImpl> addressMediaContentHashMap = new HashMap<>();
 
     public boolean createContent(String contentType, String uploaderName, String tags, int bitrate, long laenge) {
         Date uploadDate = new Date();
-        this.observableCounter.increment(); //Zaehle Counter bei jeder Dateierstellung eins hoch (keine selben adressen bis Long.MAX_VALUE)
+        this.observableCounter.increment(); //Zaehle Counter eins hoch (keine selben adressen bis Long.MAX_VALUE) startet bei null durch diese increment
         Address address = new Address(this.observableCounter.getCounter());
 
         switch (contentType) {
             case "Audio":
-                DataImpl<Audio> audioData = new DataImpl<>(address, uploadDate, uploaderName, tags, bitrate, laenge);
+                DataImpl<Audio> audioData = new DataImpl<>(address, uploaderName, tags, bitrate, laenge);
                 this.addressMediaContentHashMap.put(address.getAddress(), audioData);
                 return true;
             case "Video":
-                DataImpl<Video> videoData = new DataImpl<>(address, uploadDate, uploaderName, tags, bitrate, laenge);
+                DataImpl<Video> videoData = new DataImpl<>(address, uploaderName, tags, bitrate, laenge);
                 this.addressMediaContentHashMap.put(address.getAddress(), videoData);
                 return true;
             case "LicensedAudio":
-                DataImpl<LicensedAudio> licensedAudioData = new DataImpl<>(address, uploadDate, uploaderName, tags, bitrate, laenge);
+                DataImpl<LicensedAudio> licensedAudioData = new DataImpl<>(address, uploaderName, tags, bitrate, laenge);
                 this.addressMediaContentHashMap.put(address.getAddress(), licensedAudioData);
                 return true;
             case "LicensedVideo":
-                DataImpl<LicensedVideo> licensedVideoData = new DataImpl<>(address, uploadDate, uploaderName, tags, bitrate, laenge);
+                DataImpl<LicensedVideo> licensedVideoData = new DataImpl<>(address, uploaderName, tags, bitrate, laenge);
                 this.addressMediaContentHashMap.put(address.getAddress(), licensedVideoData);
                 return true;
             default:
@@ -135,6 +134,10 @@ public class ContentLogic implements Serializable {
  */
 
     public Map<String, DataImpl> getAddressMediaContentHashMap() {
-        return this.addressMediaContentHashMap;
+        return addressMediaContentHashMap;
+    }
+
+    public void setAddressMediaContentHashMap(Map<String, DataImpl> addressMediaContentHashMap) {
+        this.addressMediaContentHashMap = addressMediaContentHashMap;
     }
 }

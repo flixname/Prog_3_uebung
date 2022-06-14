@@ -1,8 +1,9 @@
 package domainLogic.util;
 
+import java.io.Serializable;
 import java.time.Duration;
 
-public class Laenge {
+public class Laenge implements Serializable {
 
     Duration laenge;
 

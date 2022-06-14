@@ -2,6 +2,7 @@ package domainLogic;
 
 import java.io.*;
 
+
 public class MainLogic {
 
     static final long serialVersionUID=1L;
@@ -25,18 +26,27 @@ public class MainLogic {
         return false;
     }
 
-    public UploaderLogic loadFromFile(String file){
+    public boolean loadFromFile(String file){
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             UploaderLogic uploaderLogic = (UploaderLogic)objectInputStream.readObject();
             objectInputStream.close();
-            return this.uploaderLogic = uploaderLogic;
+            this.uploaderLogic = uploaderLogic;
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return false;
+    }
+
+    public UploaderLogic getUploaderLogic() {
+        return uploaderLogic;
+    }
+
+    public void setUploaderLogic(UploaderLogic uploaderLogic) {
+        this.uploaderLogic = uploaderLogic;
     }
 }

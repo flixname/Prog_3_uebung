@@ -1,13 +1,12 @@
 package mediaDB;
 
-import observerPattern.observables.ObservableCounter;
-
-import java.util.Date;
+import java.io.Serializable;
 
 /**
- * choose name or get a default name if not assigned
+ * Uploader erstellen welcher schon einen Eintrag hat und mit selben eine datei hochladen....//TODO: nochmach in ueberpruefung in Uploaderliste schauen, da ist logikfehler mit ueberpruefung der namen
+ * //TODO: es muss möglich sein eine datei hochzuladen mit gleichem namen aber nicht in der uploaderliste zu erstellen
  */
-public class UploaderImpl implements Uploader{
+public class UploaderImpl implements Uploader, Serializable {
 
     private final String UPLOADERNAME;
 

@@ -2,9 +2,10 @@ package observerPattern.observables;
 
 import mediaDB.Tag;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class ObservableTag {
+public class ObservableTag implements Serializable {
 
     private HashMap<Integer, Tag> tagHashMap = new HashMap<>();
 
