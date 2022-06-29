@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 class ContentLogicUpdateTest {
 
-    ContentLogic testGLContent1 = new ContentLogic();
+    MainLogic mainLogic = new MainLogic();
 
     @BeforeEach
     void setTestGLContent(){
-        testGLContent1.createContent("Audio", "Felix", "Animal", 22, 222);
+        mainLogic.c("Audio", "Felix", "Animal", 22, 222);
     }
 
 
@@ -23,31 +23,31 @@ class ContentLogicUpdateTest {
 
     @Test //Counter noch bei 0
     void counterAtCreate1(){
-        Assertions.assertEquals(0, testGLContent1.getAddressMediaContentHashMap().get("0").getAccessCount());
+        Assertions.assertEquals(0, mainLogic.getContentLogic().getMediaContentMap().get("0").getAccessCount());
     }
 
     @Test //Counter an einer Datei hochzählen
     void goodUpdate1() {
-        testGLContent1.update("0");
-        Assertions.assertEquals(1, testGLContent1.getAddressMediaContentHashMap().get("0").getAccessCount());
+        mainLogic.update("0");
+        Assertions.assertEquals(1, mainLogic.getContentLogic().getMediaContentMap().get("0").getAccessCount());
     }
 
     @Test //Counter an vorhandener Datei hochzählen vorher 0 jetzt 3
     void goodUpdate2() {
-        testGLContent1.update("0");
-        testGLContent1.update("0");
-        testGLContent1.update("0");
-        Assertions.assertEquals(3, testGLContent1.getAddressMediaContentHashMap().get("0").getAccessCount());
+        mainLogic.update("0");
+        mainLogic.update("0");
+        mainLogic.update("0");
+        Assertions.assertEquals(3, mainLogic.getContentLogic().getMediaContentMap().get("0").getAccessCount());
     }
 
     @Test //Counter an vorhandener Datei an anderer Adresse hochzählen
     void goodUpdate3() {
-        testGLContent1.createContent("Audio", "Jasmin", "News", 22, 222);
-        testGLContent1.update("0");
-        testGLContent1.update("0");
-        testGLContent1.update("0");
-        testGLContent1.update("1");
-        testGLContent1.update("1");
+        mainLogic.createContent("Audio", "Jasmin", "News", 22, 222);
+        mainLogic.update("0");
+        mainLogic.update("0");
+        mainLogic.update("0");
+        mainLogic.update("1");
+        mainLogic.update("1");
         Assertions.assertEquals(3, testGLContent1.getAddressMediaContentHashMap().get("0").getAccessCount());
         Assertions.assertEquals(2, testGLContent1.getAddressMediaContentHashMap().get("1").getAccessCount());
     }

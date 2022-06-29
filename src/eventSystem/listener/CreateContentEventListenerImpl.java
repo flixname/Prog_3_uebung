@@ -1,20 +1,20 @@
 package eventSystem.listener;
 
-import domainLogic.ContentLogic;
+import domainLogic.MainLogic;
 import eventSystem.infrastructure.CreateContentEvent;
 import eventSystem.infrastructure.CreateContentEventListener;
 
 public class CreateContentEventListenerImpl implements CreateContentEventListener {
 
-    private ContentLogic contentLogic;
+    private MainLogic mainLogic;
 
-    public CreateContentEventListenerImpl(ContentLogic contentLogic) {
-        this.contentLogic = contentLogic;
+    public CreateContentEventListenerImpl(MainLogic contentLogic) {
+        this.mainLogic = mainLogic;
     }
 
     @Override
     public void onCreateContentEvent(CreateContentEvent createContentEvent) {
-        this.contentLogic.createContent(
+        this.mainLogic.createContent(
                 createContentEvent.getDataType(),
                 createContentEvent.getUploaderName(),
                 createContentEvent.getTagCollection(),

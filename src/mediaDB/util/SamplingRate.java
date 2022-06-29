@@ -1,4 +1,4 @@
-package domainLogic.util;
+package mediaDB.util;
 
 import java.io.Serializable;
 

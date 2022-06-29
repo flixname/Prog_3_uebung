@@ -1,21 +1,20 @@
 package eventSystem.listener;
 
-import domainLogic.UploaderLogic;
+import domainLogic.MainLogic;
 import eventSystem.infrastructure.CreateUploaderEvent;
 import eventSystem.infrastructure.CreateUploaderEventListener;
 
 public class CreateUploaderEventListenerImpl implements CreateUploaderEventListener {
 
-    private UploaderLogic glUploader;
+    private MainLogic mainLogic;
 
-    public CreateUploaderEventListenerImpl(UploaderLogic glUploader) {
-        this.glUploader = glUploader;
+    public CreateUploaderEventListenerImpl(MainLogic mainLogic) {
+        this.mainLogic = mainLogic;
     }
 
     @Override
     public void onCreateUploaderEvent(CreateUploaderEvent createUploaderEvent) {
-        this.glUploader.createUploader(
-                createUploaderEvent.getUploader()
-        );
+        this.mainLogic.createUploader(
+                createUploaderEvent.getUploader());
     }
 }

@@ -3,13 +3,13 @@ package ui.cli;
 import observerPattern.observables.ObservableTag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ui.cli.commands.ContentCommand;
+import ui.cli.commands.CreateContentCommand;
 
 class CommandTest {
 
     @Test //test um die funktionalität von command zu prüfen (simple wg Tags)
     void goodCommand1() {
-        ContentCommand command = new ContentCommand("[Audio][Felix][News][200][300]");
+        CreateContentCommand command = new CreateContentCommand("[Audio][Felix][News][200][300]");
 
         Assertions.assertEquals("Audio",command.getContent());
         Assertions.assertEquals("Felix",command.getUploader());
@@ -20,7 +20,7 @@ class CommandTest {
 
     @Test //Mit obevervable tag für seperation und conversion von den Tags
     void goodCommand2() {
-        ContentCommand command = new ContentCommand("[Audio][Felix][News][200][300]");
+        CreateContentCommand command = new CreateContentCommand("[Audio][Felix][News][200][300]");
         ObservableTag observableTag = new ObservableTag(command.getTags());
 
         //Assertions.assertEquals("News", observableTag.getTagList().get(0));

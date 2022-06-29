@@ -16,6 +16,7 @@ public class CreateContentEventHandler {
 
     public void handle(CreateContentEvent createContentEvent){
         for (CreateContentEventListener createUploaderEventListener : createContentEventListenerLinkedList)
-        createUploaderEventListener.onCreateContentEvent(createContentEvent); }
+        createUploaderEventListener.onCreateContentEvent(createContentEvent);
+    }
 
 }

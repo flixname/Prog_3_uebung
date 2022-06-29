@@ -1,7 +1,7 @@
 package mediaDB;
 
 
-import domainLogic.util.*;
+import mediaDB.util.*;
 import observerPattern.observables.ObservableAccessCounter;
 import observerPattern.observables.ObservableTag;
 
@@ -11,21 +11,21 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, AudioVideo, Serializable {
-
-    private M mediaContent;
+public class DataImpl implements AudioVideo, Licensed, Serializable {
 
     private Address address;
     private Uploader uploader;
     private ObservableTag observableTag;
-    private Bitrate bitrate;
-    private Laenge laenge;
-    private SamplingRate samplingRate;
-    private Date uploadDate;
-    private ObservableAccessCounter observableAccessCounter;
+    private final Bitrate bitrate;
+    private final Laenge laenge;
+    private final SamplingRate samplingRate;
+    private final Date uploadDate;
+    private final ObservableAccessCounter observableAccessCounter;
+    private final Size size;
+    //private final Resolution resolution; TODO
+    private final MediaType mediaType;
 
-    public DataImpl(Address address, String uploader, String tags, int bitrate, long laenge) {
-        this.address = new Address(address.getAddress());
+    public DataImpl(String mediaType, String uploader, String tags, int bitrate, long laenge) {
         this.uploader = new UploaderImpl(uploader);
         this.observableTag = new ObservableTag(tags);
         this.bitrate = new Bitrate(bitrate);
@@ -33,6 +33,12 @@ public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, A
         this.samplingRate = new SamplingRate(); //TODO
         this.uploadDate = new Date();
         this.observableAccessCounter = new ObservableAccessCounter();
+        this.mediaType = new MediaType(mediaType);
+        this.size = new Size(bitrate + laenge); //fue ObservableMapSize
+    }
+
+    public void giveAddress(Long address){
+        this.address = new Address(address);
     }
 
     public void update(){
@@ -77,7 +83,7 @@ public class DataImpl<M extends MediaContent> implements Uploadable, Licensed, A
 
     @Override
     public BigDecimal getSize() {
-        return null;
+        return this.size.getSize();
     }
 
     @Override

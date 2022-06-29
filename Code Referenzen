@@ -1,1 +1,14 @@
-Iterieren von HashMaps: https://www.delftstack.com/de/howto/java/how-to-iterate-through-hashmap-in-java/
+Iterieren von HashMaps:
+https://www.delftstack.com/de/howto/java/how-to-iterate-through-hashmap-in-java/
+verschiedene Arten ausprobiert von dieser Seite
+
+
+JOS:
+https://dbs.cs.uni-duesseldorf.de/lehre/docs/java/javabuch/html/k100258.html#ixa102959
+nochmal nachgelesen
+
+Char array to String:
+https://www.baeldung.com/java-char-array-to-string
+
+Arithmetischer Ueberlauf abfrage bzw max capacity abfrage:
+Programmieren 2 Schwotzer, Thema Randtests

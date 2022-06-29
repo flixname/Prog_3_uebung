@@ -1,5 +1,7 @@
 package eventSystem.infrastructure;
 
+import mediaDB.util.Address;
+
 import java.util.EventObject;
 
 public class UpdateCounterEvent extends EventObject {

@@ -16,13 +16,13 @@ class MainLogicJOSTest {
 
         mainLogic.setUploaderLogic(uploaderLogic);
 
-        mainLogic.saveToFile();
+        mainLogic.saveJOS();
     }
 
     @Test
     void loadFromFile() {
         MainLogic mainLogic = new MainLogic();
-        mainLogic.loadFromFile("File.txt");
+        mainLogic.loadJOS("File.txt");
 
         Assertions.assertEquals(1, mainLogic.getUploaderLogic().getContentLogic().getAddressMediaContentHashMap().size());
         Assertions.assertEquals("Harald", mainLogic.getUploaderLogic().getContentLogic().getAddressMediaContentHashMap().get("0").getUploader().getName());

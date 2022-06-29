@@ -1,6 +1,6 @@
 package observerPattern.observables;
 
-import domainLogic.util.Counter;
+import mediaDB.util.Counter;
 
 import java.io.Serializable;
 import java.util.Observable;

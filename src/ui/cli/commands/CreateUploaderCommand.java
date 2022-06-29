@@ -1,13 +1,30 @@
 package ui.cli.commands;
 
-import mediaDB.Uploader;
-import mediaDB.UploaderImpl;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+/**
+ * Command checks and creates a valid String vor an uploader name
+ */
 public class CreateUploaderCommand {
 
-    Uploader uploader;
+    private String uploader;
 
     public CreateUploaderCommand(String uploader) {
-        this.uploader = new UploaderImpl(uploader);
+
+        String regexPattern = "\\[.*\\]";        //String uploader
+        Pattern pattern = Pattern.compile(regexPattern);
+        Matcher matcher = pattern.matcher(uploader);
+
+        if(matcher.matches()){
+            this.uploader = uploader;
+        }else{
+            this.uploader = "-1";
+            System.out.println("please, type a Name");
+        }
+    }
+
+    public String getUploader() {
+        return uploader;
     }
 }

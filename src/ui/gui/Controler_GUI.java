@@ -1,21 +1,18 @@
 package ui.gui;
 
-import domainLogic.ContentLogic;
-import domainLogic.UploaderLogic;
+import domainLogic.MainLogic;
 import javafx.fxml.FXML;
-import ui.cli.commands.AddressCommand;
-import ui.cli.commands.ContentCommand;
+import ui.cli.commands.CreateContentCommand;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import ui.cli.commands.UploaderCommand;
+import ui.cli.commands.CreateUploaderCommand;
+import ui.cli.commands.AddressCommand;
 
 
-public class HelloController  {
-
-    ContentLogic glContent = new ContentLogic();
-    UploaderLogic glUploader = new UploaderLogic();
+public class Controler_GUI {
+    MainLogic mainLogic = new MainLogic(1000000000);
 
     @FXML
     private TextField contentInput;
@@ -47,21 +44,20 @@ public class HelloController  {
     }
 
     private void createProducerBtnClicked() {
-        UploaderCommand uploaderCommand = new UploaderCommand(contentInput.getText());
-        glUploader.createUploader(uploaderCommand.getUploader());
+        CreateUploaderCommand createUploaderCommand = new CreateUploaderCommand(contentInput.getText());
+        mainLogic.createUploader(createUploaderCommand.getUploader());
         //TODO Update
     }
 
     private void deleteBtnClicked() {
-        AddressCommand addressCommand = new AddressCommand(contentInput.getText());
+        //AddressCommand addressCommand = new AddressCommand(contentInput.getText());
         //glContent.deleteSingleContent(addressCommand.getAddress());
         //TODO Update
     }
 
     private void updateBtnClicked() {
         AddressCommand addressCommand = new AddressCommand(contentInput.getText());
-        glContent.update(addressCommand.getAddress());
-        //TODO Update
+        mainLogic.update(addressCommand.getAddress());
     }
 
     private void setPromtTxt(){
@@ -69,9 +65,8 @@ public class HelloController  {
     }
 
     private void createBtnClicked() {
-        ContentCommand contentCommand = new ContentCommand(contentInput.getText());
-        glContent.createContent(contentCommand.getContent(), contentCommand.getUploader(), contentCommand.getTags(), contentCommand.getBitrate(), contentCommand.getDuration());
-        //TODO Update
+        CreateContentCommand createContentCommand = new CreateContentCommand(contentInput.getText());
+        mainLogic.createContent(createContentCommand.getContent(), createContentCommand.getUploader(), createContentCommand.getTags(), createContentCommand.getBitrate(), createContentCommand.getDuration());
     }
 
     private void readBtnClicked() {

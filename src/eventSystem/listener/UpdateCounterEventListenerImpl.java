@@ -1,19 +1,20 @@
 package eventSystem.listener;
 
-import domainLogic.IContentGL;
+import domainLogic.ContentLogic;
+import domainLogic.MainLogic;
 import eventSystem.infrastructure.UpdateCounterEvent;
 import eventSystem.infrastructure.UpdateCounterEventListener;
 
 public class UpdateCounterEventListenerImpl implements UpdateCounterEventListener {
 
-    private IContentGL iContentGL;
+    private MainLogic mainLogic;
 
-    public UpdateCounterEventListenerImpl(IContentGL iContentGL) {
-       this.iContentGL = iContentGL;
+    public UpdateCounterEventListenerImpl(MainLogic mainLogic) {
+       this.mainLogic = mainLogic;
     }
 
     @Override
     public void onUpdateCounterEvent(UpdateCounterEvent updateCounterEvent) {
-        this.iContentGL.update(updateCounterEvent.getAddress());
+        this.mainLogic.update(updateCounterEvent.getAddress());
     }
 }

@@ -3,7 +3,10 @@ package ui.cli.commands;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ContentCommand {
+/**
+ * Command checks and creates various valid data types for creating media content
+ */
+public class CreateContentCommand {
 
     //int number;
     //String operator;
@@ -35,14 +38,14 @@ public class ContentCommand {
 
     private String[] splitTextContent;
 
-    public ContentCommand(String text) {
+    public CreateContentCommand(String text) {
         String regexPattern =
-                    //":c|:r|:u|:d|:p|:e" +   //String operatorChar
                 "\\[.*\\]" +           //String content
                 "\\[.*\\]" +            //String uploader
                 "\\[[.*,]{0,4}\\]" +    //String tags (1-4);
                 "\\[\\d*\\]" +          //int bitrate
                 "\\[\\d*\\]";           //long duration
+
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher operator = pattern.matcher(text);
 
