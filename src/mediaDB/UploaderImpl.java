@@ -6,16 +6,17 @@ import java.io.Serializable;
  * Uploader erstellen welcher schon einen Eintrag hat und mit selben eine datei hochladen....//TODO: nochmach in ueberpruefung in Uploaderliste schauen, da ist logikfehler mit ueberpruefung der namen
  * //TODO: es muss möglich sein eine datei hochzuladen mit gleichem namen aber nicht in der uploaderliste zu erstellen
  */
-public class UploaderImpl implements Uploader, Serializable {
+public class UploaderImpl implements Serializable {
 
-    private final String UPLOADERNAME;
+    private final String NAME;
 
-    public UploaderImpl(String name) {
-        this.UPLOADERNAME = name;
+    public UploaderImpl(String NAME) {
+        this.NAME = NAME;
     }
+
 
     @Override
     public String getName() {
-        return this.UPLOADERNAME;
+        return this.NAME;
     }
 }

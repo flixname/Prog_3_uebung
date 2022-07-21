@@ -1,4 +1,4 @@
-package ui.cli;
+package ui.cli.commands;
 
 import eventSystem.infrastructure.CreateUploaderEvent;
 import eventSystem.infrastructure.*;
@@ -56,8 +56,9 @@ public class ControllerCLI {
                         System.out.println("Create [Produzentenname] oder Content[Media-Typ][Produzentenname][komaseparierte Tags, einzelnes Komma fuer keine][Bitrate][Laenge][[Optionale Parameter]]");
                         String tmp = s.next();
                         if(tmp.equals("\\[.*\\].*")){
-                            createContentCommand = new CreateContentCommand(tmp);
-                            CreateContentEvent createContentEvent = new CreateContentEvent(this, createContentCommand.getContent(), createContentCommand.getUploader(), createContentCommand.getTags(), createContentCommand.getBitrate(), createContentCommand.getDuration());
+                            this.createContentCommand = new CreateContentCommand(tmp);
+                            CreateContentEvent createContentEvent = new CreateContentEvent(this, this.createContentCommand.getContent(),
+                                    createContentCommand.getUploader(), createContentCommand.getTags(), createContentCommand.getBitrate(), createContentCommand.getDuration());
                             createContentEventHandler.handle(createContentEvent);
                         }else{
                            createUploaderCommand = new CreateUploaderCommand(tmp);
@@ -73,8 +74,8 @@ public class ControllerCLI {
                     case ":u":
                         System.out.println("Which address would you like to update?: ");
                         if(this.updateCounterEventHandler != null)
-                            addressCommand = new AddressCommand(s.next());
-                            UpdateCounterEvent updateCounterEvent = new UpdateCounterEvent(this, addressCommand.getAddress());
+                            this.addressCommand = new AddressCommand(s.next());
+                            UpdateCounterEvent updateCounterEvent = new UpdateCounterEvent(this, this.addressCommand.getAddress());
                             updateCounterEventHandler.handle(updateCounterEvent);
                         break;
                     case ":d":

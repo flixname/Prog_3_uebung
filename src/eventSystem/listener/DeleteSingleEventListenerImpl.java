@@ -1,15 +1,15 @@
 package eventSystem.listener;
 
-import domainLogic.ContentLogic;
+import domainLogic.Logic;
 import eventSystem.infrastructure.DeleteSingleContentEvent;
 import eventSystem.infrastructure.DeleteSingleEventListener;
 
 public class DeleteSingleEventListenerImpl implements DeleteSingleEventListener {
 
-    private ContentLogic contentLogic;
+    private Logic logic;
 
-    public DeleteSingleEventListenerImpl(ContentLogic contentLogic) {
-        this.contentLogic = contentLogic;
+    public DeleteSingleEventListenerImpl(Logic logic) {
+        this.logic = logic;
     }
 
     @Override

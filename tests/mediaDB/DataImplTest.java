@@ -1,27 +1,80 @@
 package mediaDB;
 
-import domainLogic.ContentLogic;
-import org.junit.jupiter.api.BeforeEach;
+import domainLogic.Logic;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
 
 class DataImplTest {
 
-    ContentLogic glContent = new ContentLogic();
+    Logic logic = new Logic(100000000);
 
-    @BeforeEach
-    void createAudio(){
-        glContent.createContent("Audio", "Felix", "News", 200, 300);
-    }
-
-    @Test //ob addresscounter funzt
+    @Test //Ob Addresscounter funktioniert
     void goodGetAddress0() {
-        //Assertions.assertEquals("0", glContent.getContentLinkedList().get(0).getAddress());
+        DataImpl data = mock(DataImpl.class);
+        when(data.getAddress()).thenReturn("0");
+
+        this.logic.createContent(data);
+
+        verify(data).getAddress();
     }
 
-    @Test //ob funzt bei zwei dateien == 1 (fängt bei 0 an zu zählen damit übereinstimmend mit listennummer
+    @Test //Ob Addresscounter dann auch wirklich weiter zaehlt
     void goodGetAddress1(){
-        glContent.createContent("Audio", "Hansi", "News", 200, 300);
-        glContent.createContent("Audio", "Franz", "News", 200, 300);
-        //Assertions.assertEquals("2", glContent.getContentLinkedList().get(2).getAddress());
+        DataImpl data1 =mock(DataImpl.class);
+        DataImpl data2 =mock(DataImpl.class);
+        when(data2.getAddress()).thenReturn("2");
+
+        this.logic.createContent(data1);
+        this.logic.createContent(data2);
+        verify(data2).getAddress();
+    }
+
+    @Test
+    void getSamplingRate() {
+    }
+
+    @Test
+    void getAddress() {
+    }
+
+    @Test
+    void getTags() {
+    }
+
+    @Test
+    void getAccessCount() {
+    }
+
+    @Test
+    void getHolder() {
+    }
+
+    @Test
+    void getBitrate() {
+    }
+
+    @Test
+    void getLength() {
+    }
+
+    @Test
+    void getSize() {
+    }
+
+    @Test
+    void getUploader() {
+        DataImpl data = new DataImpl("Audio", "Gucci Mane", "News, Animal", 22, 222);
+
+        Assertions.assertEquals("Gucci Mane", data.getUploader().getName());
+    }
+
+    @Test
+    void getUploadDate() {
+    }
+
+    @Test
+    void getResolution() {
     }
 }

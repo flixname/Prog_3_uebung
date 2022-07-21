@@ -1,20 +1,20 @@
 package eventSystem.listener;
 
-import domainLogic.ContentLogic;
-import domainLogic.MainLogic;
+import domainLogic.Logic;
 import eventSystem.infrastructure.UpdateCounterEvent;
 import eventSystem.infrastructure.UpdateCounterEventListener;
+import domainLogic.MainLogic;
 
 public class UpdateCounterEventListenerImpl implements UpdateCounterEventListener {
 
-    private MainLogic mainLogic;
+    private Logic logic;
 
-    public UpdateCounterEventListenerImpl(MainLogic mainLogic) {
-       this.mainLogic = mainLogic;
+    public UpdateCounterEventListenerImpl(Logic logic) {
+       this.logic = logic;
     }
 
     @Override
     public void onUpdateCounterEvent(UpdateCounterEvent updateCounterEvent) {
-        this.mainLogic.update(updateCounterEvent.getAddress());
+        this.logic.update(updateCounterEvent.getAddress());
     }
 }

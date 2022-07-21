@@ -1,43 +1,40 @@
-package observerPattern.observables;
+package mediaDB.util;
 
 import mediaDB.Tag;
 
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class ObservableTag implements Serializable {
+public class Tags implements Serializable {
 
     private HashMap<Integer, Tag> tagHashMap = new HashMap<>();
 
-    public ObservableTag() {
+    public Tags() {
     }
 
-    public ObservableTag(String tags) {
+    public Tags(String tags) {
         String[] splitTextContent = tags.split(", ");
-        if(splitTextContent != null){
-            for (int i = 0; i < splitTextContent.length; i++) {
-                addTag(splitTextContent[i]);
-            }
+        for (String s : splitTextContent) {
+            this.addTag(s);
         }
     }
 
-    public void addTag(String tag){
+    public boolean addTag(String tag){
         switch(tag){
             case "Animal": //Animal
                 this.tagHashMap.put(0, Tag.Animal);
-                break;
+                return true;
             case "Tutorial": //Tutorial
                 this.tagHashMap.put(1, Tag.Tutorial);
-                break;
+                return true;
             case "Lifestyle": //Lifestyle
                 this.tagHashMap.put(2, Tag.Lifestyle);
-                break;
+                return true;
             case "News": //News
                 this.tagHashMap.put(3, Tag.News);
-                break;
+                return true;
             default:
-                System.out.println("No Tag given.");
-                break;
+                return false;
         }
     }
 

@@ -1,6 +1,8 @@
 package mediaDB.util;
 
-public class MediaType {
+import java.io.Serializable;
+
+public class MediaType implements Serializable {
 
     private String mediaType;
 

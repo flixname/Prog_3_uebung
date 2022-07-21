@@ -1,14 +1,14 @@
 package threads;
 
-import domainLogic.ContentLogic;
+import domainLogic.Logic;
 
 public class CreateThread extends Thread {
 
-    ContentLogic glContent;
+    Logic glContent;
     int randomNumber1;
     int randomNumber2;
 
-    public CreateThread(ContentLogic glContent) {
+    public CreateThread(Logic glContent) {
         this.glContent = glContent;
     }
 

@@ -12,7 +12,7 @@ import ui.cli.commands.AddressCommand;
 
 
 public class Controler_GUI {
-    MainLogic mainLogic = new MainLogic(1000000000);
+    MainLogic mainLogic = new MainLogic(100);
 
     @FXML
     private TextField contentInput;

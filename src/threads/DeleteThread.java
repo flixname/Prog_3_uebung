@@ -1,12 +1,12 @@
 package threads;
 
-import domainLogic.ContentLogic;
+import domainLogic.Logic;
 
 public class DeleteThread extends Thread{
-    ContentLogic glContent;
+    Logic glContent;
     int randomNumber;
 
-    public DeleteThread(ContentLogic glContent) {
+    public DeleteThread(Logic glContent) {
         this.glContent = glContent;
     }
 /*

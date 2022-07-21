@@ -1,6 +1,5 @@
-import domainLogic.ContentLogic;
-import domainLogic.MainLogic;
-import domainLogic.UploaderLogic;
+import domainLogic.Logic;
+import mediaDB.DataImpl;
 import mediaDB.Uploader;
 import mediaDB.UploaderImpl;
 
@@ -8,13 +7,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class JOS {
     public static void main(String[] args) {
-        MainLogic mainLogic1 = new MainLogic(1000000000);
+        Logic logic_1 = new Logic(Integer.MAX_VALUE);
 
         for (int i = 0; i < 30; i++) {
             try {
                 int randomNumber1 = ThreadLocalRandom.current().nextInt(1, 400);
                 int randomNumber2 = ThreadLocalRandom.current().nextInt(1, 200);
-                mainLogic1.createContent("Audio", "Basic Channel", "News", randomNumber1, randomNumber2);
+                DataImpl data = new DataImpl("Audio", "Basic Channel", "News", randomNumber1, randomNumber2);
+                logic_1.createContent(data);
                 System.out.println("created Media NR.: " + i);
             } catch (IndexOutOfBoundsException e) {
                 throw new IndexOutOfBoundsException();
@@ -31,7 +31,7 @@ public class JOS {
                 }
                 String name = new String(charArray);
                 Uploader uploader = new UploaderImpl(name);
-                mainLogic1.createUploader(uploader.getName());
+                logic_1.createUploader(uploader);
                 System.out.println("created Uploader NR.: " + i);
             } catch (IndexOutOfBoundsException e) {
                 throw new IndexOutOfBoundsException();
@@ -40,15 +40,15 @@ public class JOS {
 
         System.out.println("Now saving from MainLogic1 to File.txt...");
         //loading();
-        mainLogic1.saveJOS();
+        logic_1.saveJOS();
 
-        MainLogic mainLogic2 = new MainLogic(1000000000);
+        Logic logic_2 = new Logic(Integer.MAX_VALUE);
         System.out.println("Now trying to load data from File.txt into mainLogic2...");
         //loading();
 
-        mainLogic2.loadJOS("File.txt");
+        logic_2.loadJOS();
 
-        System.out.println("Check if Content from before is there for Uploaderlist.size, should be 30 and is: " + mainLogic2.readUploader().size());
+        System.out.println("Check if Content from before is there for Uploaderlist.size, should be some crazy value and is: " + logic_2.getLogicSize().getActualSize().getSize());
     }
 /*
 // For the lulz! :)

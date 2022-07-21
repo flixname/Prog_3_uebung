@@ -1,6 +1,6 @@
 package ui.cli;
 
-import observerPattern.observables.ObservableTag;
+import mediaDB.util.Tags;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ui.cli.commands.CreateContentCommand;
@@ -21,7 +21,7 @@ class CommandTest {
     @Test //Mit obevervable tag für seperation und conversion von den Tags
     void goodCommand2() {
         CreateContentCommand command = new CreateContentCommand("[Audio][Felix][News][200][300]");
-        ObservableTag observableTag = new ObservableTag(command.getTags());
+        Tags tags = new Tags(command.getTags());
 
         //Assertions.assertEquals("News", observableTag.getTagList().get(0));
     }

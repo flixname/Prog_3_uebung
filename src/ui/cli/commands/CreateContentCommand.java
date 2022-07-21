@@ -42,7 +42,7 @@ public class CreateContentCommand {
         String regexPattern =
                 "\\[.*\\]" +           //String content
                 "\\[.*\\]" +            //String uploader
-                "\\[[.*,]{0,4}\\]" +    //String tags (1-4);
+                "\\[\\.*,{0,4}\\]" +    //String tags (1-4);
                 "\\[\\d*\\]" +          //int bitrate
                 "\\[\\d*\\]";           //long duration
 

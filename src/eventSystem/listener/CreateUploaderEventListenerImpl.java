@@ -1,20 +1,21 @@
 package eventSystem.listener;
 
-import domainLogic.MainLogic;
+import domainLogic.Logic;
+
 import eventSystem.infrastructure.CreateUploaderEvent;
 import eventSystem.infrastructure.CreateUploaderEventListener;
+import mediaDB.UploaderImpl;
 
 public class CreateUploaderEventListenerImpl implements CreateUploaderEventListener {
 
-    private MainLogic mainLogic;
+    private Logic logic;
 
-    public CreateUploaderEventListenerImpl(MainLogic mainLogic) {
-        this.mainLogic = mainLogic;
+    public CreateUploaderEventListenerImpl(Logic logic) {
+        this.logic = logic;
     }
 
     @Override
     public void onCreateUploaderEvent(CreateUploaderEvent createUploaderEvent) {
-        this.mainLogic.createUploader(
-                createUploaderEvent.getUploader());
+        this.logic.createUploader(new UploaderImpl(createUploaderEvent.getUploader()));
     }
 }

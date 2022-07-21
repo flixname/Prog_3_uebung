@@ -2,8 +2,8 @@ package mediaDB;
 
 
 import mediaDB.util.*;
-import observerPattern.observables.ObservableAccessCounter;
-import observerPattern.observables.ObservableTag;
+import mediaDB.util.AccessCounter;
+import mediaDB.util.Tags;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,35 +14,46 @@ import java.util.Date;
 public class DataImpl implements AudioVideo, Licensed, Serializable {
 
     private Address address;
-    private Uploader uploader;
-    private ObservableTag observableTag;
-    private final Bitrate bitrate;
-    private final Laenge laenge;
-    private final SamplingRate samplingRate;
-    private final Date uploadDate;
-    private final ObservableAccessCounter observableAccessCounter;
-    private final Size size;
+    private UploaderImpl uploader;
+    private Tags tags;
+    private Bitrate bitrate;
+    private Laenge laenge;
+    private SamplingRate samplingRate;
+    private Date uploadDate;
+    private AccessCounter accessCounter;
+    private Size size;
     //private final Resolution resolution; TODO
-    private final MediaType mediaType;
+    private MediaType mediaType;
+
+    public DataImpl() {
+    }
 
     public DataImpl(String mediaType, String uploader, String tags, int bitrate, long laenge) {
-        this.uploader = new UploaderImpl(uploader);
-        this.observableTag = new ObservableTag(tags);
+        this.uploader.setNAME(uploader);
+        this.tags = new Tags(tags);
         this.bitrate = new Bitrate(bitrate);
         this.laenge = new Laenge(laenge);
         this.samplingRate = new SamplingRate(); //TODO
         this.uploadDate = new Date();
-        this.observableAccessCounter = new ObservableAccessCounter();
+        this.accessCounter = new AccessCounter();
         this.mediaType = new MediaType(mediaType);
-        this.size = new Size(bitrate + laenge); //fue ObservableMapSize
+        this.size = new Size(bitrate + laenge);
     }
 
-    public void giveAddress(Long address){
+    public MediaType getMediaType() {
+        return mediaType;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void giveDataAnAddress(Long address){
         this.address = new Address(address);
     }
 
     public void update(){
-        this.observableAccessCounter.increment();
+        this.accessCounter.increment();
     }
 
     @Override
@@ -63,7 +74,7 @@ public class DataImpl implements AudioVideo, Licensed, Serializable {
 
     @Override
     public long getAccessCount() {
-        return this.observableAccessCounter.getCounter();
+        return this.accessCounter.getCounter();
     }
 
     @Override
@@ -83,7 +94,7 @@ public class DataImpl implements AudioVideo, Licensed, Serializable {
 
     @Override
     public BigDecimal getSize() {
-        return this.size.getSize();
+        return BigDecimal.valueOf(this.size.getSize());
     }
 
     @Override

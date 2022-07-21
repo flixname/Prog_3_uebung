@@ -1,7 +1,5 @@
 package mediaDB;
 
-import observerPattern.observables.ObservableCounter;
-
 import java.util.Collection;
 
 public interface Content {

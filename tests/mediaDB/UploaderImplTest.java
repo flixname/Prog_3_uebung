@@ -1,17 +1,20 @@
 package mediaDB;
 
+import domainLogic.Logic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class UploaderImplTest {
 
-    @Test //simple Uploader class test
+    @Test
     void setUploader() {
-        Uploader uploader1 = new UploaderImpl("Hansi");
-        Uploader uploader2 = new UploaderImpl("Gerhard");
-        Assertions.assertEquals("Hansi", uploader1.getName());
-        Assertions.assertEquals("Gerhard", uploader2.getName());
+        Uploader uploader = mock(Uploader.class);
+        when(uploader.getName()).thenReturn("Omar-S");
+
+        assertEquals("Omar-S", uploader.getName());
     }
 }
