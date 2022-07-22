@@ -3,7 +3,6 @@ package eventSystem.listener;
 import domainLogic.Logic;
 import eventSystem.infrastructure.UpdateCounterEvent;
 import eventSystem.infrastructure.UpdateCounterEventListener;
-import domainLogic.MainLogic;
 
 public class UpdateCounterEventListenerImpl implements UpdateCounterEventListener {
 

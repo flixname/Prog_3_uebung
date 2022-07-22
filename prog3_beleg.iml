@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/tests/domainLogic/todo" />
+      <excludeFolder url="file://$MODULE_DIR$/src/domainLogic/todo" />
+      <excludeFolder url="file://$MODULE_DIR$/src/ui/gui/todo" />
     </content>
     <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

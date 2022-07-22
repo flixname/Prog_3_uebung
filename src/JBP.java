@@ -1,5 +1,7 @@
 import domainLogic.Logic;
 import mediaDB.DataImpl;
+import mediaDB.UploaderStandardBase;
+import mediaDB.Uploader;
 import mediaDB.UploaderImpl;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +33,7 @@ public class JBP {
                     charArray[j] = randomChar;
                 }
                 String name = new String(charArray);
-                UploaderImpl uploader = new UploaderImpl();
+                Uploader uploader = new UploaderStandardBase(new UploaderImpl(name));
                 logic_1.createUploader(uploader);
                 System.out.println("created Uploader NR.: " + i);
             } catch (IndexOutOfBoundsException e) {

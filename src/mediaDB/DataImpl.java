@@ -14,7 +14,7 @@ import java.util.Date;
 public class DataImpl implements AudioVideo, Licensed, Serializable {
 
     private Address address;
-    private UploaderImpl uploader;
+    private Uploader uploader;
     private Tags tags;
     private Bitrate bitrate;
     private Laenge laenge;
@@ -28,20 +28,20 @@ public class DataImpl implements AudioVideo, Licensed, Serializable {
     public DataImpl() {
     }
 
-    public DataImpl(String mediaType, String uploader, String tags, int bitrate, long laenge) {
-        this.uploader.setNAME(uploader);
+    public DataImpl(MediaType mediaType, String uploaderName, String tags, int bitrate, long laenge) {
+        this.uploader = new UploaderStandardBase(new UploaderImpl(uploaderName));
         this.tags = new Tags(tags);
         this.bitrate = new Bitrate(bitrate);
         this.laenge = new Laenge(laenge);
         this.samplingRate = new SamplingRate(); //TODO
         this.uploadDate = new Date();
         this.accessCounter = new AccessCounter();
-        this.mediaType = new MediaType(mediaType);
+        this.mediaType = new MediaTypeBaseDecorator(mediaType); ///TODO: hier weiter--------------------------------------->
         this.size = new Size(bitrate + laenge);
     }
 
-    public MediaType getMediaType() {
-        return mediaType;
+    public String getMediaTypeBaseDelegate() {
+        return mediaTypeBaseDecorator.getMediaType();
     }
 
     public void setAddress(Address address) {

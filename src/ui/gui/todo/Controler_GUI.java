@@ -1,6 +1,5 @@
-package ui.gui;
+package ui.gui.todo;
 
-import domainLogic.MainLogic;
 import javafx.fxml.FXML;
 import ui.cli.commands.CreateContentCommand;
 import javafx.scene.control.Button;

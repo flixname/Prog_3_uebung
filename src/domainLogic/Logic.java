@@ -200,9 +200,9 @@ public class Logic extends Observable implements Serializable {
 
                 case "Audio":
                     if (this.mediaContentMap  != null) {
-                        for (Map.Entry<String, DataImpl> addressMediaContent : this.mediaContentMap.entrySet()) {
-                            if (addressMediaContent.getValue().getMediaType().getMediaType().equals("Audio")) {
-                                tempContentLinkedList.add(addressMediaContent);
+                        for (Map.Entry<String, DataImpl> dataEntry : this.mediaContentMap.entrySet()) {
+                            if (dataEntry.getValue().getMediaTypeBaseDelegate().equals("Audio")) {
+                                tempContentLinkedList.add(dataEntry);
                             }
                         }
                         return tempContentLinkedList;
@@ -211,9 +211,9 @@ public class Logic extends Observable implements Serializable {
 
                 case "Video":
                     if (this.mediaContentMap  != null) {
-                        for (Map.Entry<String, DataImpl> addressMediaContent : this.mediaContentMap.entrySet()) {
-                            if (addressMediaContent.getValue().getMediaType().getMediaType().equals("Video")) {
-                                tempContentLinkedList.add(addressMediaContent);
+                        for (Map.Entry<String, DataImpl> dataEntry : this.mediaContentMap.entrySet()) {
+                            if (dataEntry.getValue().getMediaTypeBaseDelegate().equals("Video")) {
+                                tempContentLinkedList.add(dataEntry);
                             }
                         }
                         return tempContentLinkedList;

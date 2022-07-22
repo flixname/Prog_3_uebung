@@ -1,5 +1,6 @@
-package domainLogic;
+package domainLogic.todo;
 
+import domainLogic.Logic;
 import mediaDB.DataImpl;
 import mediaDB.UploaderImpl;
 
@@ -18,8 +19,7 @@ public class MainLogic extends Observable {
 
     public boolean createUploader(String name){
         if(this.logic != null){
-            UploaderImpl uploader = new UploaderImpl();
-            uploader.setNAME(name);
+            Uploader uploader = new UploaderImpl();
             this.logic.createUploader(uploader);
             return true;
         }else{
